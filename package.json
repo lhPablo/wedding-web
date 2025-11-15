@@ -1,0 +1,25 @@
+{
+  "name": "wedding-web",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^5.15.7"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.39.1",
+    "@typescript-eslint/eslint-plugin": "8.46.4",
+    "@typescript-eslint/parser": "8.46.4",
+    "eslint": "9.39.1",
+    "eslint-plugin-astro": "1.5.0",
+    "eslint-plugin-react": "7.37.5",
+    "globals": "16.5.0",
+    "prettier": "3.6.2",
+    "typescript-eslint": "8.46.4"
+  }
+}
