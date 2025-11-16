@@ -1,0 +1,9 @@
+:root {
+  --primary-color: #fff0f5;
+  --secondary-color: #880e4f;
+  --hover-color: #ad1457;
+  --overlay-color: rgba(0,0,0,0.3);
+  --active-color: #0e1de9;
+
+  --font-family: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
+}

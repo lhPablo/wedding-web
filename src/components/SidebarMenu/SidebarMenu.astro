@@ -1,0 +1,28 @@
+---
+import { sections } from '../../data/sections';
+import styles from './SidebarMenu.module.css';
+---
+
+<div class={styles.hamburger} id="hamburger">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+
+<div class={styles.overlay} id="overlay"></div>
+
+<nav class={styles.sidebar} id="sidebar">
+  {
+    sections.map(({ id, title, Icon }) => (
+      <a href={`#${id}`} data-label={title}>
+        <Icon />
+        <span>{title}</span>
+      </a>
+    ))
+  }
+
+  <script>
+    import { initSidebar } from './sidebar';
+    initSidebar();
+  </script>
+</nav>

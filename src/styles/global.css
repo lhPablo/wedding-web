@@ -1,0 +1,50 @@
+@import './variables.css';
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--primary-color);
+  font-family: var(--font-family);
+}
+
+main {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  font-size: 22px;
+  margin-top: 0.25em;
+}
+
+h2 {
+  margin: 0 0 1em;
+  font-weight: normal;
+  color: #111827;
+  font-size: 20px;
+}
+
+p {
+  color: #4b5563;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -0.006em;
+  margin: 0;
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  filter: blur(100px);
+}
