@@ -1,0 +1,20 @@
+.timer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.timerItem {
+    display: flex;
+    flex-direction: column;
+    border-right: 2px solid black;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.timerItem:last-child {
+    border-right: none;
+}

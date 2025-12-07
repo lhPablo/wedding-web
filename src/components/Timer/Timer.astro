@@ -1,18 +1,38 @@
 ---
+import { wedding } from '@data/wedding';
+
 import styles from './Timer.module.css';
+
+const weddingDate = new Date(wedding.date).getTime();
 ---
 
-<div class={styles.timer}>
+<div class={styles.timer} data-wedding-date={weddingDate}>
   <div class={styles.timerItem}>
-    <span class={styles.timerItemValue}>00</span>
+    <span class={styles.timerItemValue} data-unit="days">0</span>
     <span class={styles.timerItemLabel}>Días</span>
   </div>
   <div class={styles.timerItem}>
-    <span class={styles.timerItemValue}>00</span>
+    <span class={styles.timerItemValue} data-unit="hours">0</span>
     <span class={styles.timerItemLabel}>Horas</span>
   </div>
   <div class={styles.timerItem}>
-    <span class={styles.timerItemValue}>00</span>
+    <span class={styles.timerItemValue} data-unit="minutes">0</span>
     <span class={styles.timerItemLabel}>Minutos</span>
   </div>
+  <div class={styles.timerItem}>
+    <span class={styles.timerItemValue} data-unit="seconds">0</span>
+    <span class={styles.timerItemLabel}>Segundos</span>
+  </div>
 </div>
+
+<script>
+  import { initTimer } from './timer';
+
+  const timerElement = document.querySelector(
+    '[data-wedding-date]'
+  ) as HTMLElement;
+  if (timerElement) {
+    const weddingDate = Number(timerElement.dataset.weddingDate);
+    initTimer(weddingDate);
+  }
+</script>
