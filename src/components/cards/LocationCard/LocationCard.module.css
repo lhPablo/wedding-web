@@ -61,7 +61,7 @@
     display: inline-block;
     text-decoration: none;
     padding: 10px 16px;
-    background-color: var(--secondary-color);
+    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--tertiary-color) 100%);
     color: var(--primary-color);
     border-radius: 8px;
     font-weight: 600;

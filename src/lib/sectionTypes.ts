@@ -3,5 +3,6 @@ export enum SectionTypes {
     LOCATION,
     EXPANDABLE,
     CONTACT,
-    FORM
+    FORM,
+    GIFT
 };

@@ -1,17 +1,22 @@
 ---
 import Layout from '@layouts/Layout.astro';
-import CardSection from '@components/sections/CardSection/CardSection.astro';
+
 import HeroSection from '@components/sections/HeroSection/HeroSection.astro';
+import GiftSection from '@components/sections/GiftSection/GiftSection.astro';
 import FormSection from '@components/sections/FormSection/FormSection.astro';
+import CardSection from '@components/sections/CardSection/CardSection.astro';
+
 import ContactCard from '@components/cards/ContactCard/ContactCard.astro';
 import LocationCard from '@components/cards/LocationCard/LocationCard.astro';
 import ExpandableCard from '@components/cards/ExpandableCard/ExpandableCard.astro';
 
-import { sections } from '@data/sections';
 import { sectionConfig } from '@lib/sectionConfig';
 import { SectionTypes } from '@lib/sectionTypes';
 
+import { sections } from '@data/sections';
+
 import background from '@assets/background.svg';
+
 import '@styles/global.css';
 ---
 
@@ -29,6 +34,10 @@ import '@styles/global.css';
 
           if (type === SectionTypes.FORM) {
             return <FormSection id={id} title={title} data={data} />;
+          }
+
+          if (type === SectionTypes.GIFT) {
+            return <GiftSection id={id} title={title} data={data} />;
           }
 
           return (

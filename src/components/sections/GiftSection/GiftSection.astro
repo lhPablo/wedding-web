@@ -1,0 +1,24 @@
+---
+import { wedding } from '@data/wedding';
+
+import Timer from '@components/Timer/Timer.astro';
+import CopyIcon from '@components/ui/Icons/CopyIcon.astro';
+
+import styles from './GiftSection.module.css';
+---
+
+<section class={styles.section}>
+  <h2>Regalo</h2>
+
+  <p>
+    Lo más importante es tu presencia, pero si quieres hacernos un regalo,
+    puedes hacerlo a través de este número de cuenta:
+  </p>
+  <div class={styles.iban}>
+    <p>{wedding.iban}</p>
+    <CopyIcon size={24} />
+  </div>
+
+  <p>Os esperamos en...</p>
+  <Timer />
+</section>
