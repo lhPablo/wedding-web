@@ -3,7 +3,7 @@ import { wedding } from '@data/wedding';
 
 import styles from './Timer.module.css';
 
-const weddingDate = new Date(wedding.date).getTime();
+const { weddingDate } = Astro.props;
 ---
 
 <div class={styles.timer} data-wedding-date={weddingDate}>

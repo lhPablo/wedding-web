@@ -1,7 +1,7 @@
 ---
 import { wedding } from '@data/wedding';
 
-import Timer from '@components/Timer/Timer.astro';
+import Timer from '@components/ui/Timer/Timer.astro';
 import CopyIcon from '@components/ui/Icons/CopyIcon.astro';
 
 import styles from './GiftSection.module.css';
@@ -20,5 +20,5 @@ import styles from './GiftSection.module.css';
   </div>
 
   <p>Os esperamos en...</p>
-  <Timer />
+  <Timer weddingDate={new Date(wedding.date).getTime()} />
 </section>
