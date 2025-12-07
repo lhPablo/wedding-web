@@ -1,9 +1,18 @@
 ---
-import { sections } from '../data/sections';
-import Section from '../components/Section/Section.astro';
-import Layout from '../layouts/Layout.astro';
-import background from '../assets/background.svg';
-import '../styles/global.css';
+import Layout from '@layouts/Layout.astro';
+import CardSection from '@components/sections/CardSection/CardSection.astro';
+import HeroSection from '@components/sections/HeroSection/HeroSection.astro';
+import FormSection from '@components/sections/FormSection/FormSection.astro';
+import ContactCard from '@components/cards/ContactCard/ContactCard.astro';
+import LocationCard from '@components/cards/LocationCard/LocationCard.astro';
+import ExpandableCard from '@components/cards/ExpandableCard/ExpandableCard.astro';
+
+import { sections } from '@data/sections';
+import { sectionConfig } from '@lib/sectionConfig';
+import { SectionTypes } from '@lib/sectionTypes';
+
+import background from '@assets/background.svg';
+import '@styles/global.css';
 ---
 
 <Layout>
@@ -11,9 +20,34 @@ import '../styles/global.css';
     <img class="background" src={background.src} alt="" fetchpriority="high" />
     <div>
       {
-        sections.map(({ id, title, children }) => (
-          <Section id={id} title={title} children={children} />
-        ))
+        sections.map(({ id, title }) => {
+          const { data, type } = sectionConfig[id];
+
+          if (type === SectionTypes.HERO) {
+            return <HeroSection id={id} title={title} data={data} />;
+          }
+
+          if (type === SectionTypes.FORM) {
+            return <FormSection id={id} title={title} data={data} />;
+          }
+
+          return (
+            <CardSection id={id} title={title}>
+              {data.map((item: any) => {
+                switch (type) {
+                  case SectionTypes.LOCATION:
+                    return <LocationCard {...item} />;
+                  case SectionTypes.CONTACT:
+                    return <ContactCard {...item} />;
+                  case SectionTypes.EXPANDABLE:
+                    return <ExpandableCard {...item} />;
+                  default:
+                    return null;
+                }
+              })}
+            </CardSection>
+          );
+        })
       }
     </div>
   </main>

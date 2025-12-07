@@ -23,15 +23,19 @@ export const initSidebar = () => {
   _addSelectedLinkListener(sections);
 };
 
-const _addSelectedLinkListener = (sections) => {
+const _addSelectedLinkListener = (sections: NodeListOf<HTMLElement>) => {
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       const id = entry.target.id;
       const link = document.querySelector(`#sidebar a[href="#${id}"]`);
-      if (entry.isIntersecting) link.classList.add('active');
-      else link.classList.remove('active');
+
+      if (entry.isIntersecting) {
+        link?.classList.add('active');
+      } else {
+        link?.classList.remove('active');
+      }
     });
   }, { threshold: 0.5 });
 
-  sections.forEach(section => observer.observe(section));
+  sections.forEach((section: HTMLElement) => observer.observe(section));
 }

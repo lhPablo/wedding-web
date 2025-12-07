@@ -1,0 +1,22 @@
+---
+import styles from './LocationCard.module.css';
+
+const { image, title, description, address, mapLink } = Astro.props;
+---
+
+<div class={styles.container}>
+  <div class={styles.photoContainer}>
+    <img src={image} alt="Wedding location" class={styles.photo} />
+
+    <div class={styles.overlay}></div>
+
+    <div class={styles.content}>
+      <h3>{title}</h3>
+      <p>{description}</p>
+      <p>{address}</p>
+      <a href={mapLink} target="_blank" class={styles.mapButton}>
+        Ver en Google Maps
+      </a>
+    </div>
+  </div>
+</div>

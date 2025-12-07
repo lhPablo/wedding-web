@@ -1,0 +1,69 @@
+---
+import FormField from '@components/ui/FormField/FormField.astro';
+import type { FormConfig } from '../../../types/form';
+import styles from './FormSection.module.css';
+
+interface Props {
+  id: string;
+  title: string;
+  data: FormConfig;
+}
+
+const { id, title, data } = Astro.props;
+const {
+  description,
+  fields,
+  submitText,
+  successMessage,
+  errorMessage,
+  googleScriptUrl,
+} = data;
+---
+
+<section id={id} class={styles.section}>
+  <div class={styles.container}>
+    <h2>{title}</h2>
+
+    {description && <p class={styles.description}>{description}</p>}
+
+    <form
+      class={styles.form}
+      data-form
+      data-script-url={googleScriptUrl}
+      data-success-message={successMessage}
+      data-error-message={errorMessage}
+    >
+      <div class={styles.fields}>
+        {fields.map((field) => <FormField field={field} />)}
+      </div>
+
+      <button type="submit" class={styles.submitBtn} data-submit-btn>
+        {submitText}
+      </button>
+
+      <div class={styles.message} data-message hidden></div>
+    </form>
+  </div>
+</section>
+
+<script>
+  import { initFormHandler } from './formHandler';
+
+  const form = document.querySelector('[data-form]') as HTMLFormElement;
+  const submitBtn = document.querySelector(
+    '[data-submit-btn]'
+  ) as HTMLButtonElement;
+
+  if (form && submitBtn) {
+    const config = {
+      googleScriptUrl: form.dataset.scriptUrl || '',
+      successMessage: form.dataset.successMessage || '',
+      errorMessage: form.dataset.errorMessage || '',
+      submitText: submitBtn.textContent || '',
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initFormHandler(config);
+    });
+  }
+</script>

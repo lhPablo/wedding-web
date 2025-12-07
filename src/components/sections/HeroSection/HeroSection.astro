@@ -1,0 +1,15 @@
+---
+import mainImage from '@assets/image2.jpg';
+
+import styles from './HeroSection.module.css';
+
+const { id, title, data } = Astro.props;
+---
+
+<section id={id} class={styles.section}>
+  <img class={styles['hero-image']} src={mainImage.src} alt="Our main image" />
+  <div class={styles['hero-content']}>
+    <h1>Pablo & Paula</h1>
+    <h3>28.03.2026 | Nuestra Boda</h3>
+  </div>
+</section>

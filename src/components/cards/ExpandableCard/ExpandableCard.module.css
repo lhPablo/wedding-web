@@ -1,0 +1,94 @@
+.card {
+    width: 90%;
+    padding: 16px;
+    border-radius: 12px;
+    background: var(--card-color);
+    color: var(--text-color);
+    box-shadow: 0 4px 10px var(--shadow-color);
+    border: 1px solid var(--border-color);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header:hover .chevron {
+    animation-name: wobble-vertical;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: 1;  
+}
+
+.title {
+    max-width: 90%;
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.chevron {
+    display: inline-block;
+    text-align: center;
+    padding: 0px 10px;
+    border: none;
+    cursor: pointer;
+    transition: 0.5s ease-in-out;
+}
+
+.chevron span {
+    display: inline-block;
+    height: 15px;
+    width: 3px;
+    margin: 0 1px;
+    background-color: var(--text-color);
+    transition: 0.25s ease-in-out;
+}
+
+.chevron span:nth-child(1) {
+    transform: rotate(50deg);
+}
+
+.chevron span:nth-child(2) {
+    transform: rotate(-50deg);
+}
+
+.chevron:global(.open) span:nth-child(1) {
+    transform: rotate(130deg);
+}
+
+.chevron:global(.open) span:nth-child(2) {
+    transform: rotate(-130deg);
+}
+
+.panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    padding: 0 1rem;
+    -webkit-overflow-scrolling: touch;
+}
+
+.panel:global(.open) {
+    max-height: 200px;
+    padding: 1rem;
+}
+
+@keyframes wobble-vertical {
+    16.65% { transform: translateY(8px); }
+    33.3%  { transform: translateY(-6px); }
+    49.95% { transform: translateY(4px); }
+    66.6%  { transform: translateY(-2px); }
+    83.25% { transform: translateY(1px); }
+    100%   { transform: translateY(0); }
+}
+
+@media (min-width: 480px) {
+    .card {
+        width: 60%;
+    }
+}
