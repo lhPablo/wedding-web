@@ -5,14 +5,13 @@ export const initSidebar = () => {
 
   if (!hamburger || !sidebar || !overlay) return;
 
-  const sidebarOpenClass = 'sidebarOpen';
-  const hamburgerActiveClass = 'hamburgerActive';
-  const overlayActiveClass = 'overlayActive';
-
   const toggleSidebar = () => {
-    sidebar.classList.toggle(sidebarOpenClass);
-    hamburger.classList.toggle(hamburgerActiveClass);
-    overlay.classList.toggle(overlayActiveClass);
+    const isOpen = sidebar.getAttribute('data-open') === 'true';
+    const newState = String(!isOpen);
+    
+    sidebar.setAttribute('data-open', newState);
+    hamburger.setAttribute('data-active', newState);
+    overlay.setAttribute('data-active', newState);
   };
 
   hamburger.addEventListener('click', toggleSidebar);
@@ -27,12 +26,12 @@ const _addSelectedLinkListener = (sections: NodeListOf<HTMLElement>) => {
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       const id = entry.target.id;
-      const link = document.querySelector(`#sidebar a[href="#${id}"]`);
+      const link = document.querySelector(`#sidebar a[href="#${id}"]`) as HTMLElement;
 
       if (entry.isIntersecting) {
-        link?.classList.add('active');
+        link?.setAttribute('data-active', 'true');
       } else {
-        link?.classList.remove('active');
+        link?.setAttribute('data-active', 'false');
       }
     });
   }, { threshold: 0.5 });

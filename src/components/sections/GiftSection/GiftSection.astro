@@ -3,6 +3,8 @@ import { wedding } from '@data/wedding';
 
 import Timer from '@components/ui/Timer/Timer.astro';
 import CopyIcon from '@components/ui/Icons/CopyIcon.astro';
+import CheckIcon from '@components/ui/Icons/CheckIcon.astro';
+import CrossIcon from '@components/ui/Icons/CrossIcon.astro';
 
 import styles from './GiftSection.module.css';
 ---
@@ -16,9 +18,32 @@ import styles from './GiftSection.module.css';
   </p>
   <div class={styles.iban}>
     <p>{wedding.iban}</p>
-    <CopyIcon size={24} />
+    <button
+      type="button"
+      class={styles.copyButton}
+      data-copy-iban={wedding.iban}
+      aria-label="Copiar IBAN al portapapeles"
+    >
+      <span data-icon="copy" data-visible="true" class={styles.icon}>
+        <CopyIcon size={24} />
+      </span>
+      <span data-icon="check" data-visible="false" class={styles.icon}>
+        <CheckIcon size={24} />
+      </span>
+      <span data-icon="cross" data-visible="false" class={styles.icon}>
+        <CrossIcon size={24} />
+      </span>
+    </button>
   </div>
 
   <p>Os esperamos en...</p>
   <Timer weddingDate={new Date(wedding.date).getTime()} />
 </section>
+
+<script>
+  import { initGiftSection } from './giftHandler';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initGiftSection();
+  });
+</script>

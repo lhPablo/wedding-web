@@ -1,7 +1,7 @@
 ---
 import { sections } from '@data/sections';
 import { sectionConfig } from '@lib/sectionConfig';
-import { IconTypes } from 'src/types/iconTypes';
+import { MenuIconTypes } from 'src/types/menuIconTypes';
 
 import HomeIcon from '@components/ui/Icons/HomeIcon.astro';
 import GiftIcon from '@components/ui/Icons/GiftIcon.astro';
@@ -13,28 +13,28 @@ import PhoneIcon from '@components/ui/Icons/PhoneIcon.astro';
 
 import styles from './SidebarMenu.module.css';
 
-import type { IconType } from 'src/types/iconTypes';
+import type { MenuIconType } from 'src/types/menuIconTypes';
 
-const iconMap: Record<IconType, any> = {
-  [IconTypes.HOME]: HomeIcon,
-  [IconTypes.GIFT]: GiftIcon,
-  [IconTypes.CONFIRM]: ConfirmIcon,
-  [IconTypes.LOCATION]: LocationIcon,
-  [IconTypes.TRANSPORT]: TransportIcon,
-  [IconTypes.QUESTION]: QuestionIcon,
-  [IconTypes.PHONE]: PhoneIcon,
+const iconMap: Record<MenuIconType, any> = {
+  [MenuIconTypes.HOME]: HomeIcon,
+  [MenuIconTypes.GIFT]: GiftIcon,
+  [MenuIconTypes.CONFIRM]: ConfirmIcon,
+  [MenuIconTypes.LOCATION]: LocationIcon,
+  [MenuIconTypes.TRANSPORT]: TransportIcon,
+  [MenuIconTypes.QUESTION]: QuestionIcon,
+  [MenuIconTypes.PHONE]: PhoneIcon,
 };
 ---
 
-<div class={styles.hamburger} id="hamburger">
+<div class={styles.hamburger} id="hamburger" data-active="false">
   <span></span>
   <span></span>
   <span></span>
 </div>
 
-<div class={styles.overlay} id="overlay"></div>
+<div class={styles.overlay} id="overlay" data-active="false"></div>
 
-<nav class={styles.sidebar} id="sidebar">
+<nav class={styles.sidebar} id="sidebar" data-open="false">
   {
     sections.map(({ id, title }) => {
       const Icon = iconMap[sectionConfig[id].icon];

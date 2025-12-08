@@ -1,4 +1,4 @@
-export const IconTypes = {
+export const MenuIconTypes = {
     HOME: 'home',
     GIFT: 'gift',
     CONFIRM: 'confirm',
@@ -8,5 +8,5 @@ export const IconTypes = {
     PHONE: 'phone'
 } as const;
 
-export type IconType = typeof IconTypes[keyof typeof IconTypes];
+export type MenuIconType = typeof MenuIconTypes[keyof typeof MenuIconTypes];
 

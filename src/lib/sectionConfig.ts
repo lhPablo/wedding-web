@@ -6,16 +6,16 @@ import { transports } from '@data/transports';
 import { assistanceForm } from '@data/assistanceForm';
 
 import { SectionTypes } from 'src/types/sectionTypes';
-import { IconTypes } from 'src/types/iconTypes';
+import { MenuIconTypes } from 'src/types/menuIconTypes';
 
 import type { Section } from 'src/types/section';
 
 export const sectionConfig: Record<string, Section> = {
-  main: { icon: IconTypes.HOME, data: contacts, type: SectionTypes.HERO },
-  gifts: { icon: IconTypes.GIFT, data: wedding.iban, type: SectionTypes.GIFT },
-  assistance: { icon: IconTypes.CONFIRM, data: assistanceForm, type: SectionTypes.FORM },
-  location: { icon: IconTypes.LOCATION, data: locations, type: SectionTypes.LOCATION },
-  transport: { icon: IconTypes.TRANSPORT, data: transports, type: SectionTypes.LOCATION },
-  questions: { icon: IconTypes.QUESTION, data: menu, type: SectionTypes.EXPANDABLE},
-  contact: { icon: IconTypes.PHONE, data: contacts, type: SectionTypes.CONTACT }
+  main: { icon: MenuIconTypes.HOME, data: contacts, type: SectionTypes.HERO },
+  gifts: { icon: MenuIconTypes.GIFT, data: wedding.iban, type: SectionTypes.GIFT },
+  assistance: { icon: MenuIconTypes.CONFIRM, data: assistanceForm, type: SectionTypes.FORM },
+  location: { icon: MenuIconTypes.LOCATION, data: locations, type: SectionTypes.LOCATION },
+  transport: { icon: MenuIconTypes.TRANSPORT, data: transports, type: SectionTypes.LOCATION },
+  questions: { icon: MenuIconTypes.QUESTION, data: menu, type: SectionTypes.EXPANDABLE},
+  contact: { icon: MenuIconTypes.PHONE, data: contacts, type: SectionTypes.CONTACT }
 };

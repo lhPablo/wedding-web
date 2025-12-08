@@ -11,6 +11,7 @@ const { title, answer } = Astro.props;
     <div
       class={styles.chevron}
       data-toggle
+      data-open="false"
       aria-expanded="false"
       aria-label="Mostrar detalles"
     >
@@ -19,7 +20,7 @@ const { title, answer } = Astro.props;
     </div>
   </div>
 
-  <div class={styles.panel} data-panel>
+  <div class={styles.panel} data-panel data-open="false">
     <p>{answer}</p>
   </div>
 </div>
@@ -30,13 +31,16 @@ const { title, answer } = Astro.props;
 
     cards.forEach((card) => {
       const header = card.querySelector('[data-header]');
-      const btn = header?.querySelector('[data-toggle]');
-      const panel = card.querySelector('[data-panel]');
+      const btn = header?.querySelector('[data-toggle]') as HTMLElement;
+      const panel = card.querySelector('[data-panel]') as HTMLElement;
 
       header?.addEventListener('click', () => {
-        const isOpen = panel?.classList.toggle('open');
-        btn?.classList.toggle('open');
-        btn?.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        const isOpen = panel?.getAttribute('data-open') === 'true';
+        const newState = !isOpen;
+
+        panel?.setAttribute('data-open', String(newState));
+        btn?.setAttribute('data-open', String(newState));
+        btn?.setAttribute('aria-expanded', String(newState));
       });
     });
   });

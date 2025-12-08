@@ -57,11 +57,11 @@
     transform: rotate(-50deg);
 }
 
-.chevron:global(.open) span:nth-child(1) {
+.chevron[data-open="true"] span:nth-child(1) {
     transform: rotate(130deg);
 }
 
-.chevron:global(.open) span:nth-child(2) {
+.chevron[data-open="true"] span:nth-child(2) {
     transform: rotate(-130deg);
 }
 
@@ -73,7 +73,7 @@
     -webkit-overflow-scrolling: touch;
 }
 
-.panel:global(.open) {
+.panel[data-open="true"] {
     max-height: 200px;
     padding: 1rem;
 }
