@@ -7,9 +7,11 @@ import CheckIcon from '@components/ui/Icons/CheckIcon.astro';
 import CrossIcon from '@components/ui/Icons/CrossIcon.astro';
 
 import styles from './GiftSection.module.css';
+
+const { id } = Astro.props;
 ---
 
-<section class={styles.section}>
+<section id={id} class={styles.section}>
   <h2>Regalo</h2>
 
   <p>

@@ -12,7 +12,7 @@ import type { Section } from 'src/types/section';
 
 export const sectionConfig: Record<string, Section> = {
   main: { icon: MenuIconTypes.HOME, data: contacts, type: SectionTypes.HERO },
-  gifts: { icon: MenuIconTypes.GIFT, data: wedding.iban, type: SectionTypes.GIFT },
+  gift: { icon: MenuIconTypes.GIFT, data: wedding.iban, type: SectionTypes.GIFT },
   assistance: { icon: MenuIconTypes.CONFIRM, data: assistanceForm, type: SectionTypes.FORM },
   location: { icon: MenuIconTypes.LOCATION, data: locations, type: SectionTypes.LOCATION },
   transport: { icon: MenuIconTypes.TRANSPORT, data: transports, type: SectionTypes.LOCATION },
