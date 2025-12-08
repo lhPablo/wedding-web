@@ -1,13 +1,15 @@
 ---
-import type { FormField } from '../../../types/form';
-import styles from './FormField.module.css';
+import type { FieldConfig } from '../../../types/field';
+import { FieldTypes } from 'src/types/fieldTypes';
+
+import styles from './Field.module.css';
 
 interface Props {
-  field: FormField;
+  config: FieldConfig;
 }
 
-const { field } = Astro.props;
-const { name, label, type, required, placeholder, options } = field;
+const { config } = Astro.props;
+const { name, label, type, required, placeholder, options } = config;
 ---
 
 <div class={styles.fieldGroup}>
@@ -17,7 +19,7 @@ const { name, label, type, required, placeholder, options } = field;
   </label>
 
   {
-    type === 'textarea' ? (
+    type === FieldTypes.TEXTAREA ? (
       <textarea
         id={name}
         name={name}
@@ -26,7 +28,7 @@ const { name, label, type, required, placeholder, options } = field;
         placeholder={placeholder}
         rows={4}
       />
-    ) : type === 'select' ? (
+    ) : type === FieldTypes.SELECT ? (
       <select id={name} name={name} class={styles.select} required={required}>
         <option value="">Selecciona una opción</option>
         {options?.map((option) => (
@@ -41,7 +43,7 @@ const { name, label, type, required, placeholder, options } = field;
         class={styles.input}
         required={required}
         placeholder={placeholder}
-        min={type === 'number' ? '0' : undefined}
+        min={type === FieldTypes.NUMBER ? '0' : undefined}
       />
     )
   }

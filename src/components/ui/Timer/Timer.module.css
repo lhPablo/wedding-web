@@ -8,7 +8,7 @@
 .timerItem {
     display: flex;
     flex-direction: column;
-    border-right: 2px solid black;
+    border-right: 1px solid black;
     text-align: center;
     align-items: center;
     justify-content: center;
@@ -17,4 +17,8 @@
 
 .timerItem:last-child {
     border-right: none;
+}
+
+.timerItemValue {
+    font-weight: bold;
 }

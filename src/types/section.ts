@@ -1,7 +1,8 @@
-import type { SectionTypes } from "@lib/sectionTypes";
+import type { SectionType } from "src/types/sectionTypes";
+import type { IconType } from "src/types/iconTypes";
 
 export interface Section {
-    Icon: any;
+    icon: IconType;
     data: any;
-    type: SectionTypes;
+    type: SectionType;
 }

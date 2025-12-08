@@ -1,6 +1,8 @@
 ---
-import FormField from '@components/ui/FormField/FormField.astro';
+import Field from '@components/ui/Field/Field.astro';
+
 import type { FormConfig } from '../../../types/form';
+
 import styles from './FormSection.module.css';
 
 interface Props {
@@ -34,7 +36,7 @@ const {
       data-error-message={errorMessage}
     >
       <div class={styles.fields}>
-        {fields.map((field) => <FormField field={field} />)}
+        {fields.map((fieldConfig) => <Field config={fieldConfig} />)}
       </div>
 
       <button type="submit" class={styles.submitBtn} data-submit-btn>

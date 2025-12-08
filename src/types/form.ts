@@ -1,16 +1,9 @@
-export interface FormField {
-    name: string;
-    label: string;
-    type: 'text' | 'email' | 'tel' | 'select' | 'textarea' | 'number';
-    required?: boolean;
-    placeholder?: string;
-    options?: string[];
-}
-  
+import type { FieldConfig } from "./field";
+
 export interface FormConfig {
     title: string;
     description?: string;
-    fields: FormField[];
+    fields: FieldConfig[];
     submitText: string;
     successMessage: string;
     errorMessage: string;

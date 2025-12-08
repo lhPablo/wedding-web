@@ -1,4 +1,5 @@
 import type { FormConfig } from '../types/form';
+import { FieldTypes } from 'src/types/fieldTypes';
 
 export const assistanceForm: FormConfig = {
   title: 'Confirma tu asistencia',
@@ -7,49 +8,49 @@ export const assistanceForm: FormConfig = {
     {
       name: 'nombre',
       label: 'Nombre completo',
-      type: 'text',
+      type: FieldTypes.TEXT,
       required: true,
       placeholder: 'Ej: Juan Pérez'
     },
     {
       name: 'email',
       label: 'Email',
-      type: 'email',
+      type: FieldTypes.EMAIL,
       required: true,
       placeholder: 'tu@email.com'
     },
     {
       name: 'telefono',
       label: 'Teléfono',
-      type: 'tel',
+      type: FieldTypes.TEL,
       required: false,
       placeholder: '+34 600 000 000'
     },
     {
       name: 'asistencia',
       label: '¿Confirmas tu asistencia?',
-      type: 'select',
+      type: FieldTypes.SELECT,
       required: true,
       options: ['Sí, asistiré', 'No podré asistir', 'Aún no lo sé']
     },
     {
       name: 'acompanantes',
       label: 'Número de acompañantes',
-      type: 'number',
+      type: FieldTypes.NUMBER,
       required: false,
       placeholder: '0'
     },
     {
       name: 'alergias',
       label: 'Alergias o intolerancias alimentarias',
-      type: 'textarea',
+      type: FieldTypes.TEXTAREA,
       required: false,
       placeholder: 'Indica si tienes alguna alergia o intolerancia'
     },
     {
       name: 'comentarios',
       label: 'Comentarios adicionales',
-      type: 'textarea',
+      type: FieldTypes.TEXTAREA,
       required: false,
       placeholder: 'Cualquier cosa que quieras compartir con nosotros'
     }
