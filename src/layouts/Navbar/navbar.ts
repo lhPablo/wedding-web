@@ -31,6 +31,11 @@ const _addSelectedLinkListener = (sections: NodeListOf<HTMLElement>) => {
 
       if (entry.isIntersecting) {
         link?.setAttribute('data-active', 'true');
+        
+        const currentHash = window.location.hash.substring(1);
+        if (currentHash !== id) {
+          history.replaceState(null, '', `#${id}`);
+        }
       } else {
         link?.setAttribute('data-active', 'false');
       }
