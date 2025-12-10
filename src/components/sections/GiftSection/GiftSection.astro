@@ -22,7 +22,7 @@ const { id } = Astro.props;
     <p>{wedding.iban}</p>
     <button
       type="button"
-      class={styles.copyButton}
+      class={`${styles.copyButton} button-transparent`}
       data-copy-iban={wedding.iban}
       aria-label="Copiar IBAN al portapapeles"
     >
@@ -39,7 +39,9 @@ const { id } = Astro.props;
   </div>
 
   <p>Os esperamos en...</p>
-  <Timer weddingDate={new Date(wedding.date).getTime()} />
+  <div class={styles.timerContainer}>
+    <Timer weddingDate={new Date(wedding.date).getTime()} />
+  </div>
 </section>
 
 <script>

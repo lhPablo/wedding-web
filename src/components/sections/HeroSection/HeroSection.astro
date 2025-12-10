@@ -1,15 +1,44 @@
 ---
 import { wedding } from '@data/wedding';
+import { sections } from '@data/sections';
+
+import DownIcon from '@components/ui/Icons/DownIcon.astro';
 
 import styles from './HeroSection.module.css';
 
 const { id } = Astro.props;
+
+const currentIndex = sections.findIndex((section) => section.id === id);
+const nextSection = sections[currentIndex + 1];
 ---
 
 <section id={id} class={styles.section}>
-  <img class={styles['hero-image']} src={wedding.image} alt="Our main image" />
+  <img
+    class={styles['hero-image-mobile']}
+    src={wedding.imageMobile}
+    alt="Our main image"
+    fetchpriority="high"
+  />
+  <img
+    class={styles['hero-image-desktop']}
+    src={wedding.imageDesktop}
+    alt="Our main image"
+    fetchpriority="high"
+  />
+
   <div class={styles['hero-content']}>
-    <h1>{wedding.title}</h1>
-    <h3>{wedding.date} | Nuestra Boda</h3>
+    <div class={styles['hero-content-title']}>
+      <h1>{wedding.title}</h1>
+      <p>{wedding.date} | Nuestra Boda</p>
+    </div>
+    {
+      nextSection && (
+        <div class={styles['hero-content-button']}>
+          <a href={`#${nextSection.id}`} class="button-transparent">
+            <DownIcon />
+          </a>
+        </div>
+      )
+    }
   </div>
 </section>

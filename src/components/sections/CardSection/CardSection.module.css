@@ -19,7 +19,7 @@
     gap: 16px;
   }
   
-  @media (min-width: 480px) {
+  @media (min-width: 768px) {
     .cards {
       flex-direction: row;
     }

@@ -1,0 +1,65 @@
+---
+import MainLayout from '@layouts/MainLayout.astro';
+
+import HeroSection from '@components/sections/HeroSection/HeroSection.astro';
+import GiftSection from '@components/sections/GiftSection/GiftSection.astro';
+import FormSection from '@components/sections/FormSection/FormSection.astro';
+import CardSection from '@components/sections/CardSection/CardSection.astro';
+
+import ContactCard from '@components/cards/ContactCard/ContactCard.astro';
+import LocationCard from '@components/cards/LocationCard/LocationCard.astro';
+import ExpandableCard from '@components/cards/ExpandableCard/ExpandableCard.astro';
+
+import { sectionConfig } from '@lib/sectionConfig';
+import { SectionTypes } from 'src/types/sectionTypes';
+
+import { sections } from '@data/sections';
+---
+
+<MainLayout>
+  <main>
+    <div>
+      {
+        sections.map(({ id, title }) => {
+          const { data, type } = sectionConfig[id];
+
+          if (type === SectionTypes.HERO) {
+            return <HeroSection id={id} title={title} data={data} />;
+          }
+
+          if (type === SectionTypes.FORM) {
+            return <FormSection id={id} title={title} data={data} />;
+          }
+
+          if (type === SectionTypes.GIFT) {
+            return <GiftSection id={id} title={title} data={data} />;
+          }
+
+          return (
+            <CardSection id={id} title={title}>
+              {data.map((item: any) => {
+                switch (type) {
+                  case SectionTypes.LOCATION:
+                    return <LocationCard {...item} />;
+                  case SectionTypes.CONTACT:
+                    return <ContactCard {...item} />;
+                  case SectionTypes.EXPANDABLE:
+                    return <ExpandableCard {...item} />;
+                  default:
+                    return null;
+                }
+              })}
+            </CardSection>
+          );
+        })
+      }
+    </div>
+  </main>
+
+  <script>
+    const accessGranted = localStorage.getItem('accessGranted');
+    if (!accessGranted || accessGranted !== 'true') {
+      window.location.href = '/';
+    }
+  </script>
+</MainLayout>

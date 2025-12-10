@@ -11,7 +11,7 @@ import { MenuIconTypes } from 'src/types/menuIconTypes';
 import type { Section } from 'src/types/section';
 
 export const sectionConfig: Record<string, Section> = {
-  main: { icon: MenuIconTypes.HOME, data: contacts, type: SectionTypes.HERO },
+  home: { icon: MenuIconTypes.HOME, data: contacts, type: SectionTypes.HERO },
   gift: { icon: MenuIconTypes.GIFT, data: wedding.iban, type: SectionTypes.GIFT },
   assistance: { icon: MenuIconTypes.CONFIRM, data: assistanceForm, type: SectionTypes.FORM },
   location: { icon: MenuIconTypes.LOCATION, data: locations, type: SectionTypes.LOCATION },

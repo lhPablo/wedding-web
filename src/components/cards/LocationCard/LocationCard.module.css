@@ -57,22 +57,6 @@
     font-size: 1rem;
 }
   
-.mapButton {
-    display: inline-block;
-    text-decoration: none;
-    padding: 10px 16px;
-    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--tertiary-color) 100%);
-    color: var(--primary-color);
-    border-radius: 8px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    font-family: var(--font-family);
-}
-    
-.mapButton:hover:not(:disabled) {
-    filter: brightness(85%);
-}
-  
 .title {
     text-align: center;
     margin-bottom: 24px;
@@ -80,7 +64,7 @@
     color: var(--text-color);
 }
 
-@media (min-width: 480px) {
+@media (min-width: 768px) {
     .container {
         max-width: 40%;
     }

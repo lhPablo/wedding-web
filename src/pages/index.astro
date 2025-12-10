@@ -1,63 +1,73 @@
 ---
-import Layout from '@layouts/Layout.astro';
+import AuthLayout from '@layouts/AuthLayout.astro';
 
-import HeroSection from '@components/sections/HeroSection/HeroSection.astro';
-import GiftSection from '@components/sections/GiftSection/GiftSection.astro';
-import FormSection from '@components/sections/FormSection/FormSection.astro';
-import CardSection from '@components/sections/CardSection/CardSection.astro';
-
-import ContactCard from '@components/cards/ContactCard/ContactCard.astro';
-import LocationCard from '@components/cards/LocationCard/LocationCard.astro';
-import ExpandableCard from '@components/cards/ExpandableCard/ExpandableCard.astro';
-
-import { sectionConfig } from '@lib/sectionConfig';
-import { SectionTypes } from 'src/types/sectionTypes';
-
-import { sections } from '@data/sections';
-
-import background from '@assets/background.svg';
-
-import '@styles/global.css';
+import styles from './index.module.css';
 ---
 
-<Layout>
+<AuthLayout>
   <main>
-    <img class="background" src={background.src} alt="" fetchpriority="high" />
-    <div>
-      {
-        sections.map(({ id, title }) => {
-          const { data, type } = sectionConfig[id];
+    <div class={styles.loginContainer}>
+      <div class={styles.loginCard}>
+        <h1>Bienvenido</h1>
+        <p class={styles.subtitle}>
+          Introduce la clave de acceso para ver la invitación
+        </p>
 
-          if (type === SectionTypes.HERO) {
-            return <HeroSection id={id} title={title} data={data} />;
-          }
+        <form id="login-form">
+          <div class={styles.formGroup}>
+            <label for="password">Clave de acceso</label>
+            <input
+              type="password"
+              id="password"
+              placeholder="Ingresa la clave de acceso"
+              required
+            />
+          </div>
 
-          if (type === SectionTypes.FORM) {
-            return <FormSection id={id} title={title} data={data} />;
-          }
+          <button id="submit" type="submit">Entrar</button>
 
-          if (type === SectionTypes.GIFT) {
-            return <GiftSection id={id} title={title} data={data} />;
-          }
-
-          return (
-            <CardSection id={id} title={title}>
-              {data.map((item: any) => {
-                switch (type) {
-                  case SectionTypes.LOCATION:
-                    return <LocationCard {...item} />;
-                  case SectionTypes.CONTACT:
-                    return <ContactCard {...item} />;
-                  case SectionTypes.EXPANDABLE:
-                    return <ExpandableCard {...item} />;
-                  default:
-                    return null;
-                }
-              })}
-            </CardSection>
-          );
-        })
-      }
+          <p
+            id="error-message"
+            class={styles.errorMessage}
+            style="display: none;"
+          >
+            Clave incorrecta. Inténtalo de nuevo.
+          </p>
+        </form>
+      </div>
     </div>
   </main>
-</Layout>
+
+  <script>
+    const correctKey = '1234';
+
+    const form = document.getElementById('login-form') as HTMLFormElement;
+    const passwordInput = document.getElementById(
+      'password'
+    ) as HTMLInputElement;
+    const errorMessage = document.getElementById(
+      'error-message'
+    ) as HTMLElement;
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const input = passwordInput.value.trim();
+
+      if (input === correctKey) {
+        localStorage.setItem('accessGranted', 'true');
+        errorMessage.style.display = 'none';
+        window.location.href = '/main';
+      } else {
+        errorMessage.style.display = 'block';
+        passwordInput.value = '';
+        passwordInput.focus();
+
+        passwordInput.style.animation = 'shake 0.5s';
+        setTimeout(() => {
+          passwordInput.style.animation = '';
+        }, 500);
+      }
+    });
+  </script>
+</AuthLayout>

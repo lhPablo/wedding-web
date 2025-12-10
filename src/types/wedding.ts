@@ -1,6 +1,7 @@
 export interface Wedding {
   title: string;
-  image: string;
+  imageMobile: string;
+  imageDesktop: string;
   date: string;
   iban: string;
 }

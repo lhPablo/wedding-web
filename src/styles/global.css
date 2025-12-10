@@ -2,35 +2,43 @@
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 HTML {
   width: 100%;
+  height: 100%;
   scroll-behavior: smooth;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
 }
 
 BODY {
-  margin: 0;
-  padding: 0;
   width: 100%;
+  height: 100%;
   min-height: 100vh;
-  background-color: var(--primary-color);
+  min-height: 100dvh;
+  background-color: var(--background-color);
   font-family: var(--font-family);
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
+  position: relative;
 }
 
 MAIN {
   width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   justify-content: center;
+  position: relative;
 }
 
 H1 {
   font-size: 2.5rem;
-  margin-top: 0.25em;
+  color: black;
 }
 
 H2 {
@@ -42,12 +50,113 @@ H2 {
   font-family: var(--font-family-title);
 }
 
-P {
+H2, H3, P, SPAN {
   color: var(--text-color);
+}
+
+H3 {
+  margin: 0;
+}
+
+P {
   font-size: 16px;
   line-height: 24px;
   letter-spacing: -0.006em;
-  margin: 0;
+}
+
+LABEL {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--text-color);
+  font-size: 0.95rem;
+}
+
+INPUT[type="text"],
+INPUT[type="email"],
+INPUT[type="tel"],
+INPUT[type="password"],
+INPUT[type="number"],
+INPUT[type="date"],
+SELECT,
+TEXTAREA {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--border-color, #e0e0e0);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: var(--font-family);
+  transition: all 0.3s ease;
+  background-color: var(--input-color, white);
+  color: var(--text-color);
+}
+
+INPUT[type="text"]:focus,
+INPUT[type="email"]:focus,
+INPUT[type="tel"]:focus,
+INPUT[type="password"]:focus,
+INPUT[type="number"]:focus,
+INPUT[type="date"]:focus,
+SELECT:focus,
+TEXTAREA:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px var(--shadow-color);
+}
+
+INPUT::placeholder,
+TEXTAREA::placeholder {
+  color: var(--placeholder-color, #999);
+}
+
+TEXTAREA {
+  resize: vertical;
+  min-height: 100px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+BUTTON,
+.btn,
+A.btn {
+  display: inline-block;
+  padding: 0.875rem 2rem;
+  font-weight: 600;
+  font-size: 1rem;
+  font-family: var(--font-family);
+  color: var(--text-button-color, white);
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px var(--shadow-color);
+}
+
+BUTTON:hover:not(:disabled),
+.btn:hover:not(:disabled),
+A.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px var(--shadow-color);
+  filter: brightness(85%);
+}
+
+BUTTON:active:not(:disabled),
+.btn:active:not(:disabled),
+A.btn:active {
+  transform: translateY(0);
+}
+
+BUTTON:disabled,
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+BUTTON[type="submit"] {
+  width: 100%;
 }
 
 .background {
@@ -59,3 +168,80 @@ P {
   z-index: -1;
   filter: blur(100px);
 }
+
+.message {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 500;
+  animation: slideIn 0.3s ease;
+}
+
+.message.success {
+  background-color: var(--success-color);
+  color: var(--success-color-text);
+  border: 1px solid var(--success-color-border);
+}
+
+.message.error {
+  background-color: var(--error-color);
+  color: var(--error-color-text);
+  border: 1px solid var(--error-color-border);
+}
+
+.button-transparent {
+  background: none;
+  box-shadow: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.button-transparent:hover {
+  box-shadow: none !important;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-5px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(5px);
+  }
+}
+
+@media (max-width: 768px) {
+  INPUT[type="text"],
+  INPUT[type="email"],
+  INPUT[type="tel"],
+  INPUT[type="password"],
+  INPUT[type="number"],
+  INPUT[type="date"],
+  SELECT,
+  TEXTAREA {
+    font-size: 16px;
+  }
+  
+  BUTTON,
+  .btn,
+  A.btn {
+    padding: 0.75rem 1.5rem;
+  }
+}
+
+

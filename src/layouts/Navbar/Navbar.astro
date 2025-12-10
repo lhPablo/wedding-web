@@ -11,7 +11,7 @@ import TransportIcon from '@components/ui/Icons/TransportIcon.astro';
 import QuestionIcon from '@components/ui/Icons/QuestionIcon.astro';
 import PhoneIcon from '@components/ui/Icons/PhoneIcon.astro';
 
-import styles from './SidebarMenu.module.css';
+import styles from './Navbar.module.css';
 
 import type { MenuIconType } from 'src/types/menuIconTypes';
 
@@ -26,23 +26,15 @@ const iconMap: Record<MenuIconType, any> = {
 };
 ---
 
-<div class={styles.hamburger} id="hamburger" data-active="false">
-  <span></span>
-  <span></span>
-  <span></span>
-</div>
-
-<div class={styles.overlay} id="overlay" data-active="false"></div>
-
-<nav class={styles.sidebar} id="sidebar" data-open="false">
+<nav class={styles.sidebar} id="sidebar" data-visible="false">
   {
     sections.map(({ id, title }) => {
       const Icon = iconMap[sectionConfig[id].icon];
 
       return (
-        <a href={`#${id}`} data-label={title}>
+        <a href={`#${id}`} data-label={title} data-active="false">
           <Icon />
-          <span>{title}</span>
+          <!-- <span>{title}</span> -->
         </a>
       );
     })
@@ -50,6 +42,6 @@ const iconMap: Record<MenuIconType, any> = {
 </nav>
 
 <script>
-  import { initSidebar } from './sidebar';
+  import { initSidebar } from './navbar';
   initSidebar();
 </script>

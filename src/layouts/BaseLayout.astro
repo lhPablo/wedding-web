@@ -1,0 +1,21 @@
+---
+import { wedding } from '@data/wedding';
+import background from '@assets/background.svg';
+import '@styles/global.css';
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="description" content="Invitación a nuestra boda" />
+    <title>{wedding.title}</title>
+  </head>
+  <body>
+    <img class="background" src={background.src} alt="" fetchpriority="high" />
+
+    <slot />
+  </body>
+</html>

@@ -81,6 +81,13 @@
     pointer-events: none;
 }
 
+.timerContainer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 @keyframes iconPop {
     0% {
         transform: scale(0.3);
@@ -92,5 +99,12 @@
     100% {
         transform: scale(1);
         opacity: 1;
+    }
+}
+
+
+@media (min-width: 768px) {
+    .timerContainer {
+        max-width: 30%;
     }
 }

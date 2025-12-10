@@ -1,9 +1,11 @@
 import type { Wedding } from 'src/types/wedding';
-import weddingImage from '@assets/image2.jpg';
+import weddingImageMobile from '@assets/hero-mobile.jpg';
+import weddingImageDesktop from '@assets/hero.jpg';
 
 export const wedding: Wedding = {
   title: 'Pablo & Paula',
-  image: weddingImage.src,
+  imageMobile: weddingImageMobile.src,
+  imageDesktop: weddingImageDesktop.src,
   date: '2026-03-28',
   iban: 'ES** **** **** **** **** ****'
 };
