@@ -25,7 +25,6 @@
 .loginCard h1 {
   margin-bottom: 0.5rem;
   color: var(--text-color);
-  font-family: var(--font-family-title);
 }
 
 .subtitle {

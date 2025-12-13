@@ -50,30 +50,37 @@
 }
 
 .hero-content-title p {
+  --line-width: 3rem;
+  --line-gap: 0.2rem;
+  --line-vertical-position: 0.65rem;
+
   position: absolute;
   bottom: -0.7rem;
   color: black;
   font-weight: bold;
 }
 
-.hero-content-title p::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.6rem;
-  transform: translateX(-2.2rem);
-  width: 2rem;
-  border-bottom: 2px solid black;
-}
-
+.hero-content-title p::before,
 .hero-content-title p::after {
   content: "";
   position: absolute;
-  right: 0;
-  top: 0.6rem;
-  transform: translateX(2.2rem);
-  width: 2rem;
+  top: var(--line-vertical-position);
+  width: var(--line-width);
   border-bottom: 2px solid black;
+}
+
+.hero-content-title p::before {
+  left: 0;
+  transform: translateX(
+    calc(-1 * (var(--line-width) + var(--line-gap)))
+  );
+}
+
+.hero-content-title p::after {
+  right: 0;
+  transform: translateX(
+    calc(var(--line-width) + var(--line-gap))
+  );
 }
 
 .hero-content-button {
@@ -105,29 +112,45 @@
 
 @media (min-width: 768px) {
   .hero-image-mobile {
-      display: none;
+    display: none;
   }
 
   .hero-image-desktop {
-      display: block;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 50%;
-      height: 100%;
-      object-fit: contain;
-      object-position: center;
-      z-index: 1;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    z-index: 1;
+  }
+
+  h1 {
+    font-size: 4rem;
+  }
+
+  .hero-content-title p {
+    --line-width: 8.5rem;
+    --line-gap: 0.2rem;
+    --line-vertical-position: 0.65rem;
   }
 }
 
 @keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
     transform: translateY(0);
   }
+
   40% {
     transform: translateY(-10px);
   }
+
   60% {
     transform: translateY(-5px);
   }
