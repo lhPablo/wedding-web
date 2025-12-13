@@ -40,11 +40,11 @@
 }
 
 .errorMessage {
-  color: var(--error-color-text);
+  color: var(--background-color);
   font-size: 0.875rem;
   margin-top: 1rem;
   padding: 0.5rem;
-  background: var(--background-color);
+  background: var(--error-color);
   border-radius: 0.25rem;
 }
 

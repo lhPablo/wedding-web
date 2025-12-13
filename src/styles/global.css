@@ -190,8 +190,8 @@ BUTTON[type="submit"] {
 }
 
 .message.error {
-  background-color: var(--error-color);
-  color: var(--error-color-text);
+  background-color: var(--background-color);
+  color: var(--error-color);
   border: 1px solid var(--error-color-border);
 }
 

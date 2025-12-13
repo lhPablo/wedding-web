@@ -51,7 +51,7 @@
 }
 
 .copyButton[data-state="error"] {
-    color: var(--error-color-text);
+    color: var(--error-color);
     cursor: default;
     pointer-events: none;
 }
