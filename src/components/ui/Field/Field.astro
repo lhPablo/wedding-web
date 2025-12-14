@@ -1,50 +1,73 @@
 ---
 import type { FieldConfig } from '../../../types/field';
-import { FieldTypes } from 'src/types/fieldTypes';
+import { FieldTypes } from '../../../types/fieldTypes';
 
 import styles from './Field.module.css';
 
 interface Props {
   config: FieldConfig;
+  namePrefix?: string;
 }
 
-const { config } = Astro.props;
+const { config, namePrefix = '' } = Astro.props;
 const { name, label, type, required, placeholder, options } = config;
+
+const fieldName = namePrefix ? `${namePrefix}_${name}` : name;
+const fieldId = fieldName;
 ---
 
-<div class={styles['field-group']}>
-  <label for={name} class={styles.label}>
-    {label}
-    {required && <span class={styles.required}>*</span>}
-  </label>
+{
+  type === FieldTypes.CHECKBOX ? (
+    <div class={styles['field-group-checkbox']}>
+      <label class={styles['checkbox-label']}>
+        <input
+          id={fieldId}
+          name={fieldName}
+          type="checkbox"
+          class={styles.checkbox}
+        />
+        <span class={styles['checkbox-text']}>{label}</span>
+      </label>
+    </div>
+  ) : (
+    <div class={styles['field-group']}>
+      <label for={fieldId} class={styles.label}>
+        {label}
+        {required && <span class={styles.required}>*</span>}
+      </label>
 
-  {
-    type === FieldTypes.TEXTAREA ? (
-      <textarea
-        id={name}
-        name={name}
-        class={styles.textarea}
-        required={required}
-        placeholder={placeholder}
-        rows={4}
-      />
-    ) : type === FieldTypes.SELECT ? (
-      <select id={name} name={name} class={styles.select} required={required}>
-        <option value="">Selecciona una opción</option>
-        {options?.map((option) => (
-          <option value={option}>{option}</option>
-        ))}
-      </select>
-    ) : (
-      <input
-        id={name}
-        name={name}
-        type={type}
-        class={styles.input}
-        required={required}
-        placeholder={placeholder}
-        min={type === FieldTypes.NUMBER ? '0' : undefined}
-      />
-    )
-  }
-</div>
+      {type === FieldTypes.TEXTAREA ? (
+        <textarea
+          id={fieldId}
+          name={fieldName}
+          class={styles.textarea}
+          required={required}
+          placeholder={placeholder}
+          rows={4}
+        />
+      ) : type === FieldTypes.SELECT ? (
+        <select
+          id={fieldId}
+          name={fieldName}
+          class={styles.select}
+          required={required}
+        >
+          <option value="">Selecciona una opción</option>
+          {options?.map((option) => (
+            <option value={option}>{option}</option>
+          ))}
+        </select>
+      ) : (
+        <input
+          id={fieldId}
+          name={fieldName}
+          type={type}
+          class={styles.input}
+          required={required}
+          placeholder={placeholder}
+          min={type === FieldTypes.NUMBER ? '0' : undefined}
+        />
+      )}
+    </div>
+  )
+}

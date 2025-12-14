@@ -1,5 +1,6 @@
 ---
 import Field from '@components/ui/Field/Field.astro';
+import CompanionSubform from '@components/sections/FormSection/CompanionSubform/CompanionSubform.astro';
 
 import type { FormConfig } from '../../../types/form';
 
@@ -38,6 +39,8 @@ const {
       <div class={styles.fields}>
         {fields.map((fieldConfig) => <Field config={fieldConfig} />)}
       </div>
+
+      <CompanionSubform maxCompanions={10} />
 
       <button type="submit" data-submit-btn>
         {submitText}

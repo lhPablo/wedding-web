@@ -1,15 +1,15 @@
-export const initSidebar = () => {
-  const sidebar = document.getElementById('sidebar');
+export const initNavbar = () => {
+  const navbar = document.getElementById('navbar');
 
-  if (!sidebar) return;
+  if (!navbar) return;
 
-  const toggleSidebar = () => {
-    const newState = sidebar.getAttribute('data-active') === 'false' ? 'true' : 'false';
-    sidebar.setAttribute('data-active', newState);
+  const toggleNavbar = () => {
+    const newState = navbar.getAttribute('data-visible') === 'false' ? 'true' : 'false';
+    navbar.setAttribute('data-visible', newState);
   };
 
-  sidebar.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', toggleSidebar);
+  navbar.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', toggleNavbar);
   });
 
   _initSmoothScroll();
@@ -20,7 +20,7 @@ export const initSidebar = () => {
   _addSelectedLinkListener(sections);
 
   // To show the navbar when the user scrolls down
-  _addNavbarVisibilityListener(sidebar);
+  _addNavbarVisibilityListener(navbar);
 };
 
 const _addSelectedLinkListener = (sections: NodeListOf<HTMLElement>) => {
@@ -45,7 +45,7 @@ const _addSelectedLinkListener = (sections: NodeListOf<HTMLElement>) => {
   sections.forEach((section: HTMLElement) => observer.observe(section));
 }
 
-const _addNavbarVisibilityListener = (sidebar: HTMLElement) => {
+const _addNavbarVisibilityListener = (navbar: HTMLElement) => {
   const heroSection = document.querySelector('section');
   
   if (!heroSection) return;
@@ -54,9 +54,9 @@ const _addNavbarVisibilityListener = (sidebar: HTMLElement) => {
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          sidebar.setAttribute('data-visible', 'false');
+          navbar.setAttribute('data-visible', 'false');
         } else {
-          sidebar.setAttribute('data-visible', 'true');
+          navbar.setAttribute('data-visible', 'true');
         }
       });
     },

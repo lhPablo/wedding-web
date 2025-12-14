@@ -66,13 +66,27 @@ function validateFormData(
     return 'El email es obligatorio';
   }
 
-  if (!data.asistencia) {
-    return 'Por favor, indica si asistirás';
-  }
-
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(data.email.toString())) {
     return 'Por favor, introduce un email válido';
+  }
+
+  if (!data.autobus) {
+    return 'Por favor, indica si necesitas autobús';
+  }
+
+  // Validar campos de acompañantes
+  const numCompanions = parseInt(data.acompanantes?.toString() || '0') || 0;
+  for (let i = 1; i <= numCompanions; i++) {
+    if (!data[`companion_${i}_name`] || data[`companion_${i}_name`].toString().trim() === '') {
+      return `Por favor, indica el nombre del acompañante ${i}`;
+    }
+    if (!data[`companion_${i}_relation`]) {
+      return `Por favor, indica la relación del acompañante ${i}`;
+    }
+    if (!data[`companion_${i}_age`]) {
+      return `Por favor, indica el rango de edad del acompañante ${i}`;
+    }
   }
 
   if (data.comentarios && data.comentarios.toString().length > 5000) {

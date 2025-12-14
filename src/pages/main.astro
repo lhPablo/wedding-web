@@ -58,7 +58,7 @@ import { sections } from '@data/sections';
 
   <script>
     const accessGranted = localStorage.getItem('accessGranted');
-    if (!accessGranted || accessGranted !== 'true') {
+    if (accessGranted !== 'full' && accessGranted !== 'limited') {
       window.location.href = '/';
     }
   </script>

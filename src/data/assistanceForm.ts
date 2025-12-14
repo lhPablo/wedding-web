@@ -1,5 +1,6 @@
 import type { FormConfig } from '../types/form';
-import { FieldTypes } from 'src/types/fieldTypes';
+import type { FieldConfig } from '../types/field';
+import { FieldTypes } from '../types/fieldTypes';
 
 export const assistanceForm: FormConfig = {
   title: 'Confirma tu asistencia',
@@ -27,20 +28,6 @@ export const assistanceForm: FormConfig = {
       placeholder: '+34 600 000 000'
     },
     {
-      name: 'asistencia',
-      label: '¿Confirmas tu asistencia?',
-      type: FieldTypes.SELECT,
-      required: true,
-      options: ['Sí, asistiré', 'No podré asistir', 'Aún no lo sé']
-    },
-    {
-      name: 'acompanantes',
-      label: 'Número de acompañantes',
-      type: FieldTypes.NUMBER,
-      required: false,
-      placeholder: '0'
-    },
-    {
       name: 'alergias',
       label: 'Alergias o intolerancias alimentarias',
       type: FieldTypes.TEXTAREA,
@@ -53,6 +40,20 @@ export const assistanceForm: FormConfig = {
       type: FieldTypes.TEXTAREA,
       required: false,
       placeholder: 'Cualquier cosa que quieras compartir con nosotros'
+    },
+    {
+      name: 'autobus',
+      label: 'Indique si necesita/necesitan autobús',
+      type: FieldTypes.SELECT,
+      required: true,
+      options: ['Sí', 'No']
+    },
+    {
+      name: 'acompanantes',
+      label: '¿Cuántas personas te acompañan? (pareja, hijos, familiares...)',
+      type: FieldTypes.SELECT,
+      required: true,
+      options: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
     }
   ],
   submitText: 'Enviar confirmación',
@@ -61,3 +62,42 @@ export const assistanceForm: FormConfig = {
   googleScriptUrl: ''
 };
 
+const relationOptions = ['Pareja', 'Hijo/a', 'Otro'];
+const ageRangeOptions = ['Adulto (18+)', 'Adolescente (12-17)', 'Niño (3-11)', 'Bebé (0-2)'];
+
+export const companionFields: FieldConfig[] = [
+  {
+    name: 'name',
+    label: 'Nombre',
+    type: FieldTypes.TEXT,
+    required: true,
+    placeholder: 'Nombre completo',
+  },
+  {
+    name: 'relation',
+    label: 'Relación',
+    type: FieldTypes.SELECT,
+    required: true,
+    options: relationOptions,
+  },
+  {
+    name: 'age',
+    label: 'Rango de edad',
+    type: FieldTypes.SELECT,
+    required: true,
+    options: ageRangeOptions,
+  },
+  {
+    name: 'adult_menu',
+    label: 'Menor con menú de adulto',
+    type: FieldTypes.CHECKBOX,
+    required: false,
+  },
+  {
+    name: 'allergies',
+    label: 'Alergias o intolerancias',
+    type: FieldTypes.TEXT,
+    required: false,
+    placeholder: 'Indica si tiene alguna alergia o intolerancia',
+  },
+];

@@ -164,6 +164,15 @@ BUTTON[type="submit"] {
   width: 100%;
 }
 
+SELECT {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("../assets/arrow-down.svg");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+
 .background {
   position: fixed;
   top: 0;

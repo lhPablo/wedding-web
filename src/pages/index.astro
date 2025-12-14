@@ -39,35 +39,10 @@ import styles from './index.module.css';
   </main>
 
   <script>
-    const correctKey = '1234';
+    import { initAuthHandler } from './authHandler';
 
-    const form = document.getElementById('login-form') as HTMLFormElement;
-    const passwordInput = document.getElementById(
-      'password'
-    ) as HTMLInputElement;
-    const errorMessage = document.getElementById(
-      'error-message'
-    ) as HTMLElement;
-
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      const input = passwordInput.value.trim();
-
-      if (input === correctKey) {
-        localStorage.setItem('accessGranted', 'true');
-        errorMessage.style.display = 'none';
-        window.location.href = '/main';
-      } else {
-        errorMessage.style.display = 'block';
-        passwordInput.value = '';
-        passwordInput.focus();
-
-        passwordInput.style.animation = 'shake 0.5s';
-        setTimeout(() => {
-          passwordInput.style.animation = '';
-        }, 500);
-      }
+    document.addEventListener('DOMContentLoaded', () => {
+      initAuthHandler();
     });
   </script>
 </AuthLayout>
