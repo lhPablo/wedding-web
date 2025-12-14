@@ -36,7 +36,6 @@
     padding: 0px 10px;
     border: none;
     cursor: pointer;
-    transition: 0.5s ease-in-out;
 }
 
 .chevron span {
@@ -45,23 +44,23 @@
     width: 3px;
     margin: 0 1px;
     background-color: var(--text-color);
-    transition: 0.25s ease-in-out;
+    transition: 0.30s ease-in-out;
 }
 
 .chevron span:nth-child(1) {
-    transform: rotate(50deg);
+    transform: rotate(45deg);
 }
 
 .chevron span:nth-child(2) {
-    transform: rotate(-50deg);
+    transform: rotate(-45deg);
 }
 
 .chevron[data-open="true"] span:nth-child(1) {
-    transform: rotate(130deg);
+    transform: rotate(315deg);
 }
 
 .chevron[data-open="true"] span:nth-child(2) {
-    transform: rotate(-130deg);
+    transform: rotate(-315deg);
 }
 
 .panel {

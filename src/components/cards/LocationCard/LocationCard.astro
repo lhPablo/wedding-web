@@ -5,7 +5,7 @@ const { image, title, description, address, mapLink } = Astro.props;
 ---
 
 <div class={styles.container}>
-  <div class={styles.photoContainer}>
+  <div class={styles['photo-container']}>
     <img src={image} alt="Wedding location" class={styles.photo} />
 
     <div class={styles.overlay}></div>

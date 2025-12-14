@@ -27,7 +27,7 @@ const _addSelectedLinkListener = (sections: NodeListOf<HTMLElement>) => {
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       const id = entry.target.id;
-      const link = document.querySelector(`#sidebar a[href="#${id}"]`) as HTMLElement;
+      const link = document.querySelector(`#navbar a[href="#${id}"]`) as HTMLElement;
 
       if (entry.isIntersecting) {
         link?.setAttribute('data-active', 'true');

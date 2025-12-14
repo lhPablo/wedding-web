@@ -7,21 +7,21 @@ const { weddingDate } = Astro.props;
 ---
 
 <div class={styles.timer} data-wedding-date={weddingDate}>
-  <div class={styles.timerItem}>
-    <span class={styles.timerItemValue} data-unit="days">0</span>
-    <span class={styles.timerItemLabel}>Días</span>
+  <div class={styles['timer-item']}>
+    <span class={styles['timer-item-value']} data-unit="days">0</span>
+    <span class={styles['timer-item-label']}>Días</span>
   </div>
-  <div class={styles.timerItem}>
-    <span class={styles.timerItemValue} data-unit="hours">0</span>
-    <span class={styles.timerItemLabel}>Horas</span>
+  <div class={styles['timer-item']}>
+    <span class={styles['timer-item-value']} data-unit="hours">0</span>
+    <span class={styles['timer-item-label']}>Horas</span>
   </div>
-  <div class={styles.timerItem}>
-    <span class={styles.timerItemValue} data-unit="minutes">0</span>
-    <span class={styles.timerItemLabel}>Minutos</span>
+  <div class={styles['timer-item']}>
+    <span class={styles['timer-item-value']} data-unit="minutes">0</span>
+    <span class={styles['timer-item-label']}>Minutos</span>
   </div>
-  <div class={styles.timerItem}>
-    <span class={styles.timerItemValue} data-unit="seconds">0</span>
-    <span class={styles.timerItemLabel}>Segundos</span>
+  <div class={styles['timer-item']}>
+    <span class={styles['timer-item-value']} data-unit="seconds">0</span>
+    <span class={styles['timer-item-label']}>Segundos</span>
   </div>
 </div>
 

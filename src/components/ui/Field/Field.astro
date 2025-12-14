@@ -12,7 +12,7 @@ const { config } = Astro.props;
 const { name, label, type, required, placeholder, options } = config;
 ---
 
-<div class={styles.fieldGroup}>
+<div class={styles['field-group']}>
   <label for={name} class={styles.label}>
     {label}
     {required && <span class={styles.required}>*</span>}

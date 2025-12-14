@@ -5,7 +5,7 @@
     justify-content: center;
 }
 
-.timerItem {
+.timer-item {
     display: flex;
     flex-direction: column;
     border-right: 1px solid black;
@@ -15,10 +15,10 @@
     flex-grow: 1;
 }
 
-.timerItem:last-child {
+.timer-item:last-child {
     border-right: none;
 }
 
-.timerItemValue {
+.timer-item-value {
     font-weight: bold;
 }
