@@ -2,7 +2,7 @@ export function initCompanionFields() {
   const isLimitedAccess = localStorage.getItem('accessGranted') === 'limited';
 
   const companionsSelect = document.querySelector(
-    'select[name="acompanantes"]'
+    'select[name="companions"]'
   ) as HTMLSelectElement;
 
   const companionsSection = document.querySelector(

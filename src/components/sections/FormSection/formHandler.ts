@@ -39,7 +39,7 @@ async function handleSubmit(
     if (!config.googleScriptUrl) {
       throw new Error('URL de Google Script no configurada');
     }
-
+console.log(data);
     await sendFormData(config.googleScriptUrl, data);
 
     showMessage(messageDiv, config.successMessage, 'success');
@@ -58,25 +58,24 @@ async function handleSubmit(
 function validateFormData(
   data: Record<string, FormDataEntryValue>
 ): string | null {
-  if (!data.nombre || data.nombre.toString().trim() === '') {
+  if (!data.name || data.name.toString().trim() === '') {
     return 'El nombre es obligatorio';
   }
 
-  if (!data.email || data.email.toString().trim() === '') {
-    return 'El email es obligatorio';
+  if (!data.age) {
+    return 'Por favor, indica tu rango de edad';
   }
 
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(data.email.toString())) {
-    return 'Por favor, introduce un email válido';
+  if (!data.phone || data.phone.toString().trim() === '') {
+    return 'El teléfono es obligatorio';
   }
 
-  if (!data.autobus) {
+  if (!data.bus) {
     return 'Por favor, indica si necesitas autobús';
   }
 
   // Validar campos de acompañantes
-  const numCompanions = parseInt(data.acompanantes?.toString() || '0') || 0;
+  const numCompanions = parseInt(data.companions?.toString() || '0') || 0;
   for (let i = 1; i <= numCompanions; i++) {
     if (!data[`companion_${i}_name`] || data[`companion_${i}_name`].toString().trim() === '') {
       return `Por favor, indica el nombre del acompañante ${i}`;
@@ -89,7 +88,7 @@ function validateFormData(
     }
   }
 
-  if (data.comentarios && data.comentarios.toString().length > 5000) {
+  if (data.comments && data.comments.toString().length > 5000) {
     return 'Los comentarios son demasiado largos (máximo 5000 caracteres)';
   }
 

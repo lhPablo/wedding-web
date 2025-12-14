@@ -2,55 +2,58 @@ import type { FormConfig } from '../types/form';
 import type { FieldConfig } from '../types/field';
 import { FieldTypes } from '../types/fieldTypes';
 
+const ageRangeOptions = ['Adulto (18+)', 'Adolescente (12-17)', 'Niño (3-11)', 'Bebé (0-2)'];
+const relationOptions = ['Pareja', 'Hijo/a', 'Otro'];
+
 export const assistanceForm: FormConfig = {
   title: 'Confirma tu asistencia',
   description: 'Por favor, completa el formulario para confirmar tu asistencia a la boda.',
   fields: [
     {
-      name: 'nombre',
+      name: 'name',
       label: 'Nombre completo',
       type: FieldTypes.TEXT,
       required: true,
       placeholder: 'Ej: Juan Pérez'
     },
     {
-      name: 'email',
-      label: 'Email',
-      type: FieldTypes.EMAIL,
+      name: 'age',
+      label: 'Edad',
+      type: FieldTypes.SELECT,
       required: true,
-      placeholder: 'tu@email.com'
+      options: ageRangeOptions
     },
     {
-      name: 'telefono',
+      name: 'phone',
       label: 'Teléfono',
       type: FieldTypes.TEL,
-      required: false,
+      required: true,
       placeholder: '+34 600 000 000'
     },
     {
-      name: 'alergias',
+      name: 'allergies',
       label: 'Alergias o intolerancias alimentarias',
       type: FieldTypes.TEXTAREA,
       required: false,
       placeholder: 'Indica si tienes alguna alergia o intolerancia'
     },
     {
-      name: 'comentarios',
+      name: 'comments',
       label: 'Comentarios adicionales',
       type: FieldTypes.TEXTAREA,
       required: false,
       placeholder: 'Cualquier cosa que quieras compartir con nosotros'
     },
     {
-      name: 'autobus',
+      name: 'bus',
       label: 'Indique si necesita/necesitan autobús',
       type: FieldTypes.SELECT,
       required: true,
       options: ['Sí', 'No']
     },
     {
-      name: 'acompanantes',
-      label: '¿Cuántas personas te acompañan? (pareja, hijos, familiares...)',
+      name: 'companions',
+      label: '¿Cuántas personas acompañan?',
       type: FieldTypes.SELECT,
       required: true,
       options: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
@@ -61,9 +64,6 @@ export const assistanceForm: FormConfig = {
   errorMessage: 'Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.',
   googleScriptUrl: ''
 };
-
-const relationOptions = ['Pareja', 'Hijo/a', 'Otro'];
-const ageRangeOptions = ['Adulto (18+)', 'Adolescente (12-17)', 'Niño (3-11)', 'Bebé (0-2)'];
 
 export const companionFields: FieldConfig[] = [
   {

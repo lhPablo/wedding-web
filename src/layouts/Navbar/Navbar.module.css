@@ -32,7 +32,7 @@
   padding: 15px 0;
   position: relative;
   text-decoration: none;
-  color: var(--primary-color);
+  color: var(--background-color);
   transition: color 0.2s;
   gap: 10px;
 }

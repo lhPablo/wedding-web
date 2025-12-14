@@ -3,15 +3,6 @@ export const initNavbar = () => {
 
   if (!navbar) return;
 
-  const toggleNavbar = () => {
-    const newState = navbar.getAttribute('data-visible') === 'false' ? 'true' : 'false';
-    navbar.setAttribute('data-visible', newState);
-  };
-
-  navbar.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', toggleNavbar);
-  });
-
   _initSmoothScroll();
 
   const sections = document.querySelectorAll('section');

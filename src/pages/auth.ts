@@ -1,4 +1,4 @@
-export function initAuthHandler() {
+export function initAuth() {
   const correctHash = import.meta.env.PUBLIC_ACCESS_KEY_HASH;
   const correctLimitKey = import.meta.env.PUBLIC_LIMIT_ACCESS_KEY_HASH;
 
