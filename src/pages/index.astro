@@ -1,5 +1,7 @@
 ---
 import AuthLayout from '@layouts/AuthLayout.astro';
+import CheckIcon from '@components/ui/Icons/CheckIcon.astro';
+import CrossIcon from '@components/ui/Icons/CrossIcon.astro';
 
 import styles from './index.module.css';
 ---
@@ -24,15 +26,17 @@ import styles from './index.module.css';
             />
           </div>
 
-          <button id="submit" type="submit">Entrar</button>
-
-          <p
-            id="error-message"
-            class={styles.errorMessage}
-            style="display: none;"
-          >
-            Clave incorrecta. Inténtalo de nuevo.
-          </p>
+          <div class={styles.buttonWrapper}>
+            <button id="submit" type="submit" class={styles.submitButton}>
+              <span class={styles.buttonText}>Entrar</span>
+              <span class={styles.checkIcon}>
+                <CheckIcon />
+              </span>
+              <span class={styles.crossIcon}>
+                <CrossIcon />
+              </span>
+            </button>
+          </div>
         </form>
       </div>
     </div>

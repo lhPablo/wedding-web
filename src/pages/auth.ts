@@ -4,9 +4,9 @@ export function initAuth() {
 
   const form = document.getElementById('login-form') as HTMLFormElement;
   const passwordInput = document.getElementById('password') as HTMLInputElement;
-  const errorMessage = document.getElementById('error-message') as HTMLElement;
+  const submitButton = document.getElementById('submit') as HTMLButtonElement;
 
-  if (!form || !passwordInput || !errorMessage) return;
+  if (!form || !passwordInput || !submitButton) return;
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -16,26 +16,41 @@ export function initAuth() {
 
     if (inputHash === correctHash) {
       localStorage.setItem('accessGranted', 'full');
-      goToHome(errorMessage);
+      showSuccessAndRedirect(submitButton, passwordInput);
     } else if (inputHash === correctLimitKey) {
       localStorage.setItem('accessGranted', 'limited');
-      goToHome(errorMessage);
+      showSuccessAndRedirect(submitButton, passwordInput);
     } else {
-      errorMessage.style.display = 'block';
-      passwordInput.value = '';
-      passwordInput.focus();
-
-      passwordInput.style.animation = 'shake 0.5s';
-      setTimeout(() => {
-        passwordInput.style.animation = '';
-      }, 500);
+      showErrorAndReset(submitButton, passwordInput);
     }
   });
 }
 
-function goToHome(errorMessage: HTMLElement) {
-  errorMessage.style.display = 'none';
-  window.location.href = '/main';
+function showSuccessAndRedirect(
+  submitButton: HTMLButtonElement,
+  passwordInput: HTMLInputElement
+) {
+  passwordInput.dataset.error = '';
+  submitButton.dataset.success = 'true';
+  passwordInput.dataset.success = 'true';
+
+  setTimeout(() => {
+    window.location.href = '/main';
+  }, 900);
+}
+
+function showErrorAndReset(
+  submitButton: HTMLButtonElement,
+  passwordInput: HTMLInputElement
+) {
+  passwordInput.dataset.error = 'true';
+  submitButton.dataset.error = 'true';
+
+  setTimeout(() => {
+    submitButton.dataset.error = '';
+    passwordInput.value = '';
+    passwordInput.focus();
+  }, 1000);
 }
 
 async function hashSHA256(text: string): Promise<string> {

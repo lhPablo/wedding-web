@@ -45,7 +45,7 @@
 }
 
 .copy-button[data-state="success"] {
-    color: var(--success-color-text);
+    color: var(--success-color);
     cursor: default;
     pointer-events: none;
 }

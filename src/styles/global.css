@@ -106,7 +106,6 @@ SELECT:focus,
 TEXTAREA:focus {
   outline: none;
   border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px var(--shadow-color);
 }
 
 INPUT::placeholder,
@@ -138,6 +137,10 @@ A.btn {
   text-decoration: none;
   transition: all 0.3s ease;
   box-shadow: 0 4px 15px var(--shadow-color);
+
+  SPAN {
+    color: var(--text-button-color);
+  }
 }
 
 BUTTON:hover:not(:disabled),
@@ -194,7 +197,7 @@ SELECT {
 
 .message.success {
   background-color: var(--success-color);
-  color: var(--success-color-text);
+  color: var(--background-color);
   border: 1px solid var(--success-color-border);
 }
 
@@ -231,11 +234,11 @@ SELECT {
   0%, 100% {
     transform: translateX(0);
   }
-  10%, 30%, 50%, 70%, 90% {
-    transform: translateX(-5px);
+  20%, 60% {
+    transform: translateX(-3px);
   }
-  20%, 40%, 60%, 80% {
-    transform: translateX(5px);
+  40%, 80% {
+    transform: translateX(3px);
   }
 }
 
