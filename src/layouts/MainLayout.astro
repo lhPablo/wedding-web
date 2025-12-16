@@ -6,6 +6,14 @@ import { heroImages } from '@data/wedding';
 
 <BaseLayout>
   <Fragment slot="head">
+    <script is:inline>
+      (function () {
+        var access = localStorage.getItem('accessGranted');
+        if (access !== 'full' && access !== 'limited') {
+          window.location.replace('/');
+        }
+      })();
+    </script>
     <link
       rel="preload"
       as="image"

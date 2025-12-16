@@ -8,6 +8,10 @@ export function initAuth() {
 
   if (!form || !passwordInput || !submitButton) return;
 
+  window.addEventListener('pageshow', () => {
+    resetFormState(submitButton, passwordInput);
+  });
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -51,6 +55,19 @@ function showErrorAndReset(
     passwordInput.value = '';
     passwordInput.focus();
   }, 1000);
+}
+
+function resetFormState(
+  submitButton: HTMLButtonElement,
+  passwordInput: HTMLInputElement
+) {
+  submitButton.dataset.success = '';
+  submitButton.dataset.error = '';
+  passwordInput.dataset.success = '';
+  passwordInput.dataset.error = '';
+  passwordInput.value = '';
+  debugger;
+  localStorage.removeItem('accessGranted');
 }
 
 async function hashSHA256(text: string): Promise<string> {
