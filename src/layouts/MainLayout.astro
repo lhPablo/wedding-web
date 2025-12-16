@@ -1,9 +1,24 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import Navbar from '@layouts/Navbar/Navbar.astro';
+import { heroImages } from '@data/wedding';
 ---
 
 <BaseLayout>
+  <Fragment slot="head">
+    <link
+      rel="preload"
+      as="image"
+      href={heroImages.mobile.src}
+      media="(max-width: 767px)"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href={heroImages.desktop.src}
+      media="(min-width: 768px)"
+    />
+  </Fragment>
   <Navbar />
   <slot />
 </BaseLayout>

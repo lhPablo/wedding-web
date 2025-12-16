@@ -6,6 +6,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: var(--color-secondary);
 }
 
 .hero-image-mobile {
@@ -18,10 +19,20 @@
   object-position: center;
   mask-image: linear-gradient(black 80%, transparent);
   z-index: 1;
+  background-color: var(--color-secondary);
 }
 
 .hero-image-desktop {
+  position: absolute;
+  inset: 0;
+  width: 50%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 1;
   display: none;
+  background-color: var(--color-secondary);
+  mask-image: linear-gradient(black 80%, transparent);
 }
 
 .hero-content {
@@ -117,14 +128,6 @@
 
   .hero-image-desktop {
     display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 50%;
-    height: 100%;
-    object-fit: contain;
-    object-position: center;
-    z-index: 1;
   }
 
   h1 {

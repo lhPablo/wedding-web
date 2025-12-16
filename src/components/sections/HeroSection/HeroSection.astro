@@ -1,5 +1,5 @@
 ---
-import { wedding } from '@data/wedding';
+import { wedding, heroImages } from '@data/wedding';
 import { sections } from '@data/sections';
 
 import DownIcon from '@components/ui/Icons/DownIcon.astro';
@@ -17,13 +17,21 @@ const nextSection = sections[currentIndex + 1];
     class={styles['hero-image-mobile']}
     src={wedding.imageMobile}
     alt="Our main image"
+    width={heroImages.mobile.width}
+    height={heroImages.mobile.height}
     fetchpriority="high"
+    loading="eager"
+    decoding="sync"
   />
   <img
     class={styles['hero-image-desktop']}
     src={wedding.imageDesktop}
     alt="Our main image"
+    width={heroImages.desktop.width}
+    height={heroImages.desktop.height}
     fetchpriority="high"
+    loading="eager"
+    decoding="sync"
   />
 
   <div class={styles['hero-content']}>
