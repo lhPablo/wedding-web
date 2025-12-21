@@ -2,6 +2,8 @@
 import AuthLayout from '@layouts/AuthLayout.astro';
 import SubmitButton from '@components/ui/SubmitButton/SubmitButton.astro';
 
+import logo from '@assets/logo.png';
+
 import styles from './index.module.css';
 ---
 
@@ -9,6 +11,9 @@ import styles from './index.module.css';
   <main>
     <div class={styles['login-container']}>
       <div class={styles['login-card']}>
+        <div>
+          <img src={logo.src} alt="Logo" class={styles['login-logo']} />
+        </div>
         <h1>Bienvenido</h1>
         <p class={styles.subtitle}>
           Introduce la clave de acceso para ver la invitación

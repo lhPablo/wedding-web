@@ -1,4 +1,12 @@
+.container {
+    min-width: 80%;
+}
+
 .contact-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     background: var(--card-color);
     padding: 25px 35px;
     border-radius: 16px;
@@ -6,6 +14,7 @@
     text-align: center;
     min-width: 260px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    gap: 10px;
 }
   
 .contact-card:hover {
@@ -25,7 +34,7 @@
 }
   
 .contact-card a:hover {
-    color: var(--hover-color);
+    color: var(--hover-text-color);
 }
   
 .icon {
@@ -37,4 +46,10 @@
     font-size: 3rem;
     margin-bottom: 30px;
     color: transparent;
+}
+
+@media (min-width: 768px) {
+    .container {
+        min-width: 20%;
+    }
 }

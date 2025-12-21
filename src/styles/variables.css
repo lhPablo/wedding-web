@@ -4,6 +4,7 @@
   --secondary-color: #6A708A;
   --navbar-color: #323C50A6;
   --hover-color: #4B5563;
+  --hover-text-color: #f5aa97e0;
   --active-color: #f5aa97e0;
   --text-color: #4B5563;
   --text-button-color: #FFFFFF;
@@ -17,7 +18,6 @@
   --border-color: #E0E0E0;
   --input-color: #FFFFFF;
   --placeholder-color: #8B96A8;
-  
 
   --font-family: 'Montserrat', sans-serif;
 }

@@ -10,6 +10,14 @@ const { id } = Astro.props;
 
 const currentIndex = sections.findIndex((section) => section.id === id);
 const nextSection = sections[currentIndex + 1];
+
+const date = new Date(wedding.date);
+
+const day = String(date.getDate()).padStart(2, '0');
+const month = String(date.getMonth() + 1).padStart(2, '0');
+const year = date.getFullYear();
+
+const stringDate = `${day}-${month}-${year}`;
 ---
 
 <section id={id} class={styles.section}>
@@ -37,7 +45,7 @@ const nextSection = sections[currentIndex + 1];
   <div class={styles['hero-content']}>
     <div class={styles['hero-content-title']}>
       <h1>{wedding.title}</h1>
-      <p>{wedding.date} | Nuestra Boda</p>
+      <p>{stringDate} | Nuestra Boda</p>
     </div>
     {
       nextSection && (
