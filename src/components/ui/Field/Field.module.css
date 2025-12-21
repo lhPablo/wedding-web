@@ -31,3 +31,15 @@
   color: var(--error-color);
   margin-left: 0.25rem;
 }
+
+.field-group input[data-success="true"],
+.field-group select[data-success="true"],
+.field-group textarea[data-success="true"] {
+  border-color: var(--success-color-border);
+}
+
+.field-group input[data-error="true"],
+.field-group select[data-error="true"],
+.field-group textarea[data-error="true"] {
+  border-color: var(--error-color);
+}

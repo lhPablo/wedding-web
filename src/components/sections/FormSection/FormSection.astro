@@ -1,6 +1,7 @@
 ---
 import Field from '@components/ui/Field/Field.astro';
 import CompanionSubform from '@components/sections/FormSection/CompanionSubform/CompanionSubform.astro';
+import SubmitButton from '@components/ui/SubmitButton/SubmitButton.astro';
 
 import type { FormConfig } from '../../../types/form';
 
@@ -42,9 +43,7 @@ const {
 
       <CompanionSubform maxCompanions={10} />
 
-      <button type="submit" data-submit-btn>
-        {submitText}
-      </button>
+      <SubmitButton id="section-submit" text={submitText} />
 
       <div class="message" data-message hidden></div>
     </form>

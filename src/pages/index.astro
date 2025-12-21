@@ -1,22 +1,21 @@
 ---
 import AuthLayout from '@layouts/AuthLayout.astro';
-import CheckIcon from '@components/ui/Icons/CheckIcon.astro';
-import CrossIcon from '@components/ui/Icons/CrossIcon.astro';
+import SubmitButton from '@components/ui/SubmitButton/SubmitButton.astro';
 
 import styles from './index.module.css';
 ---
 
 <AuthLayout>
   <main>
-    <div class={styles.loginContainer}>
-      <div class={styles.loginCard}>
+    <div class={styles['login-container']}>
+      <div class={styles['login-card']}>
         <h1>Bienvenido</h1>
         <p class={styles.subtitle}>
           Introduce la clave de acceso para ver la invitación
         </p>
 
         <form id="login-form">
-          <div class={styles.formGroup}>
+          <div class={styles['form-group']}>
             <label for="password">Clave de acceso</label>
             <input
               type="password"
@@ -26,16 +25,8 @@ import styles from './index.module.css';
             />
           </div>
 
-          <div class={styles.buttonWrapper}>
-            <button id="submit" type="submit" class={styles.submitButton}>
-              <span class={styles.buttonText}>Entrar</span>
-              <span class={styles.checkIcon}>
-                <CheckIcon />
-              </span>
-              <span class={styles.crossIcon}>
-                <CrossIcon />
-              </span>
-            </button>
+          <div class={styles['button-wrapper']}>
+            <SubmitButton id="submit" text="Entrar" />
           </div>
         </form>
       </div>

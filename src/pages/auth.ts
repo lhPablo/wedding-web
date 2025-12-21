@@ -66,7 +66,7 @@ function resetFormState(
   passwordInput.dataset.success = '';
   passwordInput.dataset.error = '';
   passwordInput.value = '';
-  debugger;
+  
   localStorage.removeItem('accessGranted');
 }
 

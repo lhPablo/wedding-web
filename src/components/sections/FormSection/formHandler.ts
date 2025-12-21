@@ -39,19 +39,31 @@ async function handleSubmit(
     if (!config.googleScriptUrl) {
       throw new Error('URL de Google Script no configurada');
     }
-console.log(data);
+
     await sendFormData(config.googleScriptUrl, data);
 
+    showButtonSuccess(submitBtn);
+    setFormFieldsState(form, 'success');
     showMessage(messageDiv, config.successMessage, 'success');
-    form.reset();
+    
+    setTimeout(() => {
+      form.reset();
+      resetButtonState(submitBtn, config.submitText);
+      resetFormFieldsState(form);
+    }, 2000);
   } catch (error) {
     console.error('Error al enviar el formulario:', error);
     const errorMessage =
       error instanceof Error ? error.message : config.errorMessage;
 
+    showButtonError(submitBtn);
+    setFormFieldsState(form, 'error');
     showMessage(messageDiv, errorMessage, 'error');
-  } finally {
-    setButtonLoading(submitBtn, config.submitText, false);
+    
+    setTimeout(() => {
+      resetButtonState(submitBtn, config.submitText);
+      resetFormFieldsState(form);
+    }, 2000);
   }
 }
 
@@ -117,7 +129,32 @@ function setButtonLoading(
   isLoading: boolean
 ) {
   btn.disabled = isLoading;
-  btn.textContent = isLoading ? 'Enviando...' : originalText;
+  const textSpan = btn.querySelector('span:first-child');
+  if (textSpan) {
+    textSpan.textContent = isLoading ? 'Enviando...' : originalText;
+  }
+}
+
+function showButtonSuccess(btn: HTMLButtonElement) {
+  btn.disabled = true;
+  btn.dataset.success = 'true';
+  btn.dataset.error = '';
+}
+
+function showButtonError(btn: HTMLButtonElement) {
+  btn.disabled = true;
+  btn.dataset.error = 'true';
+  btn.dataset.success = '';
+}
+
+function resetButtonState(btn: HTMLButtonElement, originalText: string) {
+  btn.disabled = false;
+  btn.dataset.success = '';
+  btn.dataset.error = '';
+  const textSpan = btn.querySelector('span:first-child');
+  if (textSpan) {
+    textSpan.textContent = originalText;
+  }
 }
 
 function showMessage(
@@ -136,4 +173,27 @@ function showMessage(
 
 function hideMessage(element: HTMLDivElement) {
   element.hidden = true;
+}
+
+function setFormFieldsState(form: HTMLFormElement, state: 'success' | 'error') {
+  const fields = form.querySelectorAll('input, select, textarea');
+  fields.forEach((field) => {
+    const el = field as HTMLElement;
+    if (state === 'success') {
+      el.dataset.success = 'true';
+      el.dataset.error = '';
+    } else {
+      el.dataset.error = 'true';
+      el.dataset.success = '';
+    }
+  });
+}
+
+function resetFormFieldsState(form: HTMLFormElement) {
+  const fields = form.querySelectorAll('input, select, textarea');
+  fields.forEach((field) => {
+    const el = field as HTMLElement;
+    el.dataset.success = '';
+    el.dataset.error = '';
+  });
 }
