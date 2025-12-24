@@ -6,26 +6,30 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 40px;
-    gap: 20px
+    padding: 2.5rem;
+    gap: 1.25rem;
+
+    P {
+        padding: 0 1.25rem;
+    }
 }
 
 .iban {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 0.625rem;
 }
 
 .copy-button {
     background: none;
     border: none;
-    padding: 8px;
+    padding: 0.5rem;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 8px;
+    border-radius: 0.5rem;
     transition: all 0.3s ease;
     position: relative;
 
@@ -106,7 +110,7 @@
 }
 
 
-@media (min-width: 768px) {
+@media (min-width: 768px) and (orientation: landscape) {
     .timer-container {
         max-width: 30%;
     }

@@ -8,7 +8,7 @@
 .timer-item {
     display: flex;
     flex-direction: column;
-    border-right: 1px solid black;
+    border-right: 0.0625rem solid black;
     text-align: center;
     align-items: center;
     justify-content: center;

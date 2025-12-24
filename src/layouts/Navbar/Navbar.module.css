@@ -13,7 +13,7 @@
   background-color: var(--navbar-color);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  z-index: 2;
+  z-index: 20;
   overflow: hidden;
   opacity: 0;
   transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
@@ -29,12 +29,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 15px 0;
+  padding: 0.9375rem 0;
   position: relative;
   text-decoration: none;
   color: var(--background-color);
   transition: color 0.2s;
-  gap: 10px;
+  gap: 0.625rem;
 }
 
 .navbar a span {
@@ -45,7 +45,7 @@
   color: var(--active-color);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 768px) and (orientation: landscape) {
   .navbar a::after {
     content: attr(data-label);
     position: absolute;
@@ -55,14 +55,14 @@
     white-space: nowrap;
     color: rgba(255, 255, 255, 0.85);
     background: rgba(0, 0, 0, 0.25);
-    padding: 4px 8px;
-    border-radius: 4px;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
     font-size: 0.875rem;
     opacity: 0;
     pointer-events: none;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.1);
     transition: opacity 0.2s ease, transform 0.2s ease;
-    z-index: 100;
+    z-index: 30;
   }
 
   .navbar a span {
