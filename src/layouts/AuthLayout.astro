@@ -1,5 +1,6 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+import CloudOverlay from '@components/ui/CloudOverlay/CloudOverlay.astro';
 import { heroImages } from '@data/wedding';
 ---
 
@@ -18,5 +19,6 @@ import { heroImages } from '@data/wedding';
       media="(min-width: 768px)"
     />
   </Fragment>
+  <CloudOverlay mode="enter" />
   <slot />
 </BaseLayout>

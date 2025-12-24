@@ -39,8 +39,18 @@ function showSuccessAndRedirect(
   passwordInput.dataset.success = 'true';
 
   setTimeout(() => {
-    window.location.href = '/main';
-  }, 900);
+    const overlay = document.getElementById('cloud-overlay');
+    
+    if (overlay) {
+      overlay.dataset.active = 'true';
+      
+      setTimeout(() => {
+        window.location.href = '/main';
+      }, 1000);
+    } else {
+      window.location.href = '/main';
+    }
+  }, 500);
 }
 
 function showErrorAndReset(
