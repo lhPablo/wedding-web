@@ -1,48 +1,10 @@
 ---
 import AuthLayout from '@layouts/AuthLayout.astro';
-import SubmitButton from '@components/ui/SubmitButton/SubmitButton.astro';
-
-import logo from '@assets/logo.png';
-
-import styles from './index.module.css';
+import Login from '@components/auth/Login/Login.astro';
 ---
 
 <AuthLayout>
   <main>
-    <div class={styles['login-container']}>
-      <div class={styles['login-card']}>
-        <div>
-          <img src={logo.src} alt="Logo" class={styles['login-logo']} />
-        </div>
-        <h1>Bienvenido</h1>
-        <p class={styles.subtitle}>
-          Introduce la clave de acceso para ver la invitación
-        </p>
-
-        <form id="login-form">
-          <div class={styles['form-group']}>
-            <label for="password">Clave de acceso</label>
-            <input
-              type="password"
-              id="password"
-              placeholder="Ingresa la clave de acceso"
-              required
-            />
-          </div>
-
-          <div class={styles['button-wrapper']}>
-            <SubmitButton id="submit" text="Entrar" />
-          </div>
-        </form>
-      </div>
-    </div>
+    <Login />
   </main>
-
-  <script>
-    import { initAuth } from './auth.ts';
-
-    document.addEventListener('DOMContentLoaded', () => {
-      initAuth();
-    });
-  </script>
 </AuthLayout>
