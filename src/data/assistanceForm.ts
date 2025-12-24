@@ -2,8 +2,23 @@ import type { FormConfig } from '../types/form';
 import type { FieldConfig } from '../types/field';
 import { FieldTypes } from '../types/fieldTypes';
 
-const ageRangeOptions = ['Adulto (18+)', 'Adolescente (12-17)', 'Niño (3-11)', 'Bebé (0-2)'];
+export const CHILD_AGES = ['Bebé (0-2)', 'Niño (3-10)', 'Preadolescente (11-13)'];
+
+const adultAges = ['Adolescente (14-17)', 'Adulto (18+)'];
+
+const allAges = [
+  ...CHILD_AGES,
+  ...adultAges
+];
+
 const relationOptions = ['Pareja', 'Hijo/a', 'Otro'];
+
+export const MENU_TYPES = {
+  ADULT: 'Menú de adulto',
+  CHILD: 'Menú infantil',
+};
+
+const menuOptions = [MENU_TYPES.ADULT, MENU_TYPES.CHILD];
 
 export const assistanceForm: FormConfig = {
   title: 'Confirma tu asistencia',
@@ -21,7 +36,15 @@ export const assistanceForm: FormConfig = {
       label: 'Edad',
       type: FieldTypes.SELECT,
       required: true,
-      options: ageRangeOptions
+      options: adultAges
+    },
+    {
+      name: 'menu_type',
+      label: 'Tipo de menú',
+      type: FieldTypes.SELECT,
+      required: true,
+      options: menuOptions,
+      defaultValue: MENU_TYPES.ADULT
     },
     {
       name: 'phone',
@@ -85,19 +108,21 @@ export const companionFields: FieldConfig[] = [
     label: 'Rango de edad',
     type: FieldTypes.SELECT,
     required: true,
-    options: ageRangeOptions,
+    options: allAges,
   },
   {
-    name: 'adult_menu',
-    label: 'Menor con menú de adulto',
-    type: FieldTypes.CHECKBOX,
-    required: false,
+    name: 'menu_type',
+    label: 'Tipo de menú',
+    type: FieldTypes.SELECT,
+    required: true,
+    options: menuOptions,
+    defaultValue: MENU_TYPES.ADULT
   },
   {
     name: 'allergies',
     label: 'Alergias o intolerancias',
     type: FieldTypes.TEXT,
-    required: false,
+    required: true,
     placeholder: 'Indica si tiene alguna alergia o intolerancia',
   },
 ];

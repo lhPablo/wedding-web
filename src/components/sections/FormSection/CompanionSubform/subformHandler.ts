@@ -1,3 +1,5 @@
+import { CHILD_AGES, MENU_TYPES } from '@data/assistanceForm';
+
 export function initCompanionFields() {
   const isLimitedAccess = localStorage.getItem('accessGranted') === 'limited';
 
@@ -28,6 +30,8 @@ export function initCompanionFields() {
     return;
   }
 
+  initAgeMenuListeners(companionCards);
+
   companionsSelect.addEventListener('change', (e) => {
     const target = e.target as HTMLSelectElement;
     const count = parseInt(target.value) || 0;
@@ -36,6 +40,29 @@ export function initCompanionFields() {
 
   const initialCount = parseInt(companionsSelect.value) || 0;
   updateCompanionCards(companionsSection, companionCards, initialCount);
+}
+
+function initAgeMenuListeners(companionCards: NodeListOf<HTMLElement>) {
+  companionCards.forEach((card, index) => {
+    const ageSelect = card.querySelector(`select[name="companion_${index + 1}_age"]`) as HTMLSelectElement;
+    const menuSelect = card.querySelector(`select[name="companion_${index + 1}_menu_type"]`) as HTMLSelectElement;
+
+    if (ageSelect && menuSelect) {
+      ageSelect.addEventListener('change', () => {
+        updateMenuBasedOnAge(ageSelect, menuSelect);
+      });
+    }
+  });
+}
+
+function updateMenuBasedOnAge(ageSelect: HTMLSelectElement, menuSelect: HTMLSelectElement) {
+  const selectedAge = ageSelect.value;
+  
+  if (CHILD_AGES.includes(selectedAge)) {
+    menuSelect.value = MENU_TYPES.CHILD;
+  } else {
+    menuSelect.value = MENU_TYPES.ADULT;
+  }
 }
 
 function updateCompanionCards(companionsSection: HTMLElement, companionCards: NodeListOf<HTMLElement>, count: number) {

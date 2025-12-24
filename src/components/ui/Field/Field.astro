@@ -10,7 +10,8 @@ interface Props {
 }
 
 const { config, namePrefix = '' } = Astro.props;
-const { name, label, type, required, placeholder, options } = config;
+const { name, label, type, required, placeholder, options, defaultValue } =
+  config;
 
 const fieldName = namePrefix ? `${namePrefix}_${name}` : name;
 const fieldId = fieldName;
@@ -54,7 +55,9 @@ const fieldId = fieldName;
         >
           <option value="">Selecciona una opción</option>
           {options?.map((option) => (
-            <option value={option}>{option}</option>
+            <option value={option} selected={option === defaultValue}>
+              {option}
+            </option>
           ))}
         </select>
       ) : (

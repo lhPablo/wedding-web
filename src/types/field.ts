@@ -7,4 +7,5 @@ export interface FieldConfig {
     required?: boolean;
     placeholder?: string;
     options?: string[];
+    defaultValue?: string;
 }
