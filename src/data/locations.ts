@@ -6,17 +6,22 @@ import type { Location } from '../types/location';
 export const locations: Location[] = [
   { 
     id: 'loc1', 
-    title: 'Lugar de la recepción',
-    image: locationImage.src, 
-    description: 'Dirección: Calle de los Sueños 123, Ciudad',
-    address: 'Calle de los Sueños 123, Ciudad', 
-    mapLink: 'https://www.google.com/maps' },
+    title: 'Ceremonia',
+    image: churchImage.src,
+    description: 'Parroquia de San José',
+    address: 'Calle de la Iglesia 123, Ciudad',
+    mapLink: 'https://www.google.com/maps',
+    time: '12:00',
+    badge: 'Ceremonia'
+  },
   { 
     id: 'loc2', 
-    title: 'Iglesia',
-    image: churchImage.src,
-    description: 'Dirección: Calle de la Iglesia 123, Ciudad',
-    address: 'Calle de la Iglesia 123, Ciudad',
-    mapLink: 'https://www.google.com/maps' 
+    title: 'Banquete',
+    image: locationImage.src, 
+    description: 'Finca Los Sueños',
+    address: 'Calle de los Sueños 123, Ciudad', 
+    mapLink: 'https://www.google.com/maps',
+    time: '14:30',
+    badge: 'Convite'
   }
 ];

@@ -1,19 +1,59 @@
 ---
+import WhatsAppIcon from '@components/ui/Icons/WhatsAppIcon.astro';
+
 import styles from './ContactCard.module.css';
 
-const { name, email, phone } = Astro.props;
+interface Props {
+  name: string;
+  email: string;
+  phone: string;
+  avatar?: string;
+  role?: string;
+}
+
+const { name, email, phone, avatar, role } = Astro.props;
+
+const whatsappNumber = phone?.replace(/[\s+]/g, '') || '';
 ---
 
 <div class={styles.container}>
   <div class={styles['contact-card']}>
+    {
+      avatar ? (
+        <img src={avatar} alt={name} class={styles.avatar} />
+      ) : (
+        <div class={styles['avatar-placeholder']}>
+          {name
+            .split(' ')
+            .map((n) => n[0])
+            .join('')
+            .substring(0, 2)}
+        </div>
+      )
+    }
+
     <h3>{name}</h3>
-    <p>
-      <span class={styles.icon}>📧</span>
-      <a href={`mailto:${email}`}>{email}</a>
-    </p>
-    <p>
-      <span class={styles.icon}>📞</span>
-      <a href={`tel:${phone}`}>{phone}</a>
-    </p>
+
+    {role && <span class={styles.role}>{role}</span>}
+
+    <div class={styles['contact-info']}>
+      <p>
+        <span class={styles.icon}>📧</span>
+        <a href={`mailto:${email}`}>{email}</a>
+      </p>
+      <p>
+        <span class={styles.icon}>📞</span>
+        <a href={`tel:${phone}`}>{phone}</a>
+      </p>
+    </div>
+
+    <a
+      href={`https://wa.me/${whatsappNumber}`}
+      target="_blank"
+      class={`btn ${styles['whatsapp-btn']}`}
+    >
+      <WhatsAppIcon size="1.25rem" color="white" />
+      <span>WhatsApp</span>
+    </a>
   </div>
 </div>

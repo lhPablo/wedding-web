@@ -5,18 +5,22 @@ import transportImage from '@assets/transport.png';
 export const transports: Location[] = [
   {
     id: 'transport-go',
-    title: 'Transporte ida',
+    title: 'Autobús de ida',
     image: transportImage.src,
-    description: 'Salida 12:00 desde la iglesia',
-    address: 'Dirección del transporte ida',
-    mapLink: 'https://www.google.com/maps'
+    description: 'Salida desde Plaza Mayor hacia la Finca',
+    address: 'Plaza Mayor, Ciudad',
+    mapLink: 'https://www.google.com/maps',
+    time: '13:30',
+    badge: 'Ida'
   },
   {
     id: 'transport-return',
-    title: 'Transporte vuelta',
+    title: 'Autobús de vuelta',
     image: transportImage.src,
-    description: 'Salida 00:00 desde el lugar de la recepción',
-    address: 'Dirección del transporte vuelta',
-    mapLink: 'https://www.google.com/maps'
+    description: 'Regreso desde la Finca hacia Plaza Mayor',
+    address: 'Finca Los Sueños',
+    mapLink: 'https://www.google.com/maps',
+    time: '02:00',
+    badge: 'Vuelta'
   },
 ];

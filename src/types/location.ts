@@ -5,4 +5,6 @@ export interface Location {
     description: string;
     address: string;
     mapLink: string;
+    time?: string;
+    badge?: string;
 }

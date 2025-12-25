@@ -1,7 +1,18 @@
 ---
 import styles from './LocationCard.module.css';
 
-const { image, title, description, address, mapLink } = Astro.props;
+interface Props {
+  image: string;
+  title: string;
+  description: string;
+  address: string;
+  mapLink: string;
+  time?: string;
+  badge?: string;
+}
+
+const { image, title, description, address, mapLink, time, badge } =
+  Astro.props;
 ---
 
 <div class={styles.container}>
@@ -10,10 +21,24 @@ const { image, title, description, address, mapLink } = Astro.props;
 
     <div class={styles.overlay}></div>
 
+    {badge && <span class={styles.badge}>{badge}</span>}
+
     <div class={styles.content}>
-      <h3>{title}</h3>
+      <div class={styles['title-row']}>
+        <h3>{title}</h3>
+      </div>
+
+      {
+        time && (
+          <p class={styles.time}>
+            <span class={styles['time-icon']}>🕐</span>
+            {time}
+          </p>
+        )
+      }
+
       <p>{description}</p>
-      <p>{address}</p>
+      <p class={styles.address}>{address}</p>
       <a href={mapLink} target="_blank" class="btn"> Ver en Google Maps </a>
     </div>
   </div>
