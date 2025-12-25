@@ -1,5 +1,6 @@
 .card {
     width: 90%;
+    max-width: 100%;
     padding: 1rem;
     border-radius: 0.75rem;
     background: var(--card-color);
@@ -31,11 +32,12 @@
 }
 
 .chevron {
-    display: inline-block;
+    display:flex;
     text-align: center;
-    padding: 0 0.625rem;
     border: none;
     cursor: pointer;
+    user-select: none;
+    gap: 0.25rem;
 }
 
 .chevron span {
