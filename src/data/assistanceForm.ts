@@ -91,7 +91,7 @@ export const assistanceForm: FormConfig = {
 export const companionFields: FieldConfig[] = [
   {
     name: 'name',
-    label: 'Nombre',
+    label: 'Nombre completo',
     type: FieldTypes.TEXT,
     required: true,
     placeholder: 'Nombre completo',
