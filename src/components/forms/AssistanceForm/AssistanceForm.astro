@@ -23,6 +23,18 @@ const { fields, submitText, successMessage, errorMessage, googleScriptUrl } =
   data-success-message={successMessage}
   data-error-message={errorMessage}
 >
+  <!-- Honeypot -->
+  <div class={styles.honeypot} aria-hidden="true">
+    <label for="website">Website</label>
+    <input
+      type="text"
+      id="website"
+      name="website"
+      tabindex="-1"
+      autocomplete="off"
+    />
+  </div>
+
   <div class={styles.fields}>
     {fields.map((fieldConfig) => <Field config={fieldConfig} />)}
   </div>
