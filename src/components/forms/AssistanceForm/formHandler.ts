@@ -6,7 +6,7 @@ interface FormHandlerConfig {
 }
 
 const RATE_LIMIT_KEY = 'form_submissions';
-const RATE_LIMIT_MAX = 3;
+const RATE_LIMIT_MAX = 6;
 const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000;
 
 export const initFormHandler = (config: FormHandlerConfig) => {
@@ -101,6 +101,10 @@ function validateFormData(data: Record<string, string>): string | null {
     return 'Por favor, indica tu rango de edad';
   }
 
+  if (!data.menu_type) {
+    return 'Por favor, indica el tipo de menú';
+  }
+
   if (!data.phone || data.phone.trim() === '') {
     return 'El teléfono es obligatorio';
   }
@@ -133,6 +137,9 @@ function validateCompanions(data: Record<string, string>): string | null {
     }
     if (!data[`companion_${i}_age`]) {
       return `Por favor, indica el rango de edad del acompañante ${i}`;
+    }
+    if (!data[`companion_${i}_menu_type`]) {
+      return `Por favor, indica el tipo de menú del acompañante ${i}`;
     }
   }
 
