@@ -1,4 +1,4 @@
-import type { Question } from '../types/question';
+import type { Question } from '../types/question'; 
 
 export const menu: Question[] = [
   {
@@ -70,5 +70,15 @@ export const menu: Question[] = [
     id: 'rules',
     title: 'Normas generales',
     answer: 'Se agradece seguir las indicaciones del equipo del lugar, respetar el horario del evento y no fumar en zonas no permitidas.'
+  },
+  {
+    id: 'tableAssignment',
+    title: 'Asignación de mesas',
+    answer: 'Cada invitado tendrá que buscar su mesa en el sitting plan, que estará disponible en una especie de tablón en la zona del convite.'
+  },
+  {
+    id: 'dataError',
+    title: 'Corrección de datos incorrectos',
+    answer: 'Por favor, envíanos un WhatsApp a alguno de los contactos que aparecen en la sección correspondiente de la web para que podamos corregirlo.'
   },
 ];
