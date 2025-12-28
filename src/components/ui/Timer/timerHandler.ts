@@ -1,11 +1,11 @@
-interface TimeRemaining {
+export interface TimeRemaining {
   days: number;
   hours: number;
   minutes: number;
   seconds: number;
 }
 
-function calculateTimeRemaining(targetDate: number): TimeRemaining {
+export function calculateTimeRemaining(targetDate: number): TimeRemaining {
   const now = new Date().getTime();
   const diff = targetDate - now;
 
@@ -21,7 +21,7 @@ function calculateTimeRemaining(targetDate: number): TimeRemaining {
   return { days, hours, minutes, seconds };
 }
 
-function updateTimerDisplay(time: TimeRemaining): void {
+export function updateTimerDisplay(time: TimeRemaining): void {
   const daysElement = document.querySelector('[data-unit="days"]');
   const hoursElement = document.querySelector('[data-unit="hours"]');
   const minutesElement = document.querySelector('[data-unit="minutes"]');
@@ -33,14 +33,13 @@ function updateTimerDisplay(time: TimeRemaining): void {
   if (secondsElement) secondsElement.textContent = String(time.seconds);
 }
 
+function updateTimer(weddingDate: number): void {
+  const timeRemaining = calculateTimeRemaining(weddingDate);
+  updateTimerDisplay(timeRemaining);
+}
+
 export function initTimer(weddingDate: number): void {
-  function updateTimer() {
-    const timeRemaining = calculateTimeRemaining(weddingDate);
-    updateTimerDisplay(timeRemaining);
-  }
-
-  updateTimer();
-
-  setInterval(updateTimer, 1000);
+  updateTimer(weddingDate);
+  setInterval(() => updateTimer(weddingDate), 1000);
 }
 

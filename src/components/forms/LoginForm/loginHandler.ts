@@ -1,3 +1,9 @@
+import { ACCESS_STORAGE_KEY, ACCESS_LEVELS } from '@lib/authConstants';
+
+export const ERROR_RESET_DELAY_MS = 1000;
+export const SUCCESS_REDIRECT_DELAY_MS = 500;
+export const OVERLAY_REDIRECT_DELAY_MS = 1000;
+
 export function initAuth() {
   const correctHash = import.meta.env.PUBLIC_ACCESS_KEY_HASH;
   const correctLimitKey = import.meta.env.PUBLIC_LIMIT_ACCESS_KEY_HASH;
@@ -19,10 +25,10 @@ export function initAuth() {
     const inputHash = await hashSHA256(input);
 
     if (inputHash === correctHash) {
-      localStorage.setItem('accessGranted', 'full');
+      localStorage.setItem(ACCESS_STORAGE_KEY, ACCESS_LEVELS.FULL);
       showSuccessAndRedirect(submitButton, passwordInput);
     } else if (inputHash === correctLimitKey) {
-      localStorage.setItem('accessGranted', 'limited');
+      localStorage.setItem(ACCESS_STORAGE_KEY, ACCESS_LEVELS.LIMITED);
       showSuccessAndRedirect(submitButton, passwordInput);
     } else {
       showErrorAndReset(submitButton, passwordInput);
@@ -30,7 +36,7 @@ export function initAuth() {
   });
 }
 
-function showSuccessAndRedirect(
+export function showSuccessAndRedirect(
   submitButton: HTMLButtonElement,
   passwordInput: HTMLInputElement
 ) {
@@ -46,14 +52,14 @@ function showSuccessAndRedirect(
       
       setTimeout(() => {
         window.location.href = '/main';
-      }, 1000);
+      }, OVERLAY_REDIRECT_DELAY_MS);
     } else {
       window.location.href = '/main';
     }
-  }, 500);
+  }, SUCCESS_REDIRECT_DELAY_MS);
 }
 
-function showErrorAndReset(
+export function showErrorAndReset(
   submitButton: HTMLButtonElement,
   passwordInput: HTMLInputElement
 ) {
@@ -64,10 +70,10 @@ function showErrorAndReset(
     submitButton.dataset.error = '';
     passwordInput.value = '';
     passwordInput.focus();
-  }, 1000);
+  }, ERROR_RESET_DELAY_MS);
 }
 
-function resetFormState(
+export function resetFormState(
   submitButton: HTMLButtonElement,
   passwordInput: HTMLInputElement
 ) {
@@ -77,10 +83,10 @@ function resetFormState(
   passwordInput.dataset.error = '';
   passwordInput.value = '';
   
-  localStorage.removeItem('accessGranted');
+  localStorage.removeItem(ACCESS_STORAGE_KEY);
 }
 
-async function hashSHA256(text: string): Promise<string> {
+export async function hashSHA256(text: string): Promise<string> {
   const encoder = new TextEncoder();
   const data = encoder.encode(text);
   const hashBuffer = await crypto.subtle.digest('SHA-256', data);

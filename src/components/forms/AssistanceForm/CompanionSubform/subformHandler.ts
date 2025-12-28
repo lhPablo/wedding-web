@@ -1,7 +1,8 @@
 import { CHILD_AGES, MENU_TYPES } from '@data/assistanceForm';
+import { ACCESS_STORAGE_KEY, ACCESS_LEVELS } from '@lib/authConstants';
 
 export function initCompanionFields() {
-  const isLimitedAccess = localStorage.getItem('accessGranted') === 'limited';
+  const isLimitedAccess = localStorage.getItem(ACCESS_STORAGE_KEY) === ACCESS_LEVELS.LIMITED;
 
   const companionsSelect = document.querySelector(
     'select[name="companions"]'
@@ -55,7 +56,7 @@ function initAgeMenuListeners(companionCards: NodeListOf<HTMLElement>) {
   });
 }
 
-function updateMenuBasedOnAge(ageSelect: HTMLSelectElement, menuSelect: HTMLSelectElement) {
+export function updateMenuBasedOnAge(ageSelect: HTMLSelectElement, menuSelect: HTMLSelectElement) {
   const selectedAge = ageSelect.value;
   
   if (CHILD_AGES.includes(selectedAge)) {
@@ -65,7 +66,7 @@ function updateMenuBasedOnAge(ageSelect: HTMLSelectElement, menuSelect: HTMLSele
   }
 }
 
-function updateCompanionCards(companionsSection: HTMLElement, companionCards: NodeListOf<HTMLElement>, count: number) {
+export function updateCompanionCards(companionsSection: HTMLElement, companionCards: NodeListOf<HTMLElement>, count: number) {
   companionsSection.hidden = count === 0;
 
   companionCards.forEach((card, index) => {
@@ -90,7 +91,7 @@ function updateCompanionCards(companionsSection: HTMLElement, companionCards: No
   });
 }
 
-function clearForm(card: HTMLElement) {
+export function clearForm(card: HTMLElement) {
   card.querySelectorAll('input, select').forEach((field) => {
     if (field instanceof HTMLInputElement) {
       field.value = '';

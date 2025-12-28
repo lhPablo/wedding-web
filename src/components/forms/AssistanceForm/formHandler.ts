@@ -5,9 +5,11 @@ interface FormHandlerConfig {
   submitText: string;
 }
 
-const RATE_LIMIT_KEY = 'form_submissions';
-const RATE_LIMIT_MAX = 6;
-const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000;
+export const RATE_LIMIT_KEY = 'form_submissions';
+export const RATE_LIMIT_MAX = 6;
+export const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000;
+export const FORM_RESET_DELAY_MS = 2000;
+export const MESSAGE_HIDE_DELAY_MS = 8000;
 
 export const initFormHandler = (config: FormHandlerConfig) => {
   const form = document.querySelector('[data-form]') as HTMLFormElement;
@@ -43,7 +45,7 @@ async function handleSubmit(
       setTimeout(() => {
         form.reset();
         resetButtonState(submitBtn, config.submitText);
-      }, 2000);
+      }, FORM_RESET_DELAY_MS);
       return;
     }
 
@@ -76,7 +78,7 @@ async function handleSubmit(
       form.reset();
       resetButtonState(submitBtn, config.submitText);
       resetFormFieldsState(form);
-    }, 2000);
+    }, FORM_RESET_DELAY_MS);
   } catch (error) {
     console.error('Error al enviar el formulario:', error);
     const errorMessage = error instanceof Error ? error.message : config.errorMessage;
@@ -88,11 +90,11 @@ async function handleSubmit(
     setTimeout(() => {
       resetButtonState(submitBtn, config.submitText);
       resetFormFieldsState(form);
-    }, 2000);
+    }, FORM_RESET_DELAY_MS);
   }
 }
 
-function validateFormData(data: Record<string, string>): string | null {
+export function validateFormData(data: Record<string, string>): string | null {
   if (!data.name || data.name.trim() === '') {
     return 'El nombre es obligatorio';
   }
@@ -125,7 +127,7 @@ function validateFormData(data: Record<string, string>): string | null {
   return null;
 }
 
-function validateCompanions(data: Record<string, string>): string | null {
+export function validateCompanions(data: Record<string, string>): string | null {
   const numCompanions = parseInt(data.companions || '0') || 0;
 
   for (let i = 1; i <= numCompanions; i++) {
@@ -195,7 +197,7 @@ function showMessage(element: HTMLDivElement, message: string, type: 'success' |
 
   setTimeout(() => {
     hideMessage(element);
-  }, 8000);
+  }, MESSAGE_HIDE_DELAY_MS);
 }
 
 function hideMessage(element: HTMLDivElement) {
@@ -227,7 +229,7 @@ function resetFormFieldsState(form: HTMLFormElement) {
   });
 }
 
-function getSubmissions(): number[] {
+export function getSubmissions(): number[] {
   try {
     const stored = localStorage.getItem(RATE_LIMIT_KEY);    
     if (!stored) return [];
@@ -238,7 +240,7 @@ function getSubmissions(): number[] {
   }
 }
 
-function isRateLimited(): boolean {
+export function isRateLimited(): boolean {
   const now = Date.now();
   const submissions = getSubmissions();
   
@@ -249,7 +251,7 @@ function isRateLimited(): boolean {
   return recentSubmissions.length >= RATE_LIMIT_MAX;
 }
 
-function recordSubmission(): void {
+export function recordSubmission(): void {
   const now = Date.now();
   const submissions = getSubmissions();
   

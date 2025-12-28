@@ -1,7 +1,7 @@
 ---
 import styles from './ExpandableCard.module.css';
 
-const { title, answer } = Astro.props;
+const { title, content } = Astro.props;
 ---
 
 <div class={styles.card} data-card>
@@ -21,7 +21,7 @@ const { title, answer } = Astro.props;
   </div>
 
   <div class={styles.panel} data-panel data-open="false">
-    <p>{answer}</p>
+    <p>{content}</p>
   </div>
 </div>
 

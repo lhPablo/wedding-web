@@ -37,14 +37,14 @@ const whatsappNumber = phone?.replace(/[\s+]/g, '') || '';
     {role && <span class={styles.role}>{role}</span>}
 
     <div class={styles['contact-info']}>
-      <p>
-        <span class={styles.icon}>📧</span>
-        <a href={`mailto:${email}`}>{email}</a>
-      </p>
-      <p>
-        <span class={styles.icon}>📞</span>
-        <a href={`tel:${phone}`}>{phone}</a>
-      </p>
+    <p>
+      <span class={styles.icon}>📧</span>
+      <a href={`mailto:${email}`}>{email}</a>
+    </p>
+    <p>
+      <span class={styles.icon}>📞</span>
+      <a href={`tel:${phone}`}>{phone}</a>
+    </p>
     </div>
 
     <a

@@ -7,10 +7,12 @@ import { heroImages } from '@data/wedding';
 
 <BaseLayout>
   <Fragment slot="head">
-    <script is:inline>
+    <script>
+      import { ACCESS_STORAGE_KEY, ACCESS_LEVELS } from '@lib/authConstants';
+
       (function () {
-        var access = localStorage.getItem('accessGranted');
-        if (access !== 'full' && access !== 'limited') {
+        var access = localStorage.getItem(ACCESS_STORAGE_KEY);
+        if (access !== ACCESS_LEVELS.FULL && access !== ACCESS_LEVELS.LIMITED) {
           window.location.replace('/');
         }
       })();

@@ -6,7 +6,10 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
     "astro": "^5.16.6"
@@ -17,6 +20,8 @@
     "eslint-plugin-astro": "1.5.0",
     "eslint-plugin-react": "7.37.5",
     "globals": "16.5.0",
-    "prettier": "^3.7.4"
+    "jsdom": "^27.4.0",
+    "prettier": "^3.7.4",
+    "vitest": "4.0.16"
   }
 }
