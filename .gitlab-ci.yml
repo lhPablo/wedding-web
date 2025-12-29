@@ -27,8 +27,8 @@ unit-tests:
     reports:
       junit: junit.xml
   rules:
+    - if: $CI_PIPELINE_SOURCE == "push"
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
-    - if: $CI_COMMIT_BRANCH
 
 build:
   stage: build
@@ -36,4 +36,3 @@ build:
     - npm run build
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
-    - if: $CI_COMMIT_BRANCH
