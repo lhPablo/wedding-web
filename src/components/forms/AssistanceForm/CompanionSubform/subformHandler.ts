@@ -28,6 +28,14 @@ export function initCompanionFields() {
     companionsSelect.value = '0';
     companionsSelect.removeAttribute('required');
     companionsSection.hidden = true;
+
+    // Remove required attributes from all fields in hidden cards
+    companionCards.forEach((card) => {
+      card.hidden = true;
+      card.querySelectorAll('[required]').forEach((field) => {
+        field.removeAttribute('required');
+      });
+    });
     return;
   }
 

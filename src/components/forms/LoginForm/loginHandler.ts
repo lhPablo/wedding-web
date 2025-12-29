@@ -5,8 +5,8 @@ export const SUCCESS_REDIRECT_DELAY_MS = 500;
 export const OVERLAY_REDIRECT_DELAY_MS = 1000;
 
 export function initAuth() {
-  const correctHash = import.meta.env.PUBLIC_ACCESS_KEY_HASH;
-  const correctLimitKey = import.meta.env.PUBLIC_LIMIT_ACCESS_KEY_HASH;
+  const correctHash = import.meta.env.PUBLIC_FULL_ACCESS_KEY_HASH;
+  const correctLimitKey = import.meta.env.PUBLIC_LIMITED_ACCESS_KEY_HASH;
 
   const form = document.getElementById('login-form') as HTMLFormElement;
   const passwordInput = document.getElementById('password') as HTMLInputElement;

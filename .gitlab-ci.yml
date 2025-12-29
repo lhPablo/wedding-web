@@ -21,7 +21,7 @@ install-deps:
 unit-tests:
   stage: test
   script:
-    - npm run test
+    - npm run test:unit
   artifacts:
     when: always
     reports:
@@ -34,9 +34,6 @@ build:
   stage: build
   script:
     - npm run build
-  variables:
-    PUBLIC_ACCESS_KEY_HASH: $PUBLIC_ACCESS_KEY_HASH
-    PUBLIC_LIMIT_ACCESS_KEY_HASH: $PUBLIC_LIMIT_ACCESS_KEY_HASH
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
     - if: $CI_COMMIT_BRANCH
