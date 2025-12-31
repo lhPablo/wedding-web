@@ -1,46 +1,142 @@
-# Astro Starter Kit: Basics
+# Wedding Web
 
-```sh
-npm create astro@latest -- --template basics
+Aplicación web para gestionar las invitaciones de nuestra boda. Permite a los invitados confirmar asistencia, ver información del evento y contactar con los novios.
+
+## Características
+
+- **Sistema de acceso**: Dos niveles de acceso (completo y limitado) mediante códigos
+- **Formulario de asistencia**: Confirmación de asistencia con opción de añadir acompañantes
+- **Información del evento**: Ubicaciones de ceremonia y convite con enlaces a Google Maps
+- **Transporte**: Información sobre los autobuses disponibles
+- **FAQ**: Preguntas frecuentes sobre el evento
+- **Contacto**: Información de contacto de los novios con enlace directo a WhatsApp
+- **Animaciones**: Transiciones suaves entre páginas con efecto de nubes
+
+## Tecnologías
+
+- [Astro](https://astro.build/) - Framework web
+- [TypeScript](https://www.typescriptlang.org/) - Tipado estático
+- [CSS Modules](https://github.com/css-modules/css-modules) - Estilos encapsulados
+- [Vitest](https://vitest.dev/) - Tests unitarios
+- [Playwright](https://playwright.dev/) - Tests E2E
+
+## Requisitos
+
+- Node.js 20+
+- npm 9+
+
+## Instalación
+
+```bash
+# Clonar el repositorio
+git clone <url-del-repo>
+cd wedding-web
+
+# Instalar dependencias
+npm install
+
+# Instalar navegadores para Playwright (solo si vas a ejecutar tests E2E)
+npx playwright install
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Variables de entorno
 
-## 🚀 Project Structure
+Crea un archivo `.env` en la raíz del proyecto:
 
-Inside of your Astro project, you'll see the following folders and files:
+```env
+# Hashes SHA-256 de las contraseñas de acceso
+PUBLIC_FULL_ACCESS_KEY_HASH=<hash-sha256>
+PUBLIC_LIMITED_ACCESS_KEY_HASH=<hash-sha256>
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+# Contraseñas en texto plano (solo para tests E2E en desarrollo)
+TEST_FULL_ACCESS_KEY=<contraseña>
+TEST_LIMITED_ACCESS_KEY=<contraseña>
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+Para generar un hash SHA-256:
 
-## 🧞 Commands
+```javascript
+const hash = await crypto.subtle.digest(
+  'SHA-256',
+  new TextEncoder().encode('tu-contraseña')
+);
+const hashHex = Array.from(new Uint8Array(hash))
+  .map((b) => b.toString(16).padStart(2, '0'))
+  .join('');
+console.log(hashHex);
+```
 
-All commands are run from the root of the project, from a terminal:
+## Scripts disponibles
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+```bash
+# Desarrollo
+npm run dev          # Servidor de desarrollo en http://localhost:4321
 
-## 👀 Want to learn more?
+# Producción
+npm run build        # Genera el build estático en ./dist
+npm run preview      # Preview del build de producción
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+# Tests
+npm run test         # Ejecuta tests unitarios en modo watch
+npm run test:unit    # Ejecuta tests unitarios una vez
+npm run test:e2e     # Ejecuta tests E2E
+npm run test:e2e:ui  # Ejecuta tests E2E con interfaz visual
+```
+
+## Estructura del proyecto
+
+```
+src/
+├── assets/          # Imágenes y recursos estáticos
+├── components/
+│   ├── cards/       # Componentes de tarjetas (Contact, Location, Expandable)
+│   ├── forms/       # Formularios (Login, Asistencia)
+│   ├── sections/    # Secciones de la página
+│   └── ui/          # Componentes UI reutilizables
+├── data/            # Datos estáticos (contactos, ubicaciones, FAQs)
+├── layouts/         # Layouts de Astro
+├── lib/             # Utilidades y constantes compartidas
+├── pages/           # Páginas de la aplicación
+├── styles/          # Estilos globales y variables CSS
+└── types/           # Definiciones de tipos TypeScript
+
+e2e/
+├── fixtures/        # Datos de prueba para E2E
+├── helpers/         # Funciones auxiliares para tests
+└── *.spec.ts        # Tests E2E
+```
+
+## Despliegue
+
+El proyecto genera archivos estáticos que pueden desplegarse en cualquier hosting:
+
+```bash
+npm run build
+# Los archivos están en ./dist
+```
+
+Compatible con Vercel, Netlify, GitHub Pages, etc.
+
+## Personalización
+
+### Datos del evento
+
+Edita los archivos en `src/data/`:
+
+- `wedding.ts` - Información general de la boda
+- `locations.ts` - Ubicaciones de ceremonia y convite
+- `transports.ts` - Información de transporte
+- `contacts.ts` - Datos de contacto de los novios
+- `questions.ts` - Preguntas frecuentes
+
+### Estilos
+
+Las variables CSS están en `src/styles/variables.css`. Puedes modificar colores, fuentes y otros valores globales.
+
+### Imágenes
+
+Reemplaza las imágenes en `src/assets/` manteniendo los mismos nombres o actualiza las referencias en los archivos de datos.
+
+## Licencia
+
+Proyecto privado - Todos los derechos reservados
