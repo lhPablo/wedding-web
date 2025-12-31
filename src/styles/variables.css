@@ -9,13 +9,14 @@
   --text-color: #4B5563;
   --text-button-color: #FFFFFF;
   --shadow-color: #00000033;
-  --card-color: #FFFFFFBF;
+  --card-color: #FFFFFFB3;
   --overlay-color: #0000004D;
   --fog-color: #ffffff;
   --success-color: #28a745;
   --success-color-border: #C3E6CB;
   --error-color: #dc2d3d;
   --error-color-border: #F5C6CB;
+  --warning-color: #fff3cd;
   --border-color: #E0E0E0;
   --input-color: #FFFFFF;
   --placeholder-color: #8B96A8;
@@ -23,4 +24,5 @@
   --whatsapp-color-hover: #128C7E;
 
   --font-family: 'Montserrat', sans-serif;
+  --font-family-hero-title: 'Dancing Script', cursive;
 }

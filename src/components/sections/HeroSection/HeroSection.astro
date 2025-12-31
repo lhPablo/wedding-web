@@ -21,26 +21,42 @@ const stringDate = `${day}-${month}-${year}`;
 ---
 
 <section id={id} class={styles.section}>
-  <img
-    class={styles['hero-image-mobile']}
-    src={wedding.imageMobile}
-    alt="Our main image"
-    width={heroImages.mobile.width}
-    height={heroImages.mobile.height}
-    fetchpriority="high"
-    loading="eager"
-    decoding="sync"
-  />
-  <img
-    class={styles['hero-image-desktop']}
-    src={wedding.imageDesktop}
-    alt="Our main image"
-    width={heroImages.desktop.width}
-    height={heroImages.desktop.height}
-    fetchpriority="high"
-    loading="eager"
-    decoding="sync"
-  />
+  <div class={styles['hero-image-container']}>
+    <img
+      class={styles['hero-image-mobile']}
+      src={wedding.imageMobile}
+      alt="Our main image"
+      width={heroImages.mobile.width}
+      height={heroImages.mobile.height}
+      fetchpriority="high"
+      loading="eager"
+      decoding="sync"
+    />
+
+    <div class={styles['hero-image-desktop-container']}>
+      <img
+        class={styles['hero-image-desktop']}
+        src={wedding.imageDesktop}
+        alt="Our main image"
+        width={heroImages.desktop.width}
+        height={heroImages.desktop.height}
+        fetchpriority="high"
+        loading="eager"
+        decoding="sync"
+      />
+
+      <img
+        class={`${styles['hero-image-desktop']} ${styles.revert}`}
+        src={wedding.imageDesktop}
+        alt="Our main image"
+        width={heroImages.desktop.width}
+        height={heroImages.desktop.height}
+        fetchpriority="high"
+        loading="eager"
+        decoding="sync"
+      />
+    </div>
+  </div>
 
   <div class={styles['hero-content']}>
     <div class={styles['hero-content-title']}>

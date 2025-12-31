@@ -12,7 +12,13 @@ const { mode } = Astro.props;
 const clouds = generateClouds(80);
 ---
 
-<div id="cloud-overlay" class={styles['cloud-overlay']} data-mode={mode}>
+<div
+  id="cloud-overlay"
+  class={styles['cloud-overlay']}
+  data-mode={mode}
+  transition:name="cloud-overlay"
+  transition:persist
+>
   <div class={styles['fog-layer']}></div>
 
   {

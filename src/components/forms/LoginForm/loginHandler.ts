@@ -2,7 +2,6 @@ import { ACCESS_STORAGE_KEY, ACCESS_LEVELS } from '@lib/authConstants';
 
 export const ERROR_RESET_DELAY_MS = 1000;
 export const SUCCESS_REDIRECT_DELAY_MS = 500;
-export const OVERLAY_REDIRECT_DELAY_MS = 1000;
 
 export function initAuth() {
   const correctHash = import.meta.env.PUBLIC_FULL_ACCESS_KEY_HASH;
@@ -46,16 +45,11 @@ export function showSuccessAndRedirect(
 
   setTimeout(() => {
     const overlay = document.getElementById('cloud-overlay');
-    
     if (overlay) {
       overlay.dataset.active = 'true';
-      
-      setTimeout(() => {
-        window.location.href = '/main';
-      }, OVERLAY_REDIRECT_DELAY_MS);
-    } else {
-      window.location.href = '/main';
     }
+    
+    window.location.href = '/main';
   }, SUCCESS_REDIRECT_DELAY_MS);
 }
 

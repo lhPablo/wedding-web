@@ -20,7 +20,7 @@ import { sections } from '@data/sections';
   <main>
     <div>
       {
-        sections.map(({ id, title }) => {
+        sections.map(({ id, title, warning }) => {
           const { data, type } = sectionConfig[id];
 
           if (type === SectionTypes.HERO) {
@@ -36,7 +36,7 @@ import { sections } from '@data/sections';
           }
 
           return (
-            <CardSection id={id} title={title}>
+            <CardSection id={id} title={title} warning={warning}>
               {data.map((item: any) => {
                 switch (type) {
                   case SectionTypes.LOCATION:

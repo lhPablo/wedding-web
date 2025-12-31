@@ -36,10 +36,12 @@ import { heroImages } from '@data/wedding';
 </BaseLayout>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
+  function activateOverlay() {
     const overlay = document.getElementById('cloud-overlay');
     if (overlay) {
       overlay.dataset.active = 'true';
     }
-  });
+  }
+
+  document.addEventListener('astro:page-load', activateOverlay);
 </script>

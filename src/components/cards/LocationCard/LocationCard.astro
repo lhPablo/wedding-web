@@ -4,7 +4,7 @@ import styles from './LocationCard.module.css';
 interface Props {
   image: string;
   title: string;
-  description: string;
+  description?: string;
   address: string;
   mapLink: string;
   time?: string;
@@ -37,7 +37,7 @@ const { image, title, description, address, mapLink, time, badge } =
         )
       }
 
-      <p>{description}</p>
+      {description && <p>{description}</p>}
       <p class={styles.address}>{address}</p>
       <a href={mapLink} target="_blank" class="btn"> Ver en Google Maps </a>
     </div>
