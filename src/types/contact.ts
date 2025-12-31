@@ -4,8 +4,8 @@ export interface Contact {
     email: string;
     phone: string;
     avatar?: string;
-    avatarFocus?: string;
+    avatarAlt?: string;
     avatarMobile?: string;
-    avatarFocusMobile?: string;
+    avatarAltMobile?: string;
     role?: string;
 }

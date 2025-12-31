@@ -8,9 +8,9 @@ interface Props {
   email: string;
   phone: string;
   avatar?: string;
-  avatarFocus?: string;
+  avatarAlt?: string;
   avatarMobile?: string;
-  avatarFocusMobile?: string;
+  avatarAltMobile?: string;
   role?: string;
 }
 
@@ -19,15 +19,15 @@ const {
   email,
   phone,
   avatar,
-  avatarFocus,
+  avatarAlt,
   avatarMobile,
-  avatarFocusMobile,
+  avatarAltMobile,
   role,
 } = Astro.props;
 
 const whatsappNumber = phone?.replace(/[\s+]/g, '') || '';
-const hasDesktopTransition = avatar && avatarFocus;
-const hasMobileTransition = avatarMobile && avatarFocusMobile;
+const hasDesktopTransition = avatar && avatarAlt;
+const hasMobileTransition = avatarMobile && avatarAltMobile;
 const hasAnyAvatar = avatar || avatarMobile;
 ---
 
@@ -44,9 +44,9 @@ const hasAnyAvatar = avatar || avatarMobile;
                 class={`${styles.avatar} ${styles['avatar-desktop']} ${styles['avatar-default']}`}
               />
               <img
-                src={avatarFocus}
+                src={avatarAlt}
                 alt={name}
-                class={`${styles.avatar} ${styles['avatar-desktop']} ${styles['avatar-focus']}`}
+                class={`${styles.avatar} ${styles['avatar-desktop']} ${styles['avatar-alt']}`}
               />
             </>
           ) : (
@@ -67,9 +67,9 @@ const hasAnyAvatar = avatar || avatarMobile;
                 class={`${styles.avatar} ${styles['avatar-mobile']} ${styles['avatar-default']}`}
               />
               <img
-                src={avatarFocusMobile}
+                src={avatarAltMobile}
                 alt={name}
-                class={`${styles.avatar} ${styles['avatar-mobile']} ${styles['avatar-focus']}`}
+                class={`${styles.avatar} ${styles['avatar-mobile']} ${styles['avatar-alt']}`}
               />
             </>
           ) : avatarMobile ? (
@@ -86,9 +86,9 @@ const hasAnyAvatar = avatar || avatarMobile;
                 class={`${styles.avatar} ${styles['avatar-mobile']} ${styles['avatar-default']}`}
               />
               <img
-                src={avatarFocus}
+                src={avatarAlt}
                 alt={name}
-                class={`${styles.avatar} ${styles['avatar-mobile']} ${styles['avatar-focus']}`}
+                class={`${styles.avatar} ${styles['avatar-mobile']} ${styles['avatar-alt']}`}
               />
             </>
           ) : (
