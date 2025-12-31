@@ -27,13 +27,39 @@
     box-shadow: 0 1rem 2.5rem var(--shadow-color);
 }
 
+.avatar-container {
+    position: relative;
+    width: 8rem;
+    height: 8rem;
+    margin-bottom: 0.5rem;
+}
+
 .avatar {
-    width: 5rem;
-    height: 5rem;
+    width: 8rem;
+    height: 8rem;
     border-radius: 50%;
     object-fit: cover;
-    border: 0.2rem solid var(--primary-color);
     margin-bottom: 0.5rem;
+}
+
+.avatar-container .avatar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-bottom: 0;
+}
+
+.avatar-focus {
+    z-index: 10;
+}
+
+.avatar-default {
+    z-index: 20;
+    transition: opacity 0.4s ease;
+}
+
+.contact-card:hover .avatar-default {
+    opacity: 0;
 }
 
 .avatar-placeholder {

@@ -8,18 +8,25 @@ interface Props {
   email: string;
   phone: string;
   avatar?: string;
+  avatarFocus?: string;
   role?: string;
 }
 
-const { name, email, phone, avatar, role } = Astro.props;
+const { name, email, phone, avatar, avatarFocus, role } = Astro.props;
 
 const whatsappNumber = phone?.replace(/[\s+]/g, '') || '';
+const hasAvatarTransition = avatar && avatarFocus;
 ---
 
 <div class={styles.container}>
   <div class={styles['contact-card']}>
     {
-      avatar ? (
+      hasAvatarTransition ? (
+        <div class={styles['avatar-container']}>
+          <img src={avatar} alt={name} class={`${styles.avatar} ${styles['avatar-default']}`} />
+          <img src={avatarFocus} alt={name} class={`${styles.avatar} ${styles['avatar-focus']}`} />
+        </div>
+      ) : avatar ? (
         <img src={avatar} alt={name} class={styles.avatar} />
       ) : (
         <div class={styles['avatar-placeholder']}>
@@ -37,14 +44,14 @@ const whatsappNumber = phone?.replace(/[\s+]/g, '') || '';
     {role && <span class={styles.role}>{role}</span>}
 
     <div class={styles['contact-info']}>
-    <p>
-      <span class={styles.icon}>📧</span>
-      <a href={`mailto:${email}`}>{email}</a>
-    </p>
-    <p>
-      <span class={styles.icon}>📞</span>
-      <a href={`tel:${phone}`}>{phone}</a>
-    </p>
+      <p>
+        <span class={styles.icon}>📧</span>
+        <a href={`mailto:${email}`}>{email}</a>
+      </p>
+      <p>
+        <span class={styles.icon}>📞</span>
+        <a href={`tel:${phone}`}>{phone}</a>
+      </p>
     </div>
 
     <a

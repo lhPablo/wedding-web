@@ -4,5 +4,6 @@ export interface Contact {
     email: string;
     phone: string;
     avatar?: string;
+    avatarFocus?: string;
     role?: string;
 }
