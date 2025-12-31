@@ -20,7 +20,7 @@ interface CompanionData {
 
 export async function login(page: Page, password: string): Promise<void> {
   await page.goto('/');
-  await page.getByRole('textbox', { name: 'Clave de acceso' }).fill(password);
+  await page.getByRole('textbox', { name: 'Código de embarque' }).fill(password);
   await page.getByRole('button', { name: 'Entrar' }).click();
   await expect(page).toHaveURL(/\/main(#.*)?$/, { timeout: 5000 });
 }

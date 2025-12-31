@@ -15,17 +15,17 @@ test.describe('Full Access User Flow', () => {
       await page.goto('/');
       
       await expect(page.getByRole('heading', { name: 'Bienvenido' })).toBeVisible();
-      await expect(page.getByRole('textbox', { name: 'Clave de acceso' })).toBeVisible();
+      await expect(page.getByRole('textbox', { name: 'Código de embarque' })).toBeVisible();
       await expect(page.getByRole('button', { name: 'Entrar' })).toBeVisible();
     });
 
     test('should show error with wrong password', async ({ page }) => {
       await page.goto('/');
       
-      await page.getByRole('textbox', { name: 'Clave de acceso' }).fill('contraseña_incorrecta');
+      await page.getByRole('textbox', { name: 'Código de embarque' }).fill('contraseña_incorrecta');
       await page.getByRole('button', { name: 'Entrar' }).click();
       
-      const passwordInput = page.getByRole('textbox', { name: 'Clave de acceso' });
+      const passwordInput = page.getByRole('textbox', { name: 'Código de embarque' });
       await expect(passwordInput).toHaveAttribute('data-error', 'true');
       
       await expect(page).toHaveURL('/');
