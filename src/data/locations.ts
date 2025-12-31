@@ -19,7 +19,7 @@ export const locations: Location[] = [
     image: locationImage.src, 
     address: 'Av. del Turia, 1, 46190 Riba-roja de Túria, Valencia', 
     mapLink: 'https://maps.app.goo.gl/c32hbVWdLYL1rjMZ6',
-    time: '14:30',
+    time: '14:15',
     badge: 'Convite'
   }
 ];
