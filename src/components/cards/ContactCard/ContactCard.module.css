@@ -49,6 +49,14 @@
     margin-bottom: 0;
 }
 
+.avatar-mobile {
+    display: block;
+}
+
+.avatar-desktop {
+    display: none;
+}
+
 .avatar-focus {
     z-index: 10;
 }
@@ -60,6 +68,16 @@
 
 .contact-card:hover .avatar-default {
     opacity: 0;
+}
+
+@media (min-width: 768px) and (orientation: landscape) {
+    .avatar-mobile {
+        display: none;
+    }
+
+    .avatar-desktop {
+        display: block;
+    }
 }
 
 .avatar-placeholder {

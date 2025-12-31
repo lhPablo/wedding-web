@@ -9,25 +9,98 @@ interface Props {
   phone: string;
   avatar?: string;
   avatarFocus?: string;
+  avatarMobile?: string;
+  avatarFocusMobile?: string;
   role?: string;
 }
 
-const { name, email, phone, avatar, avatarFocus, role } = Astro.props;
+const {
+  name,
+  email,
+  phone,
+  avatar,
+  avatarFocus,
+  avatarMobile,
+  avatarFocusMobile,
+  role,
+} = Astro.props;
 
 const whatsappNumber = phone?.replace(/[\s+]/g, '') || '';
-const hasAvatarTransition = avatar && avatarFocus;
+const hasDesktopTransition = avatar && avatarFocus;
+const hasMobileTransition = avatarMobile && avatarFocusMobile;
+const hasAnyAvatar = avatar || avatarMobile;
 ---
 
 <div class={styles.container}>
   <div class={styles['contact-card']}>
     {
-      hasAvatarTransition ? (
+      hasAnyAvatar ? (
         <div class={styles['avatar-container']}>
-          <img src={avatar} alt={name} class={`${styles.avatar} ${styles['avatar-default']}`} />
-          <img src={avatarFocus} alt={name} class={`${styles.avatar} ${styles['avatar-focus']}`} />
+          {hasDesktopTransition ? (
+            <>
+              <img
+                src={avatar}
+                alt={name}
+                class={`${styles.avatar} ${styles['avatar-desktop']} ${styles['avatar-default']}`}
+              />
+              <img
+                src={avatarFocus}
+                alt={name}
+                class={`${styles.avatar} ${styles['avatar-desktop']} ${styles['avatar-focus']}`}
+              />
+            </>
+          ) : (
+            avatar && (
+              <img
+                src={avatar}
+                alt={name}
+                class={`${styles.avatar} ${styles['avatar-desktop']}`}
+              />
+            )
+          )}
+
+          {hasMobileTransition ? (
+            <>
+              <img
+                src={avatarMobile}
+                alt={name}
+                class={`${styles.avatar} ${styles['avatar-mobile']} ${styles['avatar-default']}`}
+              />
+              <img
+                src={avatarFocusMobile}
+                alt={name}
+                class={`${styles.avatar} ${styles['avatar-mobile']} ${styles['avatar-focus']}`}
+              />
+            </>
+          ) : avatarMobile ? (
+            <img
+              src={avatarMobile}
+              alt={name}
+              class={`${styles.avatar} ${styles['avatar-mobile']}`}
+            />
+          ) : hasDesktopTransition ? (
+            <>
+              <img
+                src={avatar}
+                alt={name}
+                class={`${styles.avatar} ${styles['avatar-mobile']} ${styles['avatar-default']}`}
+              />
+              <img
+                src={avatarFocus}
+                alt={name}
+                class={`${styles.avatar} ${styles['avatar-mobile']} ${styles['avatar-focus']}`}
+              />
+            </>
+          ) : (
+            avatar && (
+              <img
+                src={avatar}
+                alt={name}
+                class={`${styles.avatar} ${styles['avatar-mobile']}`}
+              />
+            )
+          )}
         </div>
-      ) : avatar ? (
-        <img src={avatar} alt={name} class={styles.avatar} />
       ) : (
         <div class={styles['avatar-placeholder']}>
           {name

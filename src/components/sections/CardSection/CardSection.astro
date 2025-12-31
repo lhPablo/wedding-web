@@ -1,7 +1,21 @@
 ---
 import styles from './CardSection.module.css';
 
-const { id, title, warning } = Astro.props;
+interface Props {
+  id: string;
+  title: string;
+  warning?: string;
+  reverseOnMobile?: boolean;
+}
+
+const { id, title, warning, reverseOnMobile = false } = Astro.props;
+
+const cardsClasses = [
+  styles.cards,
+  reverseOnMobile ? styles['cards-reverse-mobile'] : '',
+]
+  .filter(Boolean)
+  .join(' ');
 ---
 
 <section id={id} class={styles.section}>
@@ -9,7 +23,7 @@ const { id, title, warning } = Astro.props;
 
   {warning && <p class={styles.warning}>{warning}</p>}
 
-  <div class={styles.cards}>
+  <div class={cardsClasses}>
     <slot />
   </div>
 </section>

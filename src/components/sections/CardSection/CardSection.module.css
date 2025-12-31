@@ -32,6 +32,10 @@
   gap: 2rem;
 }
 
+.cards-reverse-mobile {
+  flex-direction: column-reverse;
+}
+
 @media (min-width: 768px) and (orientation: landscape) {
   .cards {
     flex-direction: row;
