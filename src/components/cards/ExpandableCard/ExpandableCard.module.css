@@ -6,6 +6,7 @@
     background: var(--card-color);
     color: var(--text-color);
     box-shadow: 0 0.25rem 0.625rem var(--shadow-color);
+    text-align: start;
 }
 
 .header {
@@ -26,9 +27,6 @@
     margin: 0;
     font-size: 1.3rem;
     font-weight: 600;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
 }
 
 .chevron {
