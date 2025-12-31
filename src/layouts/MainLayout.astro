@@ -1,0 +1,47 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Navbar from '@layouts/Navbar/Navbar.astro';
+import CloudOverlay from '@components/ui/CloudOverlay/CloudOverlay.astro';
+import { heroImages } from '@data/wedding';
+---
+
+<BaseLayout>
+  <Fragment slot="head">
+    <script>
+      import { ACCESS_STORAGE_KEY, ACCESS_LEVELS } from '@lib/authConstants';
+
+      (function () {
+        var access = localStorage.getItem(ACCESS_STORAGE_KEY);
+        if (access !== ACCESS_LEVELS.FULL && access !== ACCESS_LEVELS.LIMITED) {
+          window.location.replace('/');
+        }
+      })();
+    </script>
+    <link
+      rel="preload"
+      as="image"
+      href={heroImages.mobile.src}
+      media="(max-width: 767px)"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href={heroImages.desktop.src}
+      media="(min-width: 768px)"
+    />
+  </Fragment>
+  <CloudOverlay mode="exit" />
+  <Navbar />
+  <slot />
+</BaseLayout>
+
+<script>
+  function activateOverlay() {
+    const overlay = document.getElementById('cloud-overlay');
+    if (overlay) {
+      overlay.dataset.active = 'true';
+    }
+  }
+
+  document.addEventListener('astro:page-load', activateOverlay);
+</script>

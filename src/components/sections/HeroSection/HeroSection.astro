@@ -1,0 +1,76 @@
+---
+import { wedding, heroImages } from '@data/wedding';
+import { sections } from '@data/sections';
+
+import DownIcon from '@components/ui/Icons/DownIcon.astro';
+
+import styles from './HeroSection.module.css';
+
+const { id } = Astro.props;
+
+const currentIndex = sections.findIndex((section) => section.id === id);
+const nextSection = sections[currentIndex + 1];
+
+const date = new Date(wedding.date);
+
+const day = String(date.getDate()).padStart(2, '0');
+const month = String(date.getMonth() + 1).padStart(2, '0');
+const year = date.getFullYear();
+
+const stringDate = `${day}-${month}-${year}`;
+---
+
+<section id={id} class={styles.section}>
+  <div class={styles['hero-image-container']}>
+    <img
+      class={styles['hero-image-mobile']}
+      src={wedding.imageMobile}
+      alt="Our main image"
+      width={heroImages.mobile.width}
+      height={heroImages.mobile.height}
+      fetchpriority="high"
+      loading="eager"
+      decoding="sync"
+    />
+
+    <div class={styles['hero-image-desktop-container']}>
+      <img
+        class={styles['hero-image-desktop']}
+        src={wedding.imageDesktop}
+        alt="Our main image"
+        width={heroImages.desktop.width}
+        height={heroImages.desktop.height}
+        fetchpriority="high"
+        loading="eager"
+        decoding="sync"
+      />
+
+      <img
+        class={`${styles['hero-image-desktop']} ${styles.revert}`}
+        src={wedding.imageDesktop}
+        alt="Our main image"
+        width={heroImages.desktop.width}
+        height={heroImages.desktop.height}
+        fetchpriority="high"
+        loading="eager"
+        decoding="sync"
+      />
+    </div>
+  </div>
+
+  <div class={styles['hero-content']}>
+    <div class={styles['hero-content-title']}>
+      <h1>{wedding.title}</h1>
+      <p>{stringDate} | Nuestra Boda</p>
+    </div>
+    {
+      nextSection && (
+        <div class={styles['hero-content-button']}>
+          <a href={`#${nextSection.id}`} class="button-transparent">
+            <DownIcon />
+          </a>
+        </div>
+      )
+    }
+  </div>
+</section>

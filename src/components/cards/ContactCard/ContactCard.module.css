@@ -1,0 +1,176 @@
+.container {
+    width: 80%;
+}
+
+.contact-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--card-color);
+    padding: 1.6rem 2.2rem;
+    border-radius: 1rem;
+    box-shadow: 0 0.8rem 1.9rem var(--shadow-color);
+    text-align: center;
+    min-width: 16.25rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    gap: 0.5rem;
+}
+
+.contact-card h3 {
+    margin: 0;
+    font-size: 1.3rem;
+}
+  
+.contact-card:hover {
+    transform: translateY(-0.3125rem);
+    box-shadow: 0 1rem 2.5rem var(--shadow-color);
+}
+
+.avatar-container {
+    position: relative;
+    width: 8rem;
+    height: 8rem;
+    margin-bottom: 0.5rem;
+}
+
+.avatar {
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 0.5rem;
+}
+
+.avatar-container .avatar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-bottom: 0;
+}
+
+.avatar-mobile {
+    display: block;
+}
+
+.avatar-desktop {
+    display: none;
+}
+
+.avatar-alt {
+    z-index: 10;
+}
+
+.avatar-default {
+    z-index: 20;
+    animation: avatar-fade-out steps(1) both;
+    animation-timeline: view();
+    animation-range: entry 30% cover 30%;
+}
+
+.avatar-placeholder {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+}
+
+.role {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin: 0.5rem 0;
+}
+  
+.contact-card p {
+    font-size: 0.9rem;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+  
+.contact-card a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+  
+.contact-card a:hover {
+    color: var(--hover-text-color);
+}
+  
+.icon {
+    font-size: 1rem;
+}
+
+a.whatsapp-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: var(--whatsapp-color);
+    border-radius: 2rem;
+    margin-top: 0.5rem;
+}
+
+a.whatsapp-btn:hover {
+    background: var(--whatsapp-color-hover);
+    filter: none;
+}
+  
+.title {
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    color: transparent;
+}
+
+@media (min-width: 768px) and (orientation: landscape) {
+    .container {
+        width: 100%;
+        min-width: unset;
+        max-width: 25rem;
+    }
+
+    .avatar-mobile {
+        display: none;
+    }
+
+    .avatar-desktop {
+        display: block;
+    }
+
+    .avatar-default {
+        animation-range: entry 50% cover 50%;
+    }
+}
+
+@keyframes avatar-fade-out {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}

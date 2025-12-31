@@ -1,0 +1,46 @@
+---
+import { sections } from '@data/sections';
+import { sectionConfig } from '@lib/sectionConfig';
+import { MenuIconTypes } from 'src/types/menuIconTypes';
+
+import HomeIcon from '@components/ui/Icons/HomeIcon.astro';
+import GiftIcon from '@components/ui/Icons/GiftIcon.astro';
+import ConfirmIcon from '@components/ui/Icons/ConfirmIcon.astro';
+import LocationIcon from '@components/ui/Icons/LocationIcon.astro';
+import TransportIcon from '@components/ui/Icons/TransportIcon.astro';
+import QuestionIcon from '@components/ui/Icons/QuestionIcon.astro';
+import PhoneIcon from '@components/ui/Icons/PhoneIcon.astro';
+
+import styles from './Navbar.module.css';
+
+import type { MenuIconType } from 'src/types/menuIconTypes';
+
+const iconMap: Record<MenuIconType, any> = {
+  [MenuIconTypes.HOME]: HomeIcon,
+  [MenuIconTypes.GIFT]: GiftIcon,
+  [MenuIconTypes.CONFIRM]: ConfirmIcon,
+  [MenuIconTypes.LOCATION]: LocationIcon,
+  [MenuIconTypes.TRANSPORT]: TransportIcon,
+  [MenuIconTypes.QUESTION]: QuestionIcon,
+  [MenuIconTypes.PHONE]: PhoneIcon,
+};
+---
+
+<nav class={styles.navbar} id="navbar" data-visible="false">
+  {
+    sections.map(({ id, title }) => {
+      const Icon = iconMap[sectionConfig[id].icon];
+
+      return (
+        <a href={`#${id}`} data-label={title} data-active="false">
+          <Icon />
+        </a>
+      );
+    })
+  }
+</nav>
+
+<script>
+  import { initNavbar } from './navbarHandler';
+  initNavbar();
+</script>

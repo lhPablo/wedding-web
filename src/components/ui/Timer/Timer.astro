@@ -1,0 +1,38 @@
+---
+import { wedding } from '@data/wedding';
+
+import styles from './Timer.module.css';
+
+const { weddingDate } = Astro.props;
+---
+
+<div class={styles.timer} data-wedding-date={weddingDate}>
+  <div class={styles['timer-item']}>
+    <span class={styles['timer-item-value']} data-unit="days">0</span>
+    <span class={styles['timer-item-label']}>Días</span>
+  </div>
+  <div class={styles['timer-item']}>
+    <span class={styles['timer-item-value']} data-unit="hours">0</span>
+    <span class={styles['timer-item-label']}>Horas</span>
+  </div>
+  <div class={styles['timer-item']}>
+    <span class={styles['timer-item-value']} data-unit="minutes">0</span>
+    <span class={styles['timer-item-label']}>Minutos</span>
+  </div>
+  <div class={styles['timer-item']}>
+    <span class={styles['timer-item-value']} data-unit="seconds">0</span>
+    <span class={styles['timer-item-label']}>Segundos</span>
+  </div>
+</div>
+
+<script>
+  import { initTimer } from './timerHandler';
+
+  const timerElement = document.querySelector(
+    '[data-wedding-date]'
+  ) as HTMLElement;
+  if (timerElement) {
+    const weddingDate = Number(timerElement.dataset.weddingDate);
+    initTimer(weddingDate);
+  }
+</script>

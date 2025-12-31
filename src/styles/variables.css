@@ -1,9 +1,28 @@
 :root {
-  --primary-color: #fff0f5;
-  --secondary-color: #880e4f;
-  --hover-color: #ad1457;
-  --overlay-color: rgba(0,0,0,0.3);
-  --active-color: #0e1de9;
+  --background-color: #D7FFF1;
+  --primary-color: #6F8CB6;
+  --secondary-color: #6A708A;
+  --navbar-color: #323C50A6;
+  --hover-color: #4B5563;
+  --hover-text-color: #f5aa97e0;
+  --active-color: #f5aa97e0;
+  --text-color: #4B5563;
+  --text-button-color: #FFFFFF;
+  --shadow-color: #00000033;
+  --card-color: #FFFFFFB3;
+  --overlay-color: #0000004D;
+  --fog-color: #ffffff;
+  --success-color: #28a745;
+  --success-color-border: #C3E6CB;
+  --error-color: #dc2d3d;
+  --error-color-border: #F5C6CB;
+  --warning-color: #fff3cd;
+  --border-color: #E0E0E0;
+  --input-color: #FFFFFF;
+  --placeholder-color: #8B96A8;
+  --whatsapp-color: #25D366;
+  --whatsapp-color-hover: #128C7E;
 
-  --font-family: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
+  --font-family: 'Montserrat', sans-serif;
+  --font-family-hero-title: 'Dancing Script', cursive;
 }

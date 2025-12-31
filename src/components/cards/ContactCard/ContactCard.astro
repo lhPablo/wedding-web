@@ -1,0 +1,139 @@
+---
+import WhatsAppIcon from '@components/ui/Icons/WhatsAppIcon.astro';
+
+import styles from './ContactCard.module.css';
+
+interface Props {
+  name: string;
+  email: string;
+  phone: string;
+  avatar?: string;
+  avatarAlt?: string;
+  avatarMobile?: string;
+  avatarAltMobile?: string;
+  role?: string;
+}
+
+const {
+  name,
+  email,
+  phone,
+  avatar,
+  avatarAlt,
+  avatarMobile,
+  avatarAltMobile,
+  role,
+} = Astro.props;
+
+const whatsappNumber = phone?.replace(/[\s+]/g, '') || '';
+const hasDesktopTransition = avatar && avatarAlt;
+const hasMobileTransition = avatarMobile && avatarAltMobile;
+const hasAnyAvatar = avatar || avatarMobile;
+---
+
+<div class={styles.container}>
+  <div class={styles['contact-card']}>
+    {
+      hasAnyAvatar ? (
+        <div class={styles['avatar-container']}>
+          {hasDesktopTransition ? (
+            <>
+              <img
+                src={avatar}
+                alt={name}
+                class={`${styles.avatar} ${styles['avatar-desktop']} ${styles['avatar-default']}`}
+              />
+              <img
+                src={avatarAlt}
+                alt={name}
+                class={`${styles.avatar} ${styles['avatar-desktop']} ${styles['avatar-alt']}`}
+              />
+            </>
+          ) : (
+            avatar && (
+              <img
+                src={avatar}
+                alt={name}
+                class={`${styles.avatar} ${styles['avatar-desktop']}`}
+              />
+            )
+          )}
+
+          {hasMobileTransition ? (
+            <>
+              <img
+                src={avatarMobile}
+                alt={name}
+                class={`${styles.avatar} ${styles['avatar-mobile']} ${styles['avatar-default']}`}
+              />
+              <img
+                src={avatarAltMobile}
+                alt={name}
+                class={`${styles.avatar} ${styles['avatar-mobile']} ${styles['avatar-alt']}`}
+              />
+            </>
+          ) : avatarMobile ? (
+            <img
+              src={avatarMobile}
+              alt={name}
+              class={`${styles.avatar} ${styles['avatar-mobile']}`}
+            />
+          ) : hasDesktopTransition ? (
+            <>
+              <img
+                src={avatar}
+                alt={name}
+                class={`${styles.avatar} ${styles['avatar-mobile']} ${styles['avatar-default']}`}
+              />
+              <img
+                src={avatarAlt}
+                alt={name}
+                class={`${styles.avatar} ${styles['avatar-mobile']} ${styles['avatar-alt']}`}
+              />
+            </>
+          ) : (
+            avatar && (
+              <img
+                src={avatar}
+                alt={name}
+                class={`${styles.avatar} ${styles['avatar-mobile']}`}
+              />
+            )
+          )}
+        </div>
+      ) : (
+        <div class={styles['avatar-placeholder']}>
+          {name
+            .split(' ')
+            .map((n) => n[0])
+            .join('')
+            .substring(0, 2)}
+        </div>
+      )
+    }
+
+    <h3>{name}</h3>
+
+    {role && <span class={styles.role}>{role}</span>}
+
+    <div class={styles['contact-info']}>
+      <p>
+        <span class={styles.icon}>📧</span>
+        <a href={`mailto:${email}`}>{email}</a>
+      </p>
+      <p>
+        <span class={styles.icon}>📞</span>
+        <a href={`tel:${phone}`}>{phone}</a>
+      </p>
+    </div>
+
+    <a
+      href={`https://wa.me/${whatsappNumber}`}
+      target="_blank"
+      class={`btn ${styles['whatsapp-btn']}`}
+    >
+      <WhatsAppIcon size="1.25rem" color="white" />
+      <span>WhatsApp</span>
+    </a>
+  </div>
+</div>

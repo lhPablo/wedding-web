@@ -1,42 +1,177 @@
 @import './variables.css';
 
-html {
-  scroll-behavior: smooth;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-body {
-  margin: 0;
+HTML {
   width: 100%;
   height: 100%;
-  background-color: var(--primary-color);
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+BODY {
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background-color: var(--background-color);
+  font-family: var(--font-family);
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+}
+
+MAIN {
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+H1 {
+  font-size: 2.5rem;
+  color: black;
+}
+
+H2 {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 2.5rem;
+  color: var(--text-color);
+}
+
+H1, H2, H3, P, SPAN {
   font-family: var(--font-family);
 }
 
-main {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+H2, H3, P, SPAN {
+  color: var(--text-color);
 }
 
-h1 {
-  font-size: 22px;
-  margin-top: 0.25em;
-}
-
-h2 {
-  margin: 0 0 1em;
-  font-weight: normal;
-  color: #111827;
-  font-size: 20px;
-}
-
-p {
-  color: #4b5563;
-  font-size: 16px;
-  line-height: 24px;
-  letter-spacing: -0.006em;
+H3 {
   margin: 0;
+}
+
+P {
+  font-size: 1rem;
+}
+
+LABEL {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--text-color);
+  font-size: 0.95rem;
+}
+
+INPUT[type="text"],
+INPUT[type="email"],
+INPUT[type="tel"],
+INPUT[type="password"],
+INPUT[type="number"],
+INPUT[type="date"],
+SELECT,
+TEXTAREA {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 0.125rem solid var(--border-color, #e0e0e0);
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-family: var(--font-family);
+  transition: all 0.3s ease;
+  background-color: var(--input-color, white);
+  color: var(--text-color);
+}
+
+INPUT[type="text"]:focus,
+INPUT[type="email"]:focus,
+INPUT[type="tel"]:focus,
+INPUT[type="password"]:focus,
+INPUT[type="number"]:focus,
+INPUT[type="date"]:focus,
+SELECT:focus,
+TEXTAREA:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+INPUT::placeholder,
+TEXTAREA::placeholder {
+  color: var(--placeholder-color, #999);
+}
+
+TEXTAREA {
+  resize: vertical;
+  min-height: 6.25rem;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+BUTTON,
+.btn,
+A.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  font-family: var(--font-family);
+  color: var(--text-button-color, white);
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 0.25rem 0.9375rem var(--shadow-color);
+
+  SPAN {
+    color: var(--text-button-color);
+  }
+}
+
+BUTTON:hover:not(:disabled),
+.btn:hover:not(:disabled),
+A.btn:hover {
+  transform: translateY(-0.125rem);
+  box-shadow: 0 0.375rem 1.25rem var(--shadow-color);
+  filter: brightness(85%);
+}
+
+BUTTON:active:not(:disabled),
+.btn:active:not(:disabled),
+A.btn:active {
+  transform: translateY(0);
+}
+
+BUTTON:disabled,
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+BUTTON[type="submit"] {
+  width: 100%;
+}
+
+SELECT {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("../assets/arrow-down.svg");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1rem;
+  padding-right: 2.5rem;
 }
 
 .background {
@@ -46,5 +181,79 @@ p {
   width: 100%;
   height: 100%;
   z-index: -1;
-  filter: blur(100px);
+  filter: blur(6.25rem);
+}
+
+.message {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  font-weight: 500;
+  animation: slideIn 0.3s ease;
+}
+
+.message.success {
+  background-color: var(--success-color);
+  color: var(--background-color);
+  border: 0.0625rem solid var(--success-color-border);
+}
+
+.message.error {
+  background-color: var(--background-color);
+  color: var(--error-color);
+  border: 0.0625rem solid var(--error-color-border);
+}
+
+.button-transparent {
+  background: none;
+  box-shadow: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.button-transparent:hover {
+  box-shadow: none !important;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-0.625rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  20%, 60% {
+    transform: translateX(-0.1875rem);
+  }
+  40%, 80% {
+    transform: translateX(0.1875rem);
+  }
+}
+
+@media (min-width: 768px) and (orientation: landscape) {
+  BUTTON,
+  .btn,
+  A.btn {
+    padding: 0.875rem 2rem;
+  }
+}
+
+@media (min-width: 1024px) and (orientation: portrait) {
+  HTML {
+    font-size: 2rem;
+  }
+
+  SELECT option {
+    font-size: 16px;
+  }
 }

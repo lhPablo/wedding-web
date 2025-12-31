@@ -1,0 +1,34 @@
+---
+import cloudSvg from '@assets/cloud.svg';
+import { generateClouds } from './cloudOverlay';
+
+import styles from './CloudOverlay.module.css';
+
+interface Props {
+  mode: 'enter' | 'exit';
+}
+
+const { mode } = Astro.props;
+const clouds = generateClouds(80);
+---
+
+<div
+  id="cloud-overlay"
+  class={styles['cloud-overlay']}
+  data-mode={mode}
+  transition:name="cloud-overlay"
+  transition:persist
+>
+  <div class={styles['fog-layer']}></div>
+
+  {
+    clouds.map((cloud) => (
+      <img
+        class={`${styles.cloud} ${styles[`cloud-${cloud.side}`]}`}
+        src={cloudSvg.src}
+        alt=""
+        style={cloud.style}
+      />
+    ))
+  }
+</div>

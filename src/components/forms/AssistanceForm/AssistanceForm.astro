@@ -1,0 +1,69 @@
+---
+import Field from '@components/ui/Field/Field.astro';
+import CompanionSubform from './CompanionSubform/CompanionSubform.astro';
+import SubmitButton from '@components/ui/SubmitButton/SubmitButton.astro';
+
+import type { FormConfig } from '../../../types/form';
+
+import styles from './AssistanceForm.module.css';
+
+interface Props {
+  data: FormConfig;
+}
+
+const { data } = Astro.props;
+const { fields, submitText, successMessage, errorMessage, googleScriptUrl } =
+  data;
+---
+
+<form
+  class={styles.form}
+  data-form
+  data-script-url={googleScriptUrl}
+  data-success-message={successMessage}
+  data-error-message={errorMessage}
+>
+  <!-- Honeypot -->
+  <div class={styles.honeypot} aria-hidden="true">
+    <label for="website">Website</label>
+    <input
+      type="text"
+      id="website"
+      name="website"
+      tabindex="-1"
+      autocomplete="off"
+    />
+  </div>
+
+  <div class={styles.fields}>
+    {fields.map((fieldConfig) => <Field config={fieldConfig} />)}
+  </div>
+
+  <CompanionSubform maxCompanions={10} />
+
+  <SubmitButton id="section-submit" text={submitText} />
+
+  <div class="message" data-message hidden></div>
+</form>
+
+<script>
+  import { initFormHandler } from './formHandler';
+
+  const form = document.querySelector('[data-form]') as HTMLFormElement;
+  const submitBtn = document.querySelector(
+    '[data-submit-btn]'
+  ) as HTMLButtonElement;
+
+  if (form && submitBtn) {
+    const config = {
+      googleScriptUrl: form.dataset.scriptUrl || '',
+      successMessage: form.dataset.successMessage || '',
+      errorMessage: form.dataset.errorMessage || '',
+      submitText: submitBtn.textContent || '',
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initFormHandler(config);
+    });
+  }
+</script>

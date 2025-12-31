@@ -1,0 +1,24 @@
+.timer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.timer-item {
+    display: flex;
+    flex-direction: column;
+    border-right: 0.0625rem solid black;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.timer-item:last-child {
+    border-right: none;
+}
+
+.timer-item-value {
+    font-weight: bold;
+}

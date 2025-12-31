@@ -1,0 +1,25 @@
+.section {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  width: 100%;
+}
+
+.description {
+  text-align: center;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  padding: 1rem;
+}
+
+@media (min-width: 768px) and (orientation: landscape) {
+  .container {
+    max-width: 650px;
+  }
+}

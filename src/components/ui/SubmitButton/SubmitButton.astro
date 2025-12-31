@@ -1,0 +1,24 @@
+---
+import CheckIcon from '@components/ui/Icons/CheckIcon.astro';
+import CrossIcon from '@components/ui/Icons/CrossIcon.astro';
+
+import styles from './SubmitButton.module.css';
+
+interface Props {
+  id?: string;
+  text: string;
+  dataAttr?: string;
+}
+
+const { id, text } = Astro.props;
+---
+
+<button id={id} type="submit" class={styles['submit-button']} data-submit-btn>
+  <span class={styles['button-text']}>{text}</span>
+  <span class={styles['check-icon']}>
+    <CheckIcon />
+  </span>
+  <span class={styles['cross-icon']}>
+    <CrossIcon />
+  </span>
+</button>

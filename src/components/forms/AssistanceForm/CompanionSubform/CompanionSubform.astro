@@ -1,0 +1,50 @@
+---
+import styles from './CompanionSubform.module.css';
+import Field from '@components/ui/Field/Field.astro';
+import PersonIcon from '@components/ui/Icons/PersonIcon.astro';
+import { companionFields } from '@data/assistanceForm';
+
+interface Props {
+  maxCompanions?: number;
+}
+
+const { maxCompanions = 10 } = Astro.props;
+---
+
+<div class={styles['companions-section']} data-companions-section hidden>
+  <h3 class={styles['companions-title']}>
+    <PersonIcon />
+    Información de acompañantes
+  </h3>
+  <p class={styles['companions-description']}>
+    Indique los datos de cada acompañante para los menús y alergias.
+  </p>
+
+  <div class={styles['companions-container']} data-companions-container>
+    {
+      Array.from({ length: maxCompanions }, (_, i) => (
+        <div
+          class={styles['companion-card']}
+          data-companion-card={i + 1}
+          hidden
+        >
+          <h4 class={styles['companion-number']}>Acompañante {i + 1}</h4>
+
+          <div class={styles['companion-fields']}>
+            {companionFields.map((fieldConfig) => (
+              <Field config={fieldConfig} namePrefix={`companion_${i + 1}`} />
+            ))}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</div>
+
+<script>
+  import { initCompanionFields } from './subformHandler';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initCompanionFields();
+  });
+</script>

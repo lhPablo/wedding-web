@@ -1,0 +1,34 @@
+---
+import styles from './ExpandableCard.module.css';
+
+const { title, content } = Astro.props;
+---
+
+<div class={styles.card} data-card>
+  <div class={styles.header} data-header>
+    <h3 class={styles.title}>{title}</h3>
+
+    <div
+      class={styles.chevron}
+      data-toggle
+      data-open="false"
+      aria-expanded="false"
+      aria-label="Mostrar detalles"
+    >
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+
+  <div class={styles.panel} data-panel data-open="false">
+    <p>{content}</p>
+  </div>
+</div>
+
+<script>
+  import { initExpandableCards } from './expandableCardHandler';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initExpandableCards();
+  });
+</script>

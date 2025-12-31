@@ -1,0 +1,26 @@
+---
+import AssistanceForm from '@components/forms/AssistanceForm/AssistanceForm.astro';
+
+import type { FormConfig } from '../../../types/form';
+
+import styles from './FormSection.module.css';
+
+interface Props {
+  id: string;
+  title: string;
+  data: FormConfig;
+}
+
+const { id, title, data } = Astro.props;
+const { description } = data;
+---
+
+<section id={id} class={styles.section}>
+  <div class={styles.container}>
+    <h2>{title}</h2>
+
+    {description && <p class={styles.description}>{description}</p>}
+
+    <AssistanceForm data={data} />
+  </div>
+</section>

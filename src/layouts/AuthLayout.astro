@@ -1,0 +1,26 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import CloudOverlay from '@components/ui/CloudOverlay/CloudOverlay.astro';
+import { heroImages } from '@data/wedding';
+import logo from '@assets/logo.png';
+---
+
+<BaseLayout>
+  <Fragment slot="head">
+    <link rel="preload" as="image" href={logo.src} />
+    <link
+      rel="preload"
+      as="image"
+      href={heroImages.mobile.src}
+      media="(max-width: 767px)"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href={heroImages.desktop.src}
+      media="(min-width: 768px)"
+    />
+  </Fragment>
+  <CloudOverlay mode="enter" />
+  <slot />
+</BaseLayout>
