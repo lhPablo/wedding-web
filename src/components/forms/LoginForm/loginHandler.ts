@@ -14,6 +14,8 @@ export function initAuth() {
 
   if (!form || !passwordInput || !submitButton) return;
 
+  initPasswordToggle(passwordInput);
+
   window.addEventListener('pageshow', () => {
     resetFormState(submitButton, passwordInput);
   });
@@ -33,6 +35,22 @@ export function initAuth() {
     } else {
       showErrorAndReset(submitButton, passwordInput);
     }
+  });
+}
+
+function initPasswordToggle(passwordInput: HTMLInputElement) {
+  const toggleBtn = document.getElementById('toggle-password');
+
+  if (!toggleBtn) return;
+
+  toggleBtn.addEventListener('click', () => {
+    const isPassword = passwordInput.type === 'password';
+    passwordInput.type = isPassword ? 'text' : 'password';
+    toggleBtn.dataset.visible = isPassword ? 'true' : '';
+    toggleBtn.setAttribute(
+      'aria-label',
+      isPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'
+    );
   });
 }
 

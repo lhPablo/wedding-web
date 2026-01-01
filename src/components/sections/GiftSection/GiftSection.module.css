@@ -8,11 +8,7 @@
     justify-content: center;
     text-align: center;
     padding: 2.5rem;
-    gap: 1.25rem;
-
-    P {
-        padding: 0 1.25rem;
-    }
+    gap: 3rem;
 }
 
 .iban {

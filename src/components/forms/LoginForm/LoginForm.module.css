@@ -33,6 +33,56 @@
   text-align: left;
 }
 
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-wrapper input {
+  padding-right: 3rem;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: blue;
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  cursor: pointer;
+
+  .icon-show,
+  .icon-hide {
+    color: var(--text-color);
+  }
+}
+
+.icon-show,
+.icon-hide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.icon-hide {
+  display: none;
+}
+
+.toggle-password[data-visible="true"] .icon-show {
+  display: none;
+}
+
+.toggle-password[data-visible="true"] .icon-hide {
+  display: block;
+}
+
 .form-group input[data-error="true"] {
   border-color: var(--error-color);
 }
