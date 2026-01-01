@@ -45,7 +45,7 @@
   color: var(--active-color);
 }
 
-@media (min-width: 768px) and (orientation: landscape) and (any-hover: hover) {
+@media (min-width: 768px) and (orientation: landscape) and (hover: hover) and (pointer: fine) {
   .navbar a::after {
     content: attr(data-label);
     position: absolute;

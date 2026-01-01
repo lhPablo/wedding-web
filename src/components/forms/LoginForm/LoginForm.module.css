@@ -41,7 +41,6 @@
 
 .password-wrapper input {
   padding-right: 3rem;
-  font-family: var(--font-family);
   font-size: 1rem;
 }
 
@@ -61,6 +60,13 @@
   .icon-hide {
     color: var(--text-color);
   }
+}
+
+.password-wrapper .toggle-password:hover {
+  background: var(--input-color);
+  box-shadow: none;
+  filter: none;
+  transform: none;
 }
 
 .icon-show,
