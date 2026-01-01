@@ -2,6 +2,7 @@ import { ACCESS_STORAGE_KEY, ACCESS_LEVELS } from '@lib/authConstants';
 
 export const ERROR_RESET_DELAY_MS = 1000;
 export const SUCCESS_REDIRECT_DELAY_MS = 500;
+export const OVERLAY_ANIMATION_DELAY_MS = 1500;
 
 export function initAuth() {
   const correctHash = import.meta.env.PUBLIC_FULL_ACCESS_KEY_HASH;
@@ -49,7 +50,10 @@ export function showSuccessAndRedirect(
       overlay.dataset.active = 'true';
     }
     
-    window.location.href = '/main';
+    setTimeout(() => {
+      window.location.href = '/main';
+    }, OVERLAY_ANIMATION_DELAY_MS);
+
   }, SUCCESS_REDIRECT_DELAY_MS);
 }
 

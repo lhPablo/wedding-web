@@ -2,9 +2,9 @@ import { describe, it, expect } from 'vitest';
 import { generateClouds } from './cloudOverlay';
 
 describe('generateClouds', () => {
-  it('should generate default 80 clouds', () => {
+  it('should generate default 50 clouds', () => {
     const clouds = generateClouds();
-    expect(clouds).toHaveLength(80);
+    expect(clouds).toHaveLength(50);
   });
 
   it('should generate specified number of clouds', () => {

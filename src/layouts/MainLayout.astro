@@ -40,12 +40,8 @@ import cloudSvg from '@assets/cloud.svg';
 </BaseLayout>
 
 <script>
-  function activateOverlay() {
-    const overlay = document.getElementById('cloud-overlay');
-    if (overlay) {
-      overlay.dataset.active = 'true';
-    }
+  const overlay = document.getElementById('cloud-overlay');
+  if (overlay) {
+    overlay.dataset.active = 'true';
   }
-
-  document.addEventListener('astro:page-load', activateOverlay);
 </script>
