@@ -3,11 +3,13 @@ import BaseLayout from './BaseLayout.astro';
 import CloudOverlay from '@components/ui/CloudOverlay/CloudOverlay.astro';
 import { heroImages } from '@data/wedding';
 import logo from '@assets/logo.png';
+import cloudSvg from '@assets/cloud.svg';
 ---
 
 <BaseLayout>
   <Fragment slot="head">
-    <link rel="preload" as="image" href={logo.src} />
+    <link rel="preload" as="image" href={cloudSvg.src} fetchpriority="high" />
+    <link rel="preload" as="image" href={logo.src} fetchpriority="high" />
     <link
       rel="preload"
       as="image"

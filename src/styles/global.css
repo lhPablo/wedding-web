@@ -13,6 +13,7 @@ HTML {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color-scheme: light only;
 }
 
 BODY {
@@ -52,6 +53,7 @@ H2 {
 
 H1, H2, H3, P, SPAN {
   font-family: var(--font-family);
+  cursor: default;
 }
 
 H2, H3, P, SPAN {
