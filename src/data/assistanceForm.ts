@@ -58,14 +58,14 @@ export const assistanceForm: FormConfig = {
       label: 'Alergias o intolerancias alimentarias',
       type: FieldTypes.TEXTAREA,
       required: false,
-      placeholder: 'Indica si tienes alguna alergia o intolerancia'
+      placeholder: 'Indique alergias'
     },
     {
       name: 'comments',
       label: 'Comentarios adicionales',
       type: FieldTypes.TEXTAREA,
       required: false,
-      placeholder: 'Cualquier cosa que quieras compartir con nosotros'
+      placeholder: 'Comentarios adicionales'
     },
     {
       name: 'bus',
@@ -123,6 +123,6 @@ export const companionFields: FieldConfig[] = [
     label: 'Alergias o intolerancias',
     type: FieldTypes.TEXT,
     required: true,
-    placeholder: 'Indica si tiene alguna alergia o intolerancia',
+    placeholder: 'Indique alergias',
   },
 ];

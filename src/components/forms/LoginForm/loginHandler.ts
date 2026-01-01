@@ -2,7 +2,7 @@ import { ACCESS_STORAGE_KEY, ACCESS_LEVELS } from '@lib/authConstants';
 
 export const ERROR_RESET_DELAY_MS = 1000;
 export const SUCCESS_REDIRECT_DELAY_MS = 500;
-export const OVERLAY_ANIMATION_DELAY_MS = 1500;
+export const OVERLAY_ANIMATION_DELAY_MS = 1000;
 
 export function initAuth() {
   const correctHash = import.meta.env.PUBLIC_FULL_ACCESS_KEY_HASH;
@@ -13,6 +13,8 @@ export function initAuth() {
   const submitButton = document.getElementById('submit') as HTMLButtonElement;
 
   if (!form || !passwordInput || !submitButton) return;
+
+  initPasswordToggle(passwordInput);
 
   window.addEventListener('pageshow', () => {
     resetFormState(submitButton, passwordInput);
@@ -33,6 +35,22 @@ export function initAuth() {
     } else {
       showErrorAndReset(submitButton, passwordInput);
     }
+  });
+}
+
+function initPasswordToggle(passwordInput: HTMLInputElement) {
+  const toggleBtn = document.getElementById('toggle-password');
+
+  if (!toggleBtn) return;
+
+  toggleBtn.addEventListener('click', () => {
+    const isPassword = passwordInput.type === 'password';
+    passwordInput.type = isPassword ? 'text' : 'password';
+    toggleBtn.dataset.visible = isPassword ? 'true' : '';
+    toggleBtn.setAttribute(
+      'aria-label',
+      isPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'
+    );
   });
 }
 

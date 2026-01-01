@@ -1,5 +1,7 @@
 ---
 import SubmitButton from '@components/ui/SubmitButton/SubmitButton.astro';
+import EyeIcon from '@components/ui/Icons/EyeIcon.astro';
+import EyeOffIcon from '@components/ui/Icons/EyeOffIcon.astro';
 import logo from '@assets/logo.png';
 import styles from './LoginForm.module.css';
 ---
@@ -17,13 +19,24 @@ import styles from './LoginForm.module.css';
   <form id="login-form">
     <div class={styles['form-group']}>
       <label for="password">Código de embarque</label>
-      <input
-        type="password"
-        id="password"
-        placeholder="Ingresa el código de embarque"
-        required
-        autocomplete="off"
-      />
+      <div class={styles['password-wrapper']}>
+        <input
+          type="password"
+          id="password"
+          placeholder="Ingresa el código"
+          required
+          autocomplete="off"
+        />
+        <button
+          type="button"
+          id="toggle-password"
+          class={styles['toggle-password']}
+          aria-label="Mostrar contraseña"
+        >
+          <span class={styles['icon-show']}><EyeIcon /></span>
+          <span class={styles['icon-hide']}><EyeOffIcon /></span>
+        </button>
+      </div>
     </div>
 
     <div class={styles['button-wrapper']}>
@@ -35,7 +48,5 @@ import styles from './LoginForm.module.css';
 <script>
   import { initAuth } from './loginHandler';
 
-  document.addEventListener('DOMContentLoaded', () => {
-    initAuth();
-  });
+  document.addEventListener('DOMContentLoaded', initAuth);
 </script>
