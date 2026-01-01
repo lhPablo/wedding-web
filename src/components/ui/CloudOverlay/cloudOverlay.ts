@@ -12,7 +12,7 @@ export interface CloudConfig {
 
 const random = (min: number, max: number) => Math.random() * (max - min) + min;
 
-export function generateClouds(count: number = 80): CloudConfig[] {
+export function generateClouds(count: number = 50): CloudConfig[] {
   const sides = ['left', 'right', 'top', 'bottom'];
 
   return Array.from({ length: count }).map((_, i) => {

@@ -26,10 +26,10 @@
 
 .cloud {
   position: absolute;
-  filter: drop-shadow(0 4px 8px var(--shadow-color));
-  will-change: transform;
   width: calc(120px * var(--cloud-scale));
   z-index: var(--cloud-z);
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .cloud-left {
@@ -234,6 +234,7 @@
 
   .cloud {
     width: calc(200px * var(--cloud-scale));
+    filter: drop-shadow(0 4px 8px var(--shadow-color));
   }
 
   .cloud-left {
