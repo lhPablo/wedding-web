@@ -18,24 +18,27 @@ const { id } = Astro.props;
     Lo más importante es tu presencia, pero si quieres hacernos un regalo,
     puedes hacerlo a través de este número de cuenta:
   </p>
-  <div class={styles.iban}>
-    <p>{wedding.iban}</p>
-    <button
-      type="button"
-      class={`${styles['copy-button']} button-transparent`}
-      data-copy-iban={wedding.iban}
-      aria-label="Copiar IBAN al portapapeles"
-    >
-      <span data-icon="copy" data-visible="true" class={styles.icon}>
-        <CopyIcon />
-      </span>
-      <span data-icon="check" data-visible="false" class={styles.icon}>
-        <CheckIcon />
-      </span>
-      <span data-icon="cross" data-visible="false" class={styles.icon}>
-        <CrossIcon />
-      </span>
-    </button>
+  <div>
+    <div class={styles.iban}>
+      <p>{wedding.iban}</p>
+      <button
+        type="button"
+        class={`${styles['copy-button']} button-transparent`}
+        data-copy-iban={wedding.iban}
+        aria-label="Copiar IBAN al portapapeles"
+      >
+        <span data-icon="copy" data-visible="true" class={styles.icon}>
+          <CopyIcon />
+        </span>
+        <span data-icon="check" data-visible="false" class={styles.icon}>
+          <CheckIcon />
+        </span>
+        <span data-icon="cross" data-visible="false" class={styles.icon}>
+          <CrossIcon />
+        </span>
+      </button>
+    </div>
+    <p class={styles.note}>Concepto (sugerido): nombre y apellidos.</p>
   </div>
 
   <p>Os esperamos en...</p>
