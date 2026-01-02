@@ -85,6 +85,13 @@
     pointer-events: none;
 }
 
+.note {
+    margin-top: 0.4rem;
+    font-size: 0.8rem;
+    color: var(--placeholder-color);
+    text-align: start;
+}  
+
 .timer-container {
     width: 100%;
     display: flex;
