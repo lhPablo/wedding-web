@@ -79,7 +79,7 @@ const _initSmoothScroll = () => {
           block: 'start'
         });
         
-        history.pushState(null, '', href);
+        history.replaceState(null, '', href);
       }
     });
   });

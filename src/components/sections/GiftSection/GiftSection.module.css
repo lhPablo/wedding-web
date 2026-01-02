@@ -1,7 +1,6 @@
 .section {
     width: 100%;
     min-height: 100vh;
-    min-height: 100dvh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -84,6 +83,13 @@
     transform: translate(-50%, -50%);
     pointer-events: none;
 }
+
+.note {
+    margin-top: 0.4rem;
+    font-size: 0.8rem;
+    color: var(--placeholder-color);
+    text-align: start;
+}  
 
 .timer-container {
     width: 100%;
