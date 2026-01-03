@@ -33,7 +33,7 @@ export function initAuth() {
       localStorage.setItem(ACCESS_STORAGE_KEY, ACCESS_LEVELS.LIMITED);
       showSuccessAndRedirect(submitButton, passwordInput);
     } else {
-      showErrorAndReset(submitButton, passwordInput);
+      showError(submitButton, passwordInput);
     }
   });
 }
@@ -75,7 +75,7 @@ export function showSuccessAndRedirect(
   }, SUCCESS_REDIRECT_DELAY_MS);
 }
 
-export function showErrorAndReset(
+export function showError(
   submitButton: HTMLButtonElement,
   passwordInput: HTMLInputElement
 ) {
@@ -84,7 +84,6 @@ export function showErrorAndReset(
 
   setTimeout(() => {
     submitButton.dataset.error = '';
-    passwordInput.value = '';
     passwordInput.focus();
   }, ERROR_RESET_DELAY_MS);
 }
