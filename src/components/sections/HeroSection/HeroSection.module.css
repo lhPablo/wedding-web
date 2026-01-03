@@ -90,7 +90,7 @@
 .hero-content-title h1 {
   font-size: 4rem;
   font-family: var(--font-family-hero-title);
-  color: var(--background-color);
+  color: var(--primary-color);
 }
 
 .hero-content-title p {

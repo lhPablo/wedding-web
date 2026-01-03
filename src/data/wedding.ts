@@ -1,5 +1,5 @@
 import type { Wedding } from 'src/types/wedding';
-import weddingImageMobile from '@assets/hero-mobile.png';
+import weddingImageMobile from '@assets/hero-mobile.jpeg';
 import weddingImageDesktop from '@assets/hero.png';
 
 export const heroImages = {
