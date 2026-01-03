@@ -11,6 +11,6 @@ export const wedding: Wedding = {
   title: 'Pablo & Paula',
   imageMobile: weddingImageMobile.src,
   imageDesktop: weddingImageDesktop.src,
-  date: '2026-03-28',
+  date: '2026-03-28T12:00:00+02:00',
   iban: 'ES** **** **** **** **** ****'
 };
