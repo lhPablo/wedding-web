@@ -20,7 +20,9 @@ const year = date.getFullYear();
 const stringDate = `${day}-${month}-${year}`;
 ---
 
-<section id={id} class={styles.section}>
+<div class={styles.loader} data-hero-loader></div>
+
+<section id={id} class={`${styles.section} loading`} data-hero-section>
   <div class={styles['hero-image-container']}>
     <img
       class={styles['hero-image-mobile']}
@@ -31,6 +33,7 @@ const stringDate = `${day}-${month}-${year}`;
       fetchpriority="high"
       loading="eager"
       decoding="sync"
+      data-hero-mobile
     />
 
     <div class={styles['hero-image-desktop-container']}>
@@ -43,6 +46,7 @@ const stringDate = `${day}-${month}-${year}`;
         fetchpriority="high"
         loading="eager"
         decoding="sync"
+        data-hero-desktop
       />
 
       <img
@@ -74,3 +78,9 @@ const stringDate = `${day}-${month}-${year}`;
     }
   </div>
 </section>
+
+<script>
+  import { initHeroLoader } from './heroHandler';
+
+  initHeroLoader();
+</script>

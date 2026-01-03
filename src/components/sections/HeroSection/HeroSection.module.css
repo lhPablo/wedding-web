@@ -1,6 +1,15 @@
+.loader {
+  position: fixed;
+  inset: 0;
+  background-color: var(--fog-color);
+  z-index: 60;
+  transition: opacity 0.5s ease;
+}
+
 .section {
   width: 100vw;
   height: 100vh;
+  height: 100dvh;
   position: relative;
   display: flex;
   flex-direction: column;

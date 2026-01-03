@@ -227,6 +227,15 @@ SECTION {
   box-shadow: none !important;
 }
 
+.loading {
+  visibility: hidden;
+}
+
+.loaded {
+  opacity: 0;
+  pointer-events: none;
+}
+
 @keyframes slideIn {
   from {
     opacity: 0;
