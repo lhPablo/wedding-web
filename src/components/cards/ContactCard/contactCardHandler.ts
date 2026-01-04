@@ -15,13 +15,15 @@ export function initAvatarTransition(): void {
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting && entry.intersectionRatio >= 0.3) {
+        if (entry.intersectionRatio >= 0.3) {
           entry.target.classList.add('faded');
+        } else {
+          entry.target.classList.remove('faded');
         }
       });
     },
     {
-      threshold: 0.3,
+      threshold: [0, 0.3],
     }
   );
 

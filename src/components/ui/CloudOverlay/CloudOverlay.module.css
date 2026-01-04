@@ -132,7 +132,7 @@
   to   { transform: translate3d(0, var(--end-y), 0); }
 }
 
-@media (min-width: 768px) and (orientation: landscape) {
+@media (min-width: 768px) and (min-aspect-ratio: 1/1) {
   .cloud-overlay {
     --move-x: calc(60vw + 300px);
     --move-y: calc(60vh + 300px);

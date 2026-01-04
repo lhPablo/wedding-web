@@ -215,7 +215,7 @@
   transform: translateY(0);
 }
 
-@media (min-width: 768px) and (orientation: landscape) {
+@media (min-width: 768px) and (min-aspect-ratio: 1/1) {
   .hero-content {
     bottom: 30%;
   }

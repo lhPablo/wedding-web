@@ -22,7 +22,7 @@ import LoginForm from '@components/forms/LoginForm/LoginForm.astro';
     z-index: 10;
   }
 
-  @media (orientation: landscape) and (max-height: 500px) {
+  @media (min-aspect-ratio: 1/1) and (max-height: 500px) {
     .login-container {
       padding: 1rem;
     }

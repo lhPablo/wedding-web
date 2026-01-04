@@ -1,3 +1,5 @@
+const MIN_LOADER_TIME = 1000;
+
 function showHero(
   loader: Element | null,
   section: Element | null
@@ -25,14 +27,27 @@ export function initHeroLoader(): void {
   ) as HTMLImageElement;
 
   const isMobile = window.matchMedia(
-    '(max-width: 768px), (orientation: portrait)'
+    '(max-width: 768px), (max-aspect-ratio: 1/1)'
   ).matches;
   const targetImg = isMobile ? mobileImg : desktopImg;
 
+  const startTime = performance.now();
+
+  const handleImageReady = () => {
+    const elapsed = performance.now() - startTime;
+    const remaining = Math.max(0, MIN_LOADER_TIME - elapsed);
+
+    if (remaining > 0) {
+      setTimeout(() => showHero(loader, section), remaining);
+    } else {
+      showHero(loader, section);
+    }
+  };
+
   if (targetImg?.complete) {
-    showHero(loader, section);
+    handleImageReady();
   } else {
-    targetImg?.addEventListener('load', () => showHero(loader, section));
+    targetImg?.addEventListener('load', handleImageReady);
   }
 }
 
