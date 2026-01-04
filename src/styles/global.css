@@ -14,6 +14,12 @@ HTML {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color-scheme: light only;
+  scrollbar-width: none;
+}
+
+HTML::-webkit-scrollbar,
+BODY::-webkit-scrollbar {
+  display: none;
 }
 
 BODY {
@@ -25,6 +31,7 @@ BODY {
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
   position: relative;
+  scrollbar-width: none;
 }
 
 MAIN {
@@ -218,6 +225,15 @@ SECTION {
 
 .button-transparent:hover {
   box-shadow: none !important;
+}
+
+.loading {
+  visibility: hidden;
+}
+
+.loaded {
+  opacity: 0;
+  pointer-events: none;
 }
 
 @keyframes slideIn {

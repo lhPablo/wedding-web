@@ -1,5 +1,6 @@
 import { describe, it, expect, beforeEach, vi, afterEach } from 'vitest';
 import { calculateTimeRemaining, updateTimerDisplay, initTimer, type TimeRemaining } from './timerHandler';
+import { timerMessages } from '@data/timer';
 
 function setupTimerDOM() {
   document.body.innerHTML = `
@@ -19,23 +20,23 @@ describe('calculateTimeRemaining', () => {
     vi.useRealTimers();
   });
 
-  it('should return zeros when target date is in the past', () => {
+  it('should return elapsed time when target date is in the past', () => {
     const now = new Date('2025-12-20T12:00:00').getTime();
     vi.setSystemTime(now);
 
     const pastDate = new Date('2025-12-19T12:00:00').getTime();
     const result = calculateTimeRemaining(pastDate);
 
-    expect(result).toEqual({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+    expect(result).toEqual({ days: 1, hours: 0, minutes: 0, seconds: 0, isPast: true });
   });
 
-  it('should return zeros when target date is now', () => {
+  it('should return zeros with isPast true when target date is now', () => {
     const now = new Date('2025-12-20T12:00:00').getTime();
     vi.setSystemTime(now);
 
     const result = calculateTimeRemaining(now);
 
-    expect(result).toEqual({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+    expect(result).toEqual({ days: 0, hours: 0, minutes: 0, seconds: 0, isPast: true });
   });
 
   it('should calculate days correctly', () => {
@@ -49,6 +50,7 @@ describe('calculateTimeRemaining', () => {
     expect(result.hours).toBe(0);
     expect(result.minutes).toBe(0);
     expect(result.seconds).toBe(0);
+    expect(result.isPast).toBe(false);
   });
 
   it('should calculate hours correctly', () => {
@@ -62,6 +64,7 @@ describe('calculateTimeRemaining', () => {
     expect(result.hours).toBe(6);
     expect(result.minutes).toBe(0);
     expect(result.seconds).toBe(0);
+    expect(result.isPast).toBe(false);
   });
 
   it('should calculate minutes correctly', () => {
@@ -75,6 +78,7 @@ describe('calculateTimeRemaining', () => {
     expect(result.hours).toBe(0);
     expect(result.minutes).toBe(45);
     expect(result.seconds).toBe(0);
+    expect(result.isPast).toBe(false);
   });
 
   it('should calculate seconds correctly', () => {
@@ -88,6 +92,7 @@ describe('calculateTimeRemaining', () => {
     expect(result.hours).toBe(0);
     expect(result.minutes).toBe(0);
     expect(result.seconds).toBe(30);
+    expect(result.isPast).toBe(false);
   });
 
   it('should calculate mixed time correctly', () => {
@@ -102,6 +107,22 @@ describe('calculateTimeRemaining', () => {
     expect(result.hours).toBe(5);
     expect(result.minutes).toBe(30);
     expect(result.seconds).toBe(15);
+    expect(result.isPast).toBe(false);
+  });
+
+  it('should calculate elapsed time correctly when date is in the past', () => {
+    const now = new Date('2025-12-25T17:30:15').getTime();
+    vi.setSystemTime(now);
+
+    // 2 days, 5 hours, 30 minutes, 15 seconds ago
+    const pastDate = new Date('2025-12-23T12:00:00').getTime();
+    const result = calculateTimeRemaining(pastDate);
+
+    expect(result.days).toBe(2);
+    expect(result.hours).toBe(5);
+    expect(result.minutes).toBe(30);
+    expect(result.seconds).toBe(15);
+    expect(result.isPast).toBe(true);
   });
 });
 
@@ -111,7 +132,7 @@ describe('updateTimerDisplay', () => {
   });
 
   it('should update all timer elements', () => {
-    const time: TimeRemaining = { days: 10, hours: 5, minutes: 30, seconds: 45 };
+    const time: TimeRemaining = { days: 10, hours: 5, minutes: 30, seconds: 45, isPast: false };
     updateTimerDisplay(time);
 
     expect(document.querySelector('[data-unit="days"]')?.textContent).toBe('10');
@@ -121,7 +142,7 @@ describe('updateTimerDisplay', () => {
   });
 
   it('should handle zero values', () => {
-    const time: TimeRemaining = { days: 0, hours: 0, minutes: 0, seconds: 0 };
+    const time: TimeRemaining = { days: 0, hours: 0, minutes: 0, seconds: 0, isPast: false };
     updateTimerDisplay(time);
 
     expect(document.querySelector('[data-unit="days"]')?.textContent).toBe('0');
@@ -133,8 +154,26 @@ describe('updateTimerDisplay', () => {
   it('should not throw when elements are missing', () => {
     document.body.innerHTML = '';
 
-    const time: TimeRemaining = { days: 10, hours: 5, minutes: 30, seconds: 45 };
+    const time: TimeRemaining = { days: 10, hours: 5, minutes: 30, seconds: 45, isPast: false };
     expect(() => updateTimerDisplay(time)).not.toThrow();
+  });
+
+  it('should update message to past message when date is in the past', () => {
+    document.body.innerHTML += `<p data-timer-message>${timerMessages.upcoming}</p>`;
+    
+    const time: TimeRemaining = { days: 10, hours: 5, minutes: 30, seconds: 45, isPast: true };
+    updateTimerDisplay(time);
+
+    expect(document.querySelector('[data-timer-message]')?.textContent).toBe(timerMessages.past);
+  });
+
+  it('should keep message as upcoming message when date is in the future', () => {
+    document.body.innerHTML += `<p data-timer-message>${timerMessages.upcoming}</p>`;
+    
+    const time: TimeRemaining = { days: 10, hours: 5, minutes: 30, seconds: 45, isPast: false };
+    updateTimerDisplay(time);
+
+    expect(document.querySelector('[data-timer-message]')?.textContent).toBe(timerMessages.upcoming);
   });
 });
 

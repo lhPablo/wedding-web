@@ -1,5 +1,6 @@
 ---
 import { wedding } from '@data/wedding';
+import { timerMessages } from '@data/timer';
 
 import Timer from '@components/ui/Timer/Timer.astro';
 import CopyIcon from '@components/ui/Icons/CopyIcon.astro';
@@ -41,7 +42,7 @@ const { id } = Astro.props;
     <p class={styles.note}>Concepto (sugerido): nombre y apellidos.</p>
   </div>
 
-  <p>Os esperamos en...</p>
+  <p data-timer-message>{timerMessages.upcoming}</p>
   <div class={styles['timer-container']}>
     <Timer weddingDate={new Date(wedding.date).getTime()} />
   </div>

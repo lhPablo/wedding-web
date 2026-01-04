@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, vi, afterEach } from 'vitest';
 import {
   showSuccessAndRedirect,
-  showErrorAndReset,
+  showError,
   resetFormState,
   hashSHA256,
   ERROR_RESET_DELAY_MS,
@@ -36,7 +36,7 @@ describe('hashSHA256', () => {
   });
 });
 
-describe('showErrorAndReset', () => {
+describe('showError', () => {
   beforeEach(() => {
     vi.useFakeTimers();
   });
@@ -48,7 +48,7 @@ describe('showErrorAndReset', () => {
   it('should set error state on button and input', () => {
     const { submitButton, passwordInput } = createLoginElements();
     
-    showErrorAndReset(submitButton, passwordInput);
+    showError(submitButton, passwordInput);
     
     expect(passwordInput.dataset.error).toBe('true');
     expect(submitButton.dataset.error).toBe('true');
@@ -57,14 +57,15 @@ describe('showErrorAndReset', () => {
   it('should clear error state after timeout', () => {
     const { submitButton, passwordInput } = createLoginElements();
 
-    passwordInput.value = 'wrong-password';
+    const wrongPassword = 'wrong-password';
+    passwordInput.value = wrongPassword;
     
-    showErrorAndReset(submitButton, passwordInput);
+    showError(submitButton, passwordInput);
     
     vi.advanceTimersByTime(ERROR_RESET_DELAY_MS);
     
     expect(submitButton.dataset.error).toBe('');
-    expect(passwordInput.value).toBe('');
+    expect(passwordInput.value).toBe(wrongPassword);
   });
 });
 
