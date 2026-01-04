@@ -1,6 +1,15 @@
+.loader {
+  position: fixed;
+  inset: 0;
+  background-color: var(--fog-color);
+  z-index: 60;
+  transition: opacity 0.5s ease;
+}
+
 .section {
   width: 100vw;
   height: 100vh;
+  height: 100dvh;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -13,13 +22,18 @@
   position: relative;
   width: 100%;
   height: 100%;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(black 80%, transparent);
+  mask-image: linear-gradient(black 80%, transparent);
 }
 
 .hero-image-container::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(0 0 0 / 12%);
+  background: 
+    radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.3) 100%),
+    rgba(0 0 0 / 15%);
   pointer-events: none;
   mask-image: linear-gradient(rgb(0, 0, 0) 80%, transparent);
   z-index: 20;
@@ -32,9 +46,8 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: left;
-  -webkit-mask-image: linear-gradient(black 80%, transparent);
-  mask-image: linear-gradient(black 80%, transparent);
+  object-position: center;
+  transform: scale(1.5);
   z-index: 10;
   background-color: var(--color-secondary);
 }
@@ -43,8 +56,6 @@
   position: relative;
   width: 100%;
   height: 100%;
-  -webkit-mask-image: linear-gradient(rgba(0, 0, 0, 0.514) 80%, transparent);
-  mask-image: linear-gradient(rgb(0, 0, 0) 80%, transparent);
   display: none;
 }
 
@@ -67,7 +78,7 @@
 .hero-content {
   width: 100%;
   position: absolute;
-  bottom: 25%;
+  bottom: 15%;
   left: 0;
   display: flex;
   flex-direction: column;
@@ -90,7 +101,10 @@
 .hero-content-title h1 {
   font-size: 4rem;
   font-family: var(--font-family-hero-title);
-  color: var(--background-color);
+  color: var(--primary-color);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  animation: fadeSlideUp 1s ease-out;
+  animation-delay: 0.5s;
 }
 
 .hero-content-title p {
@@ -103,6 +117,9 @@
   color: var(--background-color);
   font-size: 1.5rem;
   font-family: var(--font-family-hero-title);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  animation: fadeSlideUp 1s ease-out 0.3s both;
+  animation-delay: 0.5s;
 }
 
 .hero-content-title p::before,
@@ -139,11 +156,15 @@
 .hero-content-button a {
   color: var(--primary-color);
   cursor: pointer;
-  animation: bounce 2s infinite;
+  animation: 
+    fadeSlideUp 1s ease-out 0.6s both,
+    bounce 2s infinite 1.6s both;
+  animation-delay: 0.5s;
   transition: transform 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.6));
 }
 
 .hero-content-button a:hover {
@@ -177,6 +198,29 @@
     --line-gap: 0.1rem;
 
     padding: 0 0.5rem;
+  }
+}
+
+@media (max-height: 500px) {
+  .hero-content-title h1 {
+    font-size: 4rem;
+  }
+
+  .hero-content-title p {
+    --line-width: 3rem;
+    --line-gap: 0.2rem;
+    --line-vertical-position: 1rem;
+  }
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(1.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
