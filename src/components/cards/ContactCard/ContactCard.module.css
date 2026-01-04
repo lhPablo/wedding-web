@@ -66,6 +66,12 @@
     transition: opacity 0.3s ease;
 }
 
+/* Fallback for browsers without animation-timeline (Safari/iOS) */
+.avatar-default[data-faded="true"] {
+    opacity: 0;
+}
+
+/* Native scroll-driven animation for browsers that support it (Chrome/Android) */
 @supports (animation-timeline: view()) {
     .avatar-default {
         transition: none;
@@ -73,11 +79,11 @@
         animation-timeline: view();
         animation-range: entry 30% cover 30%;
     }
-}
 
-/* Class for fallback for browsers that don't support animation-timeline */
-.avatar-default.faded {
-    opacity: 0;
+    /* Disable JS fallback when native animation works */
+    .avatar-default[data-faded="true"] {
+        opacity: unset;
+    }
 }
 
 .avatar-placeholder {

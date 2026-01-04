@@ -1,32 +1,37 @@
 /**
-    * Fallback for browsers that don't support animation-timeline: view()
-    * Uses Intersection Observer to detect when the avatar enters the viewport
+ * Fallback for browsers that don't support animation-timeline: view() (Safari/iOS).
+ * Uses IntersectionObserver to detect when the card is 70% visible.
  */
 export function initAvatarTransition(): void {
-  // If the browser supports animation-timeline, do nothing
+  // Skip if browser supports animation-timeline (Chrome/Android)
   if (CSS.supports('animation-timeline: view()')) {
     return;
   }
 
-  const avatarDefaults = document.querySelectorAll('[data-avatar-default]');
-
-  if (avatarDefaults.length === 0) return;
+  const contactCards = document.querySelectorAll('[data-contact-card]');
+  if (contactCards.length === 0) return;
 
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
-        if (entry.intersectionRatio >= 0.3) {
-          entry.target.classList.add('faded');
+        const card = entry.target as HTMLElement;
+        const avatars = card.querySelectorAll('[data-avatar-default]');
+
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.7) {
+          avatars.forEach((avatar) => {
+            (avatar as HTMLElement).dataset.faded = 'true';
+          });
         } else {
-          entry.target.classList.remove('faded');
+          avatars.forEach((avatar) => {
+            delete (avatar as HTMLElement).dataset.faded;
+          });
         }
       });
     },
     {
-      threshold: [0, 0.3],
+      threshold: [0, 0.7],
     }
   );
 
-  avatarDefaults.forEach((avatar) => observer.observe(avatar));
+  contactCards.forEach((card) => observer.observe(card));
 }
-

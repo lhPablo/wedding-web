@@ -1,4 +1,4 @@
-const MIN_LOADER_TIME = 1000;
+const MIN_LOADER_TIME = 1700;
 
 function showHero(
   loader: Element | null,
@@ -12,8 +12,10 @@ function showHero(
     cloudOverlay.dataset.active = 'true';
   }
 
-  const animatedElements = document.querySelectorAll('[data-hero-animate]');
-  animatedElements.forEach((el) => el.classList.add('animate'));
+  setTimeout(() => {
+    const animatedElements = document.querySelectorAll('[data-hero-animate]');
+    animatedElements.forEach((el) => el.classList.add('animate'));
+  }, 500);
 }
 
 export function initHeroLoader(): void {
@@ -26,10 +28,10 @@ export function initHeroLoader(): void {
     '[data-hero-desktop]'
   ) as HTMLImageElement;
 
-  const isMobile = window.matchMedia(
-    '(max-width: 768px), (max-aspect-ratio: 1/1)'
+  const isDesktop = window.matchMedia(
+    '(min-width: 768px) and (min-aspect-ratio: 1/1)'
   ).matches;
-  const targetImg = isMobile ? mobileImg : desktopImg;
+  const targetImg = isDesktop ? desktopImg : mobileImg;
 
   const startTime = performance.now();
 
