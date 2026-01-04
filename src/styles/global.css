@@ -29,9 +29,9 @@ BODY {
   background-color: var(--background-color);
   font-family: var(--font-family);
   overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
   position: relative;
   scrollbar-width: none;
+  overscroll-behavior: none;
 }
 
 MAIN {
