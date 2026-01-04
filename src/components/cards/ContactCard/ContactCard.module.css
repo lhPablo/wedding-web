@@ -63,9 +63,21 @@
 
 .avatar-default {
     z-index: 20;
-    animation: avatar-fade-out steps(1) both;
-    animation-timeline: view();
-    animation-range: entry 30% cover 30%;
+    transition: opacity 0.3s ease;
+}
+
+@supports (animation-timeline: view()) {
+    .avatar-default {
+        transition: none;
+        animation: avatar-fade-out steps(1) both;
+        animation-timeline: view();
+        animation-range: entry 30% cover 30%;
+    }
+}
+
+/* Class for fallback for browsers that don't support animation-timeline */
+.avatar-default.faded {
+    opacity: 0;
 }
 
 .avatar-placeholder {
@@ -148,7 +160,7 @@ a.whatsapp-btn:hover {
 
 @media (min-width: 768px) and (orientation: landscape) {
     .container {
-        width: 100%;
+        width: 45%;
         min-width: unset;
         max-width: 25rem;
     }
@@ -161,8 +173,10 @@ a.whatsapp-btn:hover {
         display: block;
     }
 
-    .avatar-default {
-        animation-range: entry 50% cover 50%;
+    @supports (animation-timeline: view()) {
+        .avatar-default {
+            animation-range: entry 50% cover 50%;
+        }
     }
 }
 
