@@ -4,6 +4,9 @@ function showHero(
 ): void {
   loader?.classList.add('loaded');
   section?.classList.remove('loading');
+
+  const animatedElements = document.querySelectorAll('[data-hero-animate]');
+  animatedElements.forEach((el) => el.classList.add('animate'));
 }
 
 export function initHeroLoader(): void {

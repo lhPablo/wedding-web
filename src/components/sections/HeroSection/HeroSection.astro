@@ -3,6 +3,7 @@ import { wedding, heroImages } from '@data/wedding';
 import { sections } from '@data/sections';
 
 import DownIcon from '@components/ui/Icons/DownIcon.astro';
+import PlaneIcon from '@components/ui/Icons/PlaneIcon.astro';
 
 import styles from './HeroSection.module.css';
 
@@ -20,7 +21,11 @@ const year = date.getFullYear();
 const stringDate = `${day}-${month}-${year}`;
 ---
 
-<div class={styles.loader} data-hero-loader></div>
+<div class={styles.loader} data-hero-loader>
+  <div class={styles['loader-plane']}>
+    <PlaneIcon size="10rem" />
+  </div>
+</div>
 
 <section id={id} class={`${styles.section} loading`} data-hero-section>
   <div class={styles['hero-image-container']}>
@@ -64,13 +69,17 @@ const stringDate = `${day}-${month}-${year}`;
 
   <div class={styles['hero-content']}>
     <div class={styles['hero-content-title']}>
-      <h1>{wedding.title}</h1>
-      <p>{stringDate} | Nuestra Boda</p>
+      <h1 data-hero-animate>{wedding.title}</h1>
+      <p data-hero-animate>{stringDate} | Nuestra Boda</p>
     </div>
     {
       nextSection && (
         <div class={styles['hero-content-button']}>
-          <a href={`#${nextSection.id}`} class="button-transparent">
+          <a
+            href={`#${nextSection.id}`}
+            class="button-transparent"
+            data-hero-animate
+          >
             <DownIcon size="2rem" />
           </a>
         </div>
