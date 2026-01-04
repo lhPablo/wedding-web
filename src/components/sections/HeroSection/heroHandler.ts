@@ -5,6 +5,11 @@ function showHero(
   loader?.classList.add('loaded');
   section?.classList.remove('loading');
 
+  const cloudOverlay = document.getElementById('cloud-overlay');
+  if (cloudOverlay) {
+    cloudOverlay.dataset.active = 'true';
+  }
+
   const animatedElements = document.querySelectorAll('[data-hero-animate]');
   animatedElements.forEach((el) => el.classList.add('animate'));
 }
