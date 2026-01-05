@@ -259,7 +259,7 @@ SECTION {
   }
 }
 
-@media (min-width: 768px) and (orientation: landscape) {
+@media (min-width: 768px) and (min-aspect-ratio: 1/1) {
   BUTTON,
   .btn,
   A.btn {
@@ -267,7 +267,7 @@ SECTION {
   }
 }
 
-@media (min-width: 1024px) and (orientation: portrait) {
+@media (min-width: 1024px) and (max-aspect-ratio: 1/1) {
   HTML {
     font-size: 2rem;
   }

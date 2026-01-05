@@ -1,9 +1,21 @@
+const MIN_LOADER_TIME = 1700;
+
 function showHero(
   loader: Element | null,
   section: Element | null
 ): void {
   loader?.classList.add('loaded');
   section?.classList.remove('loading');
+
+  const cloudOverlay = document.getElementById('cloud-overlay');
+  if (cloudOverlay) {
+    cloudOverlay.dataset.active = 'true';
+  }
+
+  setTimeout(() => {
+    const animatedElements = document.querySelectorAll('[data-hero-animate]');
+    animatedElements.forEach((el) => el.classList.add('animate'));
+  }, 500);
 }
 
 export function initHeroLoader(): void {
@@ -16,15 +28,28 @@ export function initHeroLoader(): void {
     '[data-hero-desktop]'
   ) as HTMLImageElement;
 
-  const isMobile = window.matchMedia(
-    '(max-width: 768px), (orientation: portrait)'
+  const isDesktop = window.matchMedia(
+    '(min-aspect-ratio: 1/1) and (min-width: 600px)'
   ).matches;
-  const targetImg = isMobile ? mobileImg : desktopImg;
+  const targetImg = isDesktop ? desktopImg : mobileImg;
+
+  const startTime = performance.now();
+
+  const handleImageReady = () => {
+    const elapsed = performance.now() - startTime;
+    const remaining = Math.max(0, MIN_LOADER_TIME - elapsed);
+
+    if (remaining > 0) {
+      setTimeout(() => showHero(loader, section), remaining);
+    } else {
+      showHero(loader, section);
+    }
+  };
 
   if (targetImg?.complete) {
-    showHero(loader, section);
+    handleImageReady();
   } else {
-    targetImg?.addEventListener('load', () => showHero(loader, section));
+    targetImg?.addEventListener('load', handleImageReady);
   }
 }
 
