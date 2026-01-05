@@ -2,11 +2,12 @@
   width: 100%;
   max-width: 100vw;
   min-height: 100vh;
+  min-height: 100svh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
+  padding: 2rem 1rem;
   gap: 3rem;
 }
 
@@ -35,7 +36,7 @@
   flex-direction: column-reverse;
 }
 
-@media (min-width: 768px) and (orientation: landscape) {
+@media (min-width: 768px) and (min-aspect-ratio: 1/1) {
   .cards {
     flex-direction: row;
   }

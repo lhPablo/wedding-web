@@ -13,7 +13,7 @@
   background-color: var(--navbar-color);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  z-index: 20;
+  z-index: 30;
   overflow: hidden;
   opacity: 0;
   transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
@@ -45,7 +45,7 @@
   color: var(--active-color);
 }
 
-@media (min-width: 768px) and (orientation: landscape) and (hover: hover) and (pointer: fine) {
+@media (min-width: 768px) and (min-aspect-ratio: 1/1) and (hover: hover) and (pointer: fine) {
   .navbar a::after {
     content: attr(data-label);
     position: absolute;
@@ -62,7 +62,7 @@
     pointer-events: none;
     box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.1);
     transition: opacity 0.2s ease, transform 0.2s ease;
-    z-index: 30;
+    z-index: 40;
   }
 
   .navbar a span {
