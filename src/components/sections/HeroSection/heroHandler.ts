@@ -29,7 +29,7 @@ export function initHeroLoader(): void {
   ) as HTMLImageElement;
 
   const isDesktop = window.matchMedia(
-    '(min-width: 768px) and (min-aspect-ratio: 1/1)'
+    '(min-aspect-ratio: 1/1) and (min-width: 600px)'
   ).matches;
   const targetImg = isDesktop ? desktopImg : mobileImg;
 

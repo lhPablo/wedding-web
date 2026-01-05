@@ -122,7 +122,7 @@ export const companionFields: FieldConfig[] = [
     name: 'allergies',
     label: 'Alergias o intolerancias',
     type: FieldTypes.TEXT,
-    required: true,
+    required: false,
     placeholder: 'Indique alergias',
   },
 ];
