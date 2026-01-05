@@ -79,7 +79,7 @@ export const assistanceForm: FormConfig = {
       label: '¿Cuántas personas acompañan?',
       type: FieldTypes.SELECT,
       required: true,
-      options: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+      options: ['0', '1', '2', '3', '4', '5', '6', '7', '8']
     }
   ],
   submitText: 'Enviar confirmación',
