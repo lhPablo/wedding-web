@@ -55,10 +55,10 @@ export const assistanceForm: FormConfig = {
     },
     {
       name: 'allergies',
-      label: 'Alergias o intolerancias alimentarias',
+      label: 'Alergias, intolerancias o dietas especiales',
       type: FieldTypes.TEXTAREA,
       required: false,
-      placeholder: 'Indique alergias'
+      placeholder: 'Indique intolerancias, embarazo...'
     },
     {
       name: 'comments',
@@ -120,9 +120,9 @@ export const companionFields: FieldConfig[] = [
   },
   {
     name: 'allergies',
-    label: 'Alergias o intolerancias',
+    label: 'Alergias, intolerancias o dietas especiales',
     type: FieldTypes.TEXT,
     required: false,
-    placeholder: 'Indique alergias',
+    placeholder: 'Indique intolerancias, embarazo...',
   },
 ];
