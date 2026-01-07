@@ -39,7 +39,7 @@ export const menu: Question[] = [
   {
     id: 'specialDiets',
     title: 'Dietas especiales',
-    content: 'Si algún invitado tiene alergias, intolerancias o sigue alguna dieta especial, avisadnos con antelación en el formulario o directamente para poder solicitar su menú especial.'
+    content: 'Si algún invitado tiene alergias, intolerancias, está embarazada o sigue alguna dieta especial, avisadnos con antelación en el formulario o directamente para poder solicitar su menú especial.\n\nDurante todo el evento (cóctel y menú), habrá platos y bandejas específicas para estos casos; intentaremos estar pendientes en todo momento, pero si fuera necesario, indicádselo al camarero, que se encargará de servir los platos separados.'
   },
   {
     id: 'tableAssignment',
