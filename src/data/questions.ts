@@ -17,6 +17,11 @@ export const menu: Question[] = [
     content: 'Hay aparcamiento gratuito para los invitados en el establecimiento del convite. Para la iglesia, hay varios parkings de pago cerca; el más cercano es el del Mercado Colón.'
   },
   {
+    id: 'accommodation',
+    title: 'Recomendación de alojamiento',
+    content: 'Si necesitáis alojamiento, os recomendamos que sea cerca del lugar del convite o cerca de la iglesia, ya que será allí donde el autobús os dejará al finalizar la fiesta.'
+  },  
+  {
     id: 'shoes',
     title: 'Calzado',
     content: 'Os invitamos a traer un segundo par de zapatos cómodos. La fiesta no termina… solo cambian los zapatos ✨.'
