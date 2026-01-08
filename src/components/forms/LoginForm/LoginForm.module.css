@@ -12,8 +12,15 @@
   gap: 1.25rem;
 }
 
-.login-logo {
+.login-logo-wrapper {
+  aspect-ratio: 1 / 1;
   width: 50%;
+  margin: 0 auto;
+}
+
+.login-logo {
+  width: 100%;
+  height: auto;
   border-radius: 50%;
 }
 
@@ -112,21 +119,31 @@
 
 @media (min-aspect-ratio: 1/1) and (max-height: 500px) {
   .login-card {
-    padding: 1rem 1.5rem;
-    gap: 0.75rem;
+    padding: 0.75rem 1.25rem;
+    gap: 0.5rem;
     max-width: 20rem;
   }
 
   .login-card h1 {
-    font-size: 1.5rem;
-    margin-bottom: 0.25rem;
+    font-size: 1.25rem;
+    margin-bottom: 0;
   }
 
-  .login-logo {
-    width: 30%;
+  .login-logo-wrapper {
+    width: 20%;
+  }
+
+  .subtitle {
+    font-size: 0.8rem;
+    line-height: 1.3;
   }
 
   .form-group {
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .form-group label {
+    font-size: 0.85rem;
+    margin-bottom: 0.25rem;
   }
 }
