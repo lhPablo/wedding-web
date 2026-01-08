@@ -7,8 +7,14 @@ import styles from './LoginForm.module.css';
 ---
 
 <div class={styles['login-card']}>
-  <div>
-    <img src={logo.src} alt="Logo" class={styles['login-logo']} />
+  <div class={styles['login-logo-wrapper']}>
+    <img
+      src={logo.src}
+      alt="Logo"
+      width={logo.width}
+      height={logo.height}
+      class={styles['login-logo']}
+    />
   </div>
   <h1>Bienvenido</h1>
   <p class={styles.subtitle}>
