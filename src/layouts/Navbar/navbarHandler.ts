@@ -1,42 +1,46 @@
-export const initNavbar = () => {
-  const navbar = document.getElementById('navbar');
+const sectionVisibility = new Map<string, number>();
 
-  if (!navbar) return;
+const updateActiveSection = () => {
+  let maxVisibility = 0;
+  let activeId: string | null = null;
 
-  _initSmoothScroll();
+  sectionVisibility.forEach((ratio, id) => {
+    if (ratio > maxVisibility) {
+      maxVisibility = ratio;
+      activeId = id;
+    }
+  });
 
-  const sections = document.querySelectorAll('section');
+  document.querySelectorAll('#navbar a[href^="#"]').forEach((link) => {
+    const href = link.getAttribute('href');
+    const id = href?.substring(1);
+    const isActive = id === activeId && maxVisibility > 0;
+    link.setAttribute('data-active', isActive ? 'true' : 'false');
+  });
 
-  // To add the active class to the selected link
-  _addSelectedLinkListener(sections);
-
-  // To show the navbar when the user scrolls down
-  _addNavbarVisibilityListener(navbar);
+  if (activeId) {
+    const currentHash = window.location.hash.substring(1);
+    if (currentHash !== activeId) {
+      history.replaceState(null, '', `#${activeId}`);
+    }
+  }
 };
 
-const _addSelectedLinkListener = (sections: NodeListOf<HTMLElement>) => {
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      const id = entry.target.id;
-      const link = document.querySelector(`#navbar a[href="#${id}"]`) as HTMLElement;
-
-      if (entry.isIntersecting) {
-        link?.setAttribute('data-active', 'true');
-        
-        const currentHash = window.location.hash.substring(1);
-        if (currentHash !== id) {
-          history.replaceState(null, '', `#${id}`);
-        }
-      } else {
-        link?.setAttribute('data-active', 'false');
-      }
-    });
-  }, { threshold: 0.5 });
+const addSelectedLinkListener = (sections: NodeListOf<HTMLElement>) => {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        sectionVisibility.set(entry.target.id, entry.intersectionRatio);
+      });
+      updateActiveSection();
+    },
+    { threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1] }
+  );
 
   sections.forEach((section: HTMLElement) => observer.observe(section));
-}
+};
 
-const _addNavbarVisibilityListener = (navbar: HTMLElement) => {
+const addNavbarVisibilityListener = (navbar: HTMLElement) => {
   const heroSection = document.querySelector('section');
   
   if (!heroSection) return;
@@ -58,9 +62,9 @@ const _addNavbarVisibilityListener = (navbar: HTMLElement) => {
   );
 
   observer.observe(heroSection);
-}
+};
 
-const _initSmoothScroll = () => {
+const initSmoothScroll = () => {
   const links = document.querySelectorAll('a[href^="#"]');
   
   links.forEach((link) => {
@@ -83,4 +87,18 @@ const _initSmoothScroll = () => {
       }
     });
   });
-}
+};
+
+export const initNavbar = () => {
+  const navbar = document.getElementById('navbar');
+
+  if (!navbar) return;
+
+  initSmoothScroll();
+
+  const sections = document.querySelectorAll('section');
+
+  addSelectedLinkListener(sections);
+
+  addNavbarVisibilityListener(navbar);
+};
