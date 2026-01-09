@@ -1,21 +1,26 @@
 const sectionVisibility = new Map<string, number>();
 
-const updateActiveSection = () => {
+const getMostVisibleSection = (): string | null => {
   let maxVisibility = 0;
   let activeId: string | null = null;
 
-  sectionVisibility.forEach((ratio, id) => {
+  for (const [id, ratio] of sectionVisibility) {
     if (ratio > maxVisibility) {
       maxVisibility = ratio;
       activeId = id;
     }
-  });
+  }
+
+  return maxVisibility > 0 ? activeId : null;
+};
+
+const updateActiveSection = () => {
+  const activeId = getMostVisibleSection();
 
   document.querySelectorAll('#navbar a[href^="#"]').forEach((link) => {
     const href = link.getAttribute('href');
     const id = href?.substring(1);
-    const isActive = id === activeId && maxVisibility > 0;
-    link.setAttribute('data-active', isActive ? 'true' : 'false');
+    link.setAttribute('data-active', id === activeId ? 'true' : 'false');
   });
 
   if (activeId) {
