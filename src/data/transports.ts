@@ -7,7 +7,7 @@ export const transports: Location[] = [
   {
     id: 'outbound-transport',
     title: 'Autocares Navarro y Quesada',
-    image: outboundImage.src,
+    image: outboundImage,
     description: 'Salida cercana a la ceremonia hacia la ubicación del convite.',
     address: 'Gran Via del Marqués del Túria, 49, Ensanche, 46005 Valencia',
     mapLink: 'https://maps.app.goo.gl/5648r6g9LUTPd87a7',
@@ -17,7 +17,7 @@ export const transports: Location[] = [
   {
     id: 'return-transport',
     title: 'Autocares Navarro y Quesada',
-    image: returnImage.src,
+    image: returnImage,
     description: 'Regreso desde la entrada de Mas d\'Alzedo hacia el punto de recogida de la ceremonia.',
     address: 'Av. del Turia, 1, 46190 Riba-roja de Túria, Valencia',
     mapLink: 'https://maps.app.goo.gl/c32hbVWdLYL1rjMZ6',

@@ -46,10 +46,11 @@ export function initHeroLoader(): void {
     }
   };
 
-  if (targetImg?.complete) {
+  if (!targetImg || (targetImg.complete && targetImg.naturalWidth > 0)) {
     handleImageReady();
   } else {
-    targetImg?.addEventListener('load', handleImageReady);
+    targetImg.addEventListener('load', handleImageReady);
+    targetImg.addEventListener('error', handleImageReady);
   }
 }
 

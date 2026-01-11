@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import WhatsAppIcon from '@components/ui/Icons/WhatsAppIcon.astro';
 
 import styles from './ContactCard.module.css';
@@ -7,10 +8,10 @@ interface Props {
   name: string;
   email: string;
   phone: string;
-  avatar?: string;
-  avatarAlt?: string;
-  avatarMobile?: string;
-  avatarAltMobile?: string;
+  avatar?: ImageMetadata;
+  avatarAlt?: ImageMetadata;
+  avatarMobile?: ImageMetadata;
+  avatarAltMobile?: ImageMetadata;
   role?: string;
 }
 
@@ -38,68 +39,86 @@ const hasAnyAvatar = avatar || avatarMobile;
         <div class={styles['avatar-container']}>
           {hasDesktopTransition ? (
             <>
-              <img
+              <Image
                 src={avatar}
                 alt={name}
                 class={`${styles.avatar} ${styles['avatar-desktop']} ${styles['avatar-default']}`}
                 data-avatar-default
+                format="webp"
+                quality={85}
               />
-              <img
+              <Image
                 src={avatarAlt}
                 alt={name}
                 class={`${styles.avatar} ${styles['avatar-desktop']} ${styles['avatar-alt']}`}
+                format="webp"
+                quality={85}
               />
             </>
           ) : (
             avatar && (
-              <img
+              <Image
                 src={avatar}
                 alt={name}
                 class={`${styles.avatar} ${styles['avatar-desktop']}`}
+                format="webp"
+                quality={85}
               />
             )
           )}
 
           {hasMobileTransition ? (
             <>
-              <img
+              <Image
                 src={avatarMobile}
                 alt={name}
                 class={`${styles.avatar} ${styles['avatar-mobile']} ${styles['avatar-default']}`}
                 data-avatar-default
+                format="webp"
+                quality={85}
               />
-              <img
+              <Image
                 src={avatarAltMobile}
                 alt={name}
                 class={`${styles.avatar} ${styles['avatar-mobile']} ${styles['avatar-alt']}`}
+                format="webp"
+                quality={85}
               />
             </>
           ) : avatarMobile ? (
-            <img
+            <Image
               src={avatarMobile}
               alt={name}
               class={`${styles.avatar} ${styles['avatar-mobile']}`}
+              format="webp"
+              quality={85}
             />
           ) : hasDesktopTransition ? (
             <>
-              <img
+              <Image
                 src={avatar}
                 alt={name}
                 class={`${styles.avatar} ${styles['avatar-mobile']} ${styles['avatar-default']}`}
                 data-avatar-default
+                format="webp"
+                quality={85}
               />
-              <img
+              <Image
                 src={avatarAlt}
                 alt={name}
                 class={`${styles.avatar} ${styles['avatar-mobile']} ${styles['avatar-alt']}`}
+                format="webp"
+                quality={85}
               />
             </>
           ) : (
             avatar && (
-              <img
+              <Image
                 src={avatar}
                 alt={name}
                 class={`${styles.avatar} ${styles['avatar-mobile']}`}
+                format="webp"
+                quality={85}
               />
             )
           )}
