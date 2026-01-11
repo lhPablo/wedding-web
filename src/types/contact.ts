@@ -3,9 +3,9 @@ export interface Contact {
     name: string;
     email: string;
     phone: string;
-    avatar?: string;
-    avatarAlt?: string;
-    avatarMobile?: string;
-    avatarAltMobile?: string;
+    avatar?: ImageMetadata;
+    avatarAlt?: ImageMetadata;
+    avatarMobile?: ImageMetadata;
+    avatarAltMobile?: ImageMetadata;
     role?: string;
 }

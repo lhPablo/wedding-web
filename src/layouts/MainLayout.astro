@@ -1,9 +1,23 @@
 ---
+import { getImage } from 'astro:assets';
 import BaseLayout from './BaseLayout.astro';
 import Navbar from '@layouts/Navbar/Navbar.astro';
 import CloudOverlay from '@components/ui/CloudOverlay/CloudOverlay.astro';
 import { heroImages } from '@data/wedding';
 import cloudSvg from '@assets/cloud.svg';
+
+// Optimize images to WebP for preload
+const optimizedMobile = await getImage({
+  src: heroImages.mobile,
+  format: 'webp',
+  quality: 85,
+});
+
+const optimizedDesktop = await getImage({
+  src: heroImages.desktop,
+  format: 'webp',
+  quality: 85,
+});
 ---
 
 <BaseLayout>
@@ -22,16 +36,18 @@ import cloudSvg from '@assets/cloud.svg';
     <link
       rel="preload"
       as="image"
-      href={heroImages.mobile.src}
+      href={optimizedMobile.src}
       media="(max-width: 768px)"
       fetchpriority="high"
+      type="image/webp"
     />
     <link
       rel="preload"
       as="image"
-      href={heroImages.desktop.src}
+      href={optimizedDesktop.src}
       media="(min-width: 768px)"
       fetchpriority="high"
+      type="image/webp"
     />
   </Fragment>
   <CloudOverlay mode="exit" />

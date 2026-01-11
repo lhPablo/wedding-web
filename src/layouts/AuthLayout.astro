@@ -1,14 +1,27 @@
 ---
+import { getImage } from 'astro:assets';
 import BaseLayout from './BaseLayout.astro';
 import CloudOverlay from '@components/ui/CloudOverlay/CloudOverlay.astro';
 import logo from '@assets/logo.png';
 import cloudSvg from '@assets/cloud.svg';
+
+const optimizedLogo = await getImage({
+  src: logo,
+  format: 'webp',
+  quality: 85,
+});
 ---
 
 <BaseLayout>
   <Fragment slot="head">
     <link rel="preload" as="image" href={cloudSvg.src} fetchpriority="high" />
-    <link rel="preload" as="image" href={logo.src} fetchpriority="high" />
+    <link
+      rel="preload"
+      as="image"
+      href={optimizedLogo.src}
+      fetchpriority="high"
+      type="image/webp"
+    />
   </Fragment>
   <CloudOverlay mode="enter" />
   <slot />

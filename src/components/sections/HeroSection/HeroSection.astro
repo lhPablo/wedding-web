@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import { wedding, heroImages } from '@data/wedding';
 import { sections } from '@data/sections';
 
@@ -29,38 +30,35 @@ const stringDate = `${day}-${month}-${year}`;
 
 <section id={id} class={`${styles.section} loading`} data-hero-section>
   <div class={styles['hero-image-container']}>
-    <img
-      class={styles['hero-image-mobile']}
-      src={wedding.imageMobile}
+    <Image
+      src={heroImages.mobile}
       alt="Our main image"
-      width={heroImages.mobile.width}
-      height={heroImages.mobile.height}
-      fetchpriority="high"
+      class={styles['hero-image-mobile']}
+      format="webp"
+      quality={85}
       loading="eager"
       decoding="sync"
       data-hero-mobile
     />
 
     <div class={styles['hero-image-desktop-container']}>
-      <img
-        class={styles['hero-image-desktop']}
-        src={wedding.imageDesktop}
+      <Image
+        src={heroImages.desktop}
         alt="Our main image"
-        width={heroImages.desktop.width}
-        height={heroImages.desktop.height}
-        fetchpriority="high"
+        class={styles['hero-image-desktop']}
+        format="webp"
+        quality={85}
         loading="eager"
         decoding="sync"
         data-hero-desktop
       />
 
-      <img
-        class={`${styles['hero-image-desktop']} ${styles.revert}`}
-        src={wedding.imageDesktop}
+      <Image
+        src={heroImages.desktop}
         alt="Our main image"
-        width={heroImages.desktop.width}
-        height={heroImages.desktop.height}
-        fetchpriority="high"
+        class={`${styles['hero-image-desktop']} ${styles.revert}`}
+        format="webp"
+        quality={85}
         loading="eager"
         decoding="sync"
       />

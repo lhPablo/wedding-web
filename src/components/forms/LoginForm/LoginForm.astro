@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import SubmitButton from '@components/ui/SubmitButton/SubmitButton.astro';
 import EyeIcon from '@components/ui/Icons/EyeIcon.astro';
 import EyeOffIcon from '@components/ui/Icons/EyeOffIcon.astro';
@@ -8,11 +9,11 @@ import styles from './LoginForm.module.css';
 
 <div class={styles['login-card']}>
   <div class={styles['login-logo-wrapper']}>
-    <img
-      src={logo.src}
+    <Image
+      src={logo}
       alt="Logo"
-      width={logo.width}
-      height={logo.height}
+      format="webp"
+      quality={85}
       class={styles['login-logo']}
     />
   </div>

@@ -1,8 +1,9 @@
 ---
+import { Image } from 'astro:assets';
 import styles from './LocationCard.module.css';
 
 interface Props {
-  image: string;
+  image: ImageMetadata;
   title: string;
   description?: string;
   address: string;
@@ -17,7 +18,13 @@ const { image, title, description, address, mapLink, time, badge } =
 
 <div class={styles.container}>
   <div class={styles['photo-container']}>
-    <img src={image} alt="Wedding location" class={styles.photo} />
+    <Image
+      src={image}
+      alt="Wedding location"
+      class={styles.photo}
+      format="webp"
+      quality={85}
+    />
 
     <div class={styles.overlay}></div>
 
