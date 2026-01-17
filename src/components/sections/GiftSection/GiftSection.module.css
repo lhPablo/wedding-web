@@ -1,120 +1,136 @@
 .section {
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 2.5rem;
-    gap: 3rem;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2.5rem;
+  gap: 3rem;
 }
 
 .iban {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.625rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
 }
 
 .copy-button {
-    background: none;
-    border: none;
-    padding: 0.5rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 0.5rem;
-    transition: all 0.3s ease;
-    position: relative;
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+  position: relative;
 
-    SPAN {
-        color: var(--text-color) !important;
-    }
+  SPAN {
+    color: var(--text-color) !important;
+  }
 }
 
 .copy-button:hover {
-    color: var(--hover-color);
+  color: var(--hover-color);
 }
 
 .copy-button:active {
-    transform: scale(0.95);
+  transform: scale(0.95);
 }
 
 .copy-button:focus-visible {
-    outline: 2px solid var(--primary-color);
-    outline-offset: 2px;
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
 }
 
 .copy-button[data-state="success"] {
-    color: var(--success-color);
-    cursor: default;
-    pointer-events: none;
+  color: var(--success-color);
+  cursor: default;
+  pointer-events: none;
 }
 
 .copy-button[data-state="error"] {
-    color: var(--error-color);
-    cursor: default;
-    pointer-events: none;
+  color: var(--error-color);
+  cursor: default;
+  pointer-events: none;
 }
 
 .icon {
-    display: none;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-    position: relative;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  position: relative;
 }
 
 .icon[data-visible="true"] {
-    display: flex;
-    animation: iconPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  animation: iconPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .icon[data-visible="true"]::before,
 .icon[data-visible="true"]::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
 }
 
 .note {
-    margin-top: 0.4rem;
-    font-size: 0.8rem;
-    color: var(--placeholder-color);
-    text-align: start;
-}  
+  margin-top: 0.4rem;
+  font-size: 0.8rem;
+  color: var(--placeholder-color);
+  text-align: start;
+}
+
+.note P {
+  margin: 0 0 0.25rem 0;
+  font-size: 0.8rem;
+  color: var(--placeholder-color);
+}
+
+.note ul {
+  margin: 0;
+  padding-left: 1.25rem;
+  list-style-type: disc;
+}
+
+.note LI {
+  margin: 0.125rem 0;
+}
 
 .timer-container {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @keyframes iconPop {
-    0% {
-        transform: scale(0.3);
-        opacity: 0;
-    }
-    50% {
-        transform: scale(1.1);
-    }
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 
 @media (min-width: 768px) and (min-aspect-ratio: 1/1) {
-    .timer-container {
-        max-width: 30%;
-    }
+  .timer-container {
+    max-width: 30%;
+  }
 }
