@@ -12,19 +12,17 @@
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui"
   },
-  "dependencies": {
-    "astro": "^5.16.6"
-  },
   "devDependencies": {
+    "astro": "^5.16.11",
     "@eslint/js": "^9.39.2",
     "@playwright/test": "1.57.0",
     "dotenv": "^17.2.3",
     "eslint": "^9.39.2",
     "eslint-plugin-astro": "1.5.0",
     "eslint-plugin-react": "7.37.5",
-    "globals": "16.5.0",
+    "globals": "17.0.0",
     "jsdom": "^27.4.0",
-    "prettier": "^3.7.4",
-    "vitest": "4.0.16"
+    "prettier": "3.8.0",
+    "vitest": "4.0.17"
   }
 }
