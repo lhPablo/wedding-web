@@ -11,7 +11,7 @@ export const transports: Location[] = [
     description: 'Salida cercana a la ceremonia hacia la ubicación del convite.',
     address: 'Gran Via del Marqués del Túria, 49, Ensanche, 46005 Valencia',
     mapLink: 'https://maps.app.goo.gl/5648r6g9LUTPd87a7',
-    time: '13:30',
+    time: '13:15',
     badge: 'Salida'
   },
   {

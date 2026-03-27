@@ -16,8 +16,7 @@ export const sections: Section[] = [
   },
   { 
     id: 'transport',
-    title: 'Transporte',
-    warning: '⚠️ El número de buses, horario y puntos de recogida se irán actualizando una vez tengamos confirmados el número de asistentes. Por favor, revisen esta sección a medida que se acerque la fecha de la boda.'
+    title: 'Transporte'
   },
   { 
     id: 'gift', 
