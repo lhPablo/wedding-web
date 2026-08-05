@@ -52,6 +52,20 @@ Para la confirmación de asistencia se utilizó [Google Apps Script](https://dev
 - Garantizar fiabilidad y disponibilidad
 - Fácil acceso a los datos para los novios
 
+El endpoint es propio de cada despliegue, así que se configura mediante la variable `GOOGLE_SCRIPT_URL`: hay que crear un script propio en Google Sheets, publicarlo como aplicación web y usar su URL.
+
+El formulario envía un `POST` con un JSON plano, así que la hoja de destino debe contemplar estas claves:
+
+| Clave | Contenido |
+| ----- | --------- |
+| `name`, `age`, `menu_type`, `phone` | Datos del invitado principal |
+| `allergies`, `comments` | Texto libre |
+| `bus` | Uso del transporte |
+| `companions` | Número de acompañantes |
+| `companion_N_name`, `companion_N_relation`, `companion_N_age`, `companion_N_menu_type`, `companion_N_allergies` | Un bloque por acompañante, con `N` de 1 a 10 |
+
+Sin esta variable el formulario se renderiza y valida con normalidad, pero avisa de que el envío no está configurado.
+
 ## ⚖️ Trade-offs y limitaciones
 
 | Decisión               | Trade-off                                                           |
