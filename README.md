@@ -130,6 +130,10 @@ El repositorio no incluye ningún `.env`, así que **para ejecutar el proyecto e
 Crea un archivo `.env` en la raíz del proyecto:
 
 ```env
+# Endpoint del Google Apps Script que recibe las confirmaciones.
+# Sin definirlo, el formulario avisa de que no está configurado.
+GOOGLE_SCRIPT_URL=<url-del-despliegue>
+
 # Hashes SHA-256 de las contraseñas de acceso (obligatorias)
 PUBLIC_FULL_ACCESS_KEY_HASH=<hash-sha256>
 PUBLIC_LIMITED_ACCESS_KEY_HASH=<hash-sha256>

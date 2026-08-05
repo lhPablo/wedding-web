@@ -85,7 +85,8 @@ export const assistanceForm: FormConfig = {
   submitText: 'Enviar confirmación',
   successMessage: '¡Gracias por confirmar! Hemos recibido tu respuesta.',
   errorMessage: 'Hubo un error al enviar el formulario. Por favor, inténtalo de nuevo.',
-  googleScriptUrl: ''
+  // Deployment-specific endpoint, empty when not configured
+  googleScriptUrl: import.meta.env.GOOGLE_SCRIPT_URL ?? ''
 };
 
 export const companionFields: FieldConfig[] = [
