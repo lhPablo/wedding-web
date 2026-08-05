@@ -7,7 +7,7 @@ import styles from './ContactCard.module.css';
 interface Props {
   name: string;
   email: string;
-  phone: string;
+  phone?: string;
   avatar?: ImageMetadata;
   avatarAlt?: ImageMetadata;
   avatarMobile?: ImageMetadata;
@@ -143,20 +143,28 @@ const hasAnyAvatar = avatar || avatarMobile;
         <span class={styles.icon}>📧</span>
         <a href={`mailto:${email}`}>{email}</a>
       </p>
-      <p>
-        <span class={styles.icon}>📞</span>
-        <a href={`tel:${phone}`}>{phone}</a>
-      </p>
+      {
+        phone && (
+          <p>
+            <span class={styles.icon}>📞</span>
+            <a href={`tel:${phone}`}>{phone}</a>
+          </p>
+        )
+      }
     </div>
 
-    <a
-      href={`https://wa.me/${whatsappNumber}`}
-      target="_blank"
-      class={`btn ${styles['whatsapp-btn']}`}
-    >
-      <WhatsAppIcon size="1.25rem" color="white" />
-      <span>WhatsApp</span>
-    </a>
+    {
+      phone && (
+        <a
+          href={`https://wa.me/${whatsappNumber}`}
+          target="_blank"
+          class={`btn ${styles['whatsapp-btn']}`}
+        >
+          <WhatsAppIcon size="1.25rem" color="white" />
+          <span>WhatsApp</span>
+        </a>
+      )
+    }
   </div>
 </div>
 

@@ -63,6 +63,18 @@ Para la confirmación de asistencia se utilizó [Google Apps Script](https://dev
 
 Estas decisiones se tomaron conscientemente para equilibrar **simplicidad, mantenimiento y requisitos reales** del proyecto.
 
+### Privacidad de los datos de contacto
+
+La web se usó en producción con los datos de contacto reales: los invitados necesitaban poder localizarnos, y ese dato formaba parte de la función.
+
+Pasada la boda, esos datos se movieron a variables de entorno con valores anonimizados por defecto, de modo que la versión pública del repositorio no expone información personal:
+
+- Los nombres y correos usan `example.com`, [dominio reservado por la IANA](https://www.rfc-editor.org/rfc/rfc2606) para documentación.
+- Sin teléfono definido, la tarjeta de contacto omite la línea `tel:` y el botón de WhatsApp en lugar de mostrarlos deshabilitados.
+- La lista de beneficiarios de la sección de regalo solo se renderiza si el entorno aporta los nombres.
+
+El número de cuenta estuvo publicado únicamente durante las semanas previas al evento y se retiró al terminar. Como eliminarlo del código no lo borra del historial de Git, se purgó de todos los commits con `git filter-repo`.
+
 ## ✨ Características
 
 - **Sistema de acceso**: Dos niveles de acceso (completo y limitado) mediante códigos
@@ -70,7 +82,7 @@ Estas decisiones se tomaron conscientemente para equilibrar **simplicidad, mante
 - **Información del evento**: Ubicaciones de ceremonia y convite con enlaces a Google Maps
 - **Transporte**: Información sobre los autobuses disponibles
 - **FAQ**: Preguntas frecuentes sobre el evento
-- **Contacto**: Información de contacto con enlace directo a WhatsApp
+- **Contacto**: Información de contacto con enlace directo a WhatsApp (omitido en la versión anonimizada)
 - **Animaciones**: Transiciones suaves entre páginas con efecto de nubes
 - **Responsive**: Optimizado para móvil, tablet y desktop
 
@@ -113,17 +125,35 @@ npx playwright install
 
 ## 🔐 Variables de entorno
 
+El repositorio no incluye ningún `.env`, así que **para ejecutar el proyecto en local hay que crearlo**. Sin él no se puede acceder a la web: el formulario de login no tiene contra qué validar, y los tests E2E fallarán por el mismo motivo.
+
 Crea un archivo `.env` en la raíz del proyecto:
 
 ```env
-# Hashes SHA-256 de las contraseñas de acceso
+# Hashes SHA-256 de las contraseñas de acceso (obligatorias)
 PUBLIC_FULL_ACCESS_KEY_HASH=<hash-sha256>
 PUBLIC_LIMITED_ACCESS_KEY_HASH=<hash-sha256>
 
 # Contraseñas en texto plano (solo para tests E2E en desarrollo)
 TEST_FULL_ACCESS_KEY=<contraseña>
 TEST_LIMITED_ACCESS_KEY=<contraseña>
+
+# Datos de contacto (opcionales). Sin ellos la web se construye anonimizada:
+# nombres genéricos, correos en example.com y sin teléfono ni WhatsApp.
+GROOM_NAME=<nombre>
+GROOM_EMAIL=<correo>
+GROOM_PHONE=<teléfono>
+BRIDE_NAME=<nombre>
+BRIDE_EMAIL=<correo>
+BRIDE_PHONE=<teléfono>
+
+# Nombres legales para la lista de beneficiarios del regalo (opcionales).
+# Sin ellos, esa lista no se renderiza.
+GROOM_FULL_NAME=<nombre y apellidos>
+BRIDE_FULL_NAME=<nombre y apellidos>
 ```
+
+> Ninguna de las variables de contacto lleva el prefijo `PUBLIC_`, así que Astro las resuelve en tiempo de build y nunca las incluye en el bundle del cliente.
 
 Para generar un hash SHA-256:
 

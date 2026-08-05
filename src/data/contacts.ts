@@ -10,23 +10,26 @@ import brideMobileImage from '@assets/bride-mobile.jpeg';
 import groomAltMobileImage from '@assets/groom-alt-mobile.jpeg';
 import brideAltMobileImage from '@assets/bride-alt-mobile.jpeg';
 
+// Contact data from the environment, so the public build stays anonymized
+const env = import.meta.env;
+
 export const contacts: Contact[] = [
-  { 
-    id: 'groom', 
-    name: 'Novio', 
-    email: 'novio@example.com', 
-    phone: '[redacted]',
+  {
+    id: 'groom',
+    name: env.GROOM_NAME ?? 'Novio',
+    email: env.GROOM_EMAIL ?? 'novio@example.com',
+    phone: env.GROOM_PHONE,
     role: 'Novio',
     avatar: groomImage,
     avatarAlt: groomAltImage,
     avatarMobile: groomMobileImage,
     avatarAltMobile: groomAltMobileImage,
   },
-  { 
-    id: 'bride', 
-    name: 'Novia', 
-    email: 'novia@example.com', 
-    phone: '[redacted]',
+  {
+    id: 'bride',
+    name: env.BRIDE_NAME ?? 'Novia',
+    email: env.BRIDE_EMAIL ?? 'novia@example.com',
+    phone: env.BRIDE_PHONE,
     role: 'Novia',
     avatar: brideImage,
     avatarAlt: brideAltImage,

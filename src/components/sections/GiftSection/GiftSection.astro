@@ -10,6 +10,12 @@ import CrossIcon from '@components/ui/Icons/CrossIcon.astro';
 import styles from './GiftSection.module.css';
 
 const { id } = Astro.props;
+
+// Legal names, only rendered when the environment provides them
+const beneficiaries = [
+  import.meta.env.GROOM_FULL_NAME,
+  import.meta.env.BRIDE_FULL_NAME,
+].filter(Boolean);
 ---
 
 <section id={id} class={styles.section}>
@@ -40,13 +46,18 @@ const { id } = Astro.props;
       </button>
     </div>
     <p class={styles.note}>Concepto (sugerido): nombre y apellidos.</p>
-    <div class={styles.note}>
-      <p>Beneficiario (indistinto):</p>
-      <ul>
-        <li>Novio</li>
-        <li>Novia</li>
-      </ul>
-    </div>
+    {
+      beneficiaries.length > 0 && (
+        <div class={styles.note}>
+          <p>Beneficiario (indistinto):</p>
+          <ul>
+            {beneficiaries.map((n) => (
+              <li>{n}</li>
+            ))}
+          </ul>
+        </div>
+      )
+    }
   </div>
 
   <p data-timer-message>{timerMessages.upcoming}</p>
