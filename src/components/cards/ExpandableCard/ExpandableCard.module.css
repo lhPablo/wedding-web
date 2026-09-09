@@ -13,6 +13,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    cursor: pointer;
+    list-style: none;
+}
+
+.header::-webkit-details-marker {
+    display: none;
 }
 
 .header:hover .chevron {
@@ -55,15 +61,16 @@
     transform: rotate(-45deg);
 }
 
-.chevron[data-open="true"] span:nth-child(1) {
+details[open] .chevron span:nth-child(1) {
     transform: rotate(315deg);
 }
 
-.chevron[data-open="true"] span:nth-child(2) {
+details[open] .chevron span:nth-child(2) {
     transform: rotate(-315deg);
 }
 
 .panel {
+    display: block !important;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease, padding 0.3s ease;
@@ -75,7 +82,7 @@
     }
 }
 
-.panel[data-open="true"] {
+details[open] .panel {
     max-height: 30rem;
     padding: 1rem;
 }
